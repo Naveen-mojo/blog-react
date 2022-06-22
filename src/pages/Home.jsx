@@ -275,192 +275,42 @@ function Home(props) {
                         <div className="container">
                             <div className="atbs-block__inner">
                                 <div className="posts-list flexbox-wrap flexbox-wrap-3i">
-                                    <div className="list-item">
-                                        <article className="post post--overlay post--overlay-style-card post--overlay-md post--overlay-padding-lg" data-dark-mode="true">
-                                            <div className="post__thumb post__thumb--overlay background-img background-img--darkened post__thumb--overlay atbs-thumb-object-fit background-img-dots-circle">
-                                                <a href="https://atom.bk-ninja.com/technology/adjusting-to-your-home-is-no-different-than-a-new-country/"><img width={600} height={600} src="assets/img/6-600x600.jpg" className="attachment-atbs-s-1_1 size-atbs-s-1_1 wp-post-image" alt="" loading="lazy" srcSet="https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/6-600x600.jpg 600w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/6-150x150.jpg 150w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/6-180x180.jpg 180w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/6-400x400.jpg 400w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/6-800x800.jpg 800w" sizes="(max-width: 600px) 100vw, 600px" /></a> {/* close a tag */}
-                                            </div>
-                                            <div className="post__text">
-                                                <div className="post__text-wrap">
-                                                    <div className="post__text-inner flexbox-wrap flexbox-wrap-direction-column">
-                                                        <div className="post__meta date-stamp">
-                                                            <a className="cat-5 post__cat cat-theme" href="https://atom.bk-ninja.com/technology/category/review/">Review</a>
-                                                            <span className="time-wrap"><time className="time published" dateTime="2019-10-18T08:23:13+00:00" title="October 18, 2019 at 8:23 am">
-                                                                18<span>Oct</span>
-                                                            </time></span>
+                                    {
+                                        carouselData.map((curValue, index) => {
+                                            return (
+                                                <div className="list-item">
+                                                    <article className="post post--overlay post--overlay-style-card post--overlay-md post--overlay-padding-lg" data-dark-mode="true">
+                                                        <div className="post__thumb post__thumb--overlay background-img background-img--darkened post__thumb--overlay atbs-thumb-object-fit background-img-dots-circle">
+                                                            <a href="https://atom.bk-ninja.com/technology/adjusting-to-your-home-is-no-different-than-a-new-country/"><img width={600} height={600} src={curValue.PostThumbUrl} className="attachment-atbs-s-1_1 size-atbs-s-1_1 wp-post-image" alt="" loading="lazy"  sizes="(max-width: 600px) 100vw, 600px" /></a>
                                                         </div>
-                                                        <h3 className="post__title typescale-2">
-                                                            <a href="https://atom.bk-ninja.com/technology/adjusting-to-your-home-is-no-different-than-a-new-country/">Life
-                                                                is short, and it is up to you to make it sweet</a>
-                                                        </h3>
-                                                        <div className="post__excerpt  ">
-                                                            <div className="excerpt">Set to launch on the manufacturers new A330neo
-                                                                aircraft ...</div>
+                                                        <div className="post__text">
+                                                            <div className="post__text-wrap">
+                                                                <div className="post__text-inner flexbox-wrap flexbox-wrap-direction-column">
+                                                                    <div className="post__meta date-stamp">
+                                                                        <a className="cat-5 post__cat cat-theme" href="https://atom.bk-ninja.com/technology/category/review/">Review</a>
+                                                                        <span className="time-wrap"><time className="time published" dateTime="2019-10-18T08:23:13+00:00" title="October 18, 2019 at 8:23 am">
+                                                                            18<span>Oct</span>
+                                                                        </time></span>
+                                                                    </div>
+                                                                    <h3 className="post__title typescale-2">
+                                                                        <a href="https://atom.bk-ninja.com/technology/adjusting-to-your-home-is-no-different-than-a-new-country/">{curValue.PostTitle}</a>
+                                                                    </h3>
+                                                                    <div className="post__excerpt  ">
+                                                                        <div className="excerpt">Set to launch on the manufacturers new A330neo
+                                                                            aircraft ...</div>
+                                                                    </div>
+                                                                    <div className="post__readmore flexbox-space-y-bottom"><a href="https://atom.bk-ninja.com/technology/adjusting-to-your-home-is-no-different-than-a-new-country/" className="button__readmore"><span className="readmore__text">Read
+                                                                        more<i className="mdicon mdicon-navigate_next" /></span></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div className="post__readmore flexbox-space-y-bottom"><a href="https://atom.bk-ninja.com/technology/adjusting-to-your-home-is-no-different-than-a-new-country/" className="button__readmore"><span className="readmore__text">Read
-                                                            more<i className="mdicon mdicon-navigate_next" /></span></a>
-                                                        </div>
-                                                    </div>
+                                                        <a href="https://atom.bk-ninja.com/technology/adjusting-to-your-home-is-no-different-than-a-new-country/" className="link-overlay" />
+                                                    </article>
                                                 </div>
-                                            </div>
-                                            <a href="https://atom.bk-ninja.com/technology/adjusting-to-your-home-is-no-different-than-a-new-country/" className="link-overlay" />
-                                        </article>
-                                    </div>{/* .list-item */}
-                                    <div className="list-item">
-                                        <article className="post post--overlay post--overlay-style-card post--overlay-md post--overlay-padding-lg" data-dark-mode="true">
-                                            <div className="post__thumb post__thumb--overlay background-img background-img--darkened post__thumb--overlay atbs-thumb-object-fit background-img-dots-circle">
-                                                <a href="https://atom.bk-ninja.com/technology/i-moved-across-the-country-and-never-looked-back/"><img width={600} height={600} src="assets/img/nikita-kostrykin-i1Q9pphrWUw-unsplash-600x600.jpg" className="attachment-atbs-s-1_1 size-atbs-s-1_1 wp-post-image" alt="" loading="lazy" srcSet="https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/nikita-kostrykin-i1Q9pphrWUw-unsplash-600x600.jpg 600w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/nikita-kostrykin-i1Q9pphrWUw-unsplash-150x150.jpg 150w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/nikita-kostrykin-i1Q9pphrWUw-unsplash-180x180.jpg 180w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/nikita-kostrykin-i1Q9pphrWUw-unsplash-400x400.jpg 400w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/nikita-kostrykin-i1Q9pphrWUw-unsplash-800x800.jpg 800w" sizes="(max-width: 600px) 100vw, 600px" /></a> {/* close a tag */}
-                                            </div>
-                                            <div className="post__text">
-                                                <div className="post__text-wrap">
-                                                    <div className="post__text-inner flexbox-wrap flexbox-wrap-direction-column">
-                                                        <div className="post__meta date-stamp">
-                                                            <a className="cat-4 post__cat cat-theme" href="https://atom.bk-ninja.com/technology/category/laptop/">Laptop</a>
-                                                            <span className="time-wrap"><time className="time published" dateTime="2019-10-18T08:22:23+00:00" title="October 18, 2019 at 8:22 am">
-                                                                18<span>Oct</span>
-                                                            </time></span>
-                                                        </div>
-                                                        <h3 className="post__title typescale-2">
-                                                            <a href="https://atom.bk-ninja.com/technology/i-moved-across-the-country-and-never-looked-back/">Life’s
-                                                                too mysterious to take too serious.</a>
-                                                        </h3>
-                                                        <div className="post__excerpt  ">
-                                                            <div className="excerpt">Set to launch on the manufacturers new A330neo
-                                                                aircraft ...</div>
-                                                        </div>
-                                                        <div className="post__readmore flexbox-space-y-bottom"><a href="https://atom.bk-ninja.com/technology/i-moved-across-the-country-and-never-looked-back/" className="button__readmore"><span className="readmore__text">Read
-                                                            more<i className="mdicon mdicon-navigate_next" /></span></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="https://atom.bk-ninja.com/technology/i-moved-across-the-country-and-never-looked-back/" className="link-overlay" />
-                                        </article>
-                                    </div>{/* .list-item */}
-                                    <div className="list-item">
-                                        <article className="post post--overlay post--overlay-style-card post--overlay-md post--overlay-padding-lg" data-dark-mode="true">
-                                            <div className="post__thumb post__thumb--overlay background-img background-img--darkened post__thumb--overlay atbs-thumb-object-fit background-img-dots-circle">
-                                                <a href="https://atom.bk-ninja.com/technology/no-fixed-abode-quitting-home-ownership/"><img width={600} height={600} src="assets/img/4-600x600.jpg" className="attachment-atbs-s-1_1 size-atbs-s-1_1 wp-post-image" alt="" loading="lazy" srcSet="https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/4-600x600.jpg 600w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/4-150x150.jpg 150w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/4-180x180.jpg 180w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/4-400x400.jpg 400w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/4-800x800.jpg 800w" sizes="(max-width: 600px) 100vw, 600px" /></a> {/* close a tag */}
-                                            </div>
-                                            <div className="post__text">
-                                                <div className="post__text-wrap">
-                                                    <div className="post__text-inner flexbox-wrap flexbox-wrap-direction-column">
-                                                        <div className="post__meta date-stamp">
-                                                            <a className="cat-5 post__cat cat-theme" href="https://atom.bk-ninja.com/technology/category/review/">Review</a>
-                                                            <span className="time-wrap"><time className="time published" dateTime="2019-10-18T08:20:17+00:00" title="October 18, 2019 at 8:20 am">
-                                                                18<span>Oct</span>
-                                                            </time></span>
-                                                        </div>
-                                                        <h3 className="post__title typescale-2">
-                                                            <a href="https://atom.bk-ninja.com/technology/no-fixed-abode-quitting-home-ownership/">No
-                                                                Fixed Abode: Quitting Home Ownership</a>
-                                                        </h3>
-                                                        <div className="post__excerpt  ">
-                                                            <div className="excerpt">Set to launch on the manufacturers new A330neo
-                                                                aircraft ...</div>
-                                                        </div>
-                                                        <div className="post__readmore flexbox-space-y-bottom"><a href="https://atom.bk-ninja.com/technology/no-fixed-abode-quitting-home-ownership/" className="button__readmore"><span className="readmore__text">Read
-                                                            more<i className="mdicon mdicon-navigate_next" /></span></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="https://atom.bk-ninja.com/technology/no-fixed-abode-quitting-home-ownership/" className="link-overlay" />
-                                        </article>
-                                    </div>{/* .list-item */}
-                                    <div className="list-item">
-                                        <article className="post post--overlay post--overlay-style-card post--overlay-md post--overlay-padding-lg" data-dark-mode="true">
-                                            <div className="post__thumb post__thumb--overlay background-img background-img--darkened post__thumb--overlay atbs-thumb-object-fit background-img-dots-circle">
-                                                <a href="https://atom.bk-ninja.com/technology/developing-self-control-through-the-wonders-of-intermittent-fasting/"><img width={600} height={600} src="assets/img/5-600x600.jpg" className="attachment-atbs-s-1_1 size-atbs-s-1_1 wp-post-image" alt="" loading="lazy" srcSet="https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/5-600x600.jpg 600w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/5-150x150.jpg 150w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/5-180x180.jpg 180w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/5-400x400.jpg 400w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/5-800x800.jpg 800w" sizes="(max-width: 600px) 100vw, 600px" /></a> {/* close a tag */}
-                                            </div>
-                                            <div className="post__text">
-                                                <div className="post__text-wrap">
-                                                    <div className="post__text-inner flexbox-wrap flexbox-wrap-direction-column">
-                                                        <div className="post__meta date-stamp">
-                                                            <a className="cat-4 post__cat cat-theme" href="https://atom.bk-ninja.com/technology/category/laptop/">Laptop</a>
-                                                            <span className="time-wrap"><time className="time published" dateTime="2019-10-18T08:18:54+00:00" title="October 18, 2019 at 8:18 am">
-                                                                18<span>Oct</span>
-                                                            </time></span>
-                                                        </div>
-                                                        <h3 className="post__title typescale-2">
-                                                            <a href="https://atom.bk-ninja.com/technology/developing-self-control-through-the-wonders-of-intermittent-fasting/">Developing
-                                                                Self-Control Through The Wonders</a>
-                                                        </h3>
-                                                        <div className="post__excerpt  ">
-                                                            <div className="excerpt">Set to launch on the manufacturers new A330neo
-                                                                aircraft ...</div>
-                                                        </div>
-                                                        <div className="post__readmore flexbox-space-y-bottom"><a href="https://atom.bk-ninja.com/technology/developing-self-control-through-the-wonders-of-intermittent-fasting/" className="button__readmore"><span className="readmore__text">Read
-                                                            more<i className="mdicon mdicon-navigate_next" /></span></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="https://atom.bk-ninja.com/technology/developing-self-control-through-the-wonders-of-intermittent-fasting/" className="link-overlay" />
-                                        </article>
-                                    </div>{/* .list-item */}
-                                    <div className="list-item">
-                                        <article className="post post--overlay post--overlay-style-card post--overlay-md post--overlay-padding-lg" data-dark-mode="true">
-                                            <div className="post__thumb post__thumb--overlay background-img background-img--darkened post__thumb--overlay atbs-thumb-object-fit background-img-dots-circle">
-                                                <a href="https://atom.bk-ninja.com/technology/the-argument-for-short-meditations/"><img width={600} height={600} src="assets/img/3-600x600.jpg" className="attachment-atbs-s-1_1 size-atbs-s-1_1 wp-post-image" alt="" loading="lazy" srcSet="https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/3-600x600.jpg 600w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/3-150x150.jpg 150w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/3-180x180.jpg 180w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/3-400x400.jpg 400w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/3-800x800.jpg 800w" sizes="(max-width: 600px) 100vw, 600px" /></a> {/* close a tag */}
-                                            </div>
-                                            <div className="post__text">
-                                                <div className="post__text-wrap">
-                                                    <div className="post__text-inner flexbox-wrap flexbox-wrap-direction-column">
-                                                        <div className="post__meta date-stamp">
-                                                            <a className="cat-3 post__cat cat-theme" href="https://atom.bk-ninja.com/technology/category/build-pc/">Build
-                                                                PC</a> <span className="time-wrap"><time className="time published" dateTime="2019-10-18T08:17:57+00:00" title="October 18, 2019 at 8:17 am">
-                                                                    18<span>Oct</span>
-                                                                </time></span>
-                                                        </div>
-                                                        <h3 className="post__title typescale-2">
-                                                            <a href="https://atom.bk-ninja.com/technology/the-argument-for-short-meditations/">The
-                                                                Argument For Short Meditations</a>
-                                                        </h3>
-                                                        <div className="post__excerpt  ">
-                                                            <div className="excerpt">Set to launch on the manufacturers new A330neo
-                                                                aircraft ...</div>
-                                                        </div>
-                                                        <div className="post__readmore flexbox-space-y-bottom"><a href="https://atom.bk-ninja.com/technology/the-argument-for-short-meditations/" className="button__readmore"><span className="readmore__text">Read
-                                                            more<i className="mdicon mdicon-navigate_next" /></span></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="https://atom.bk-ninja.com/technology/the-argument-for-short-meditations/" className="link-overlay" />
-                                        </article>
-                                    </div>{/* .list-item */}
-                                    <div className="list-item">
-                                        <article className="post post--overlay post--overlay-style-card post--overlay-md post--overlay-padding-lg" data-dark-mode="true">
-                                            <div className="post__thumb post__thumb--overlay background-img background-img--darkened post__thumb--overlay atbs-thumb-object-fit background-img-dots-circle">
-                                                <a href="https://atom.bk-ninja.com/technology/do-you-want-stronger-friendships-a-more-balanced-mindset/"><img width={600} height={600} src="assets/img/2-600x600.jpg" className="attachment-atbs-s-1_1 size-atbs-s-1_1 wp-post-image" alt="" loading="lazy" srcSet="https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/2-600x600.jpg 600w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/2-150x150.jpg 150w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/2-180x180.jpg 180w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/2-400x400.jpg 400w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/2-800x800.jpg 800w" sizes="(max-width: 600px) 100vw, 600px" /></a> {/* close a tag */}
-                                            </div>
-                                            <div className="post__text">
-                                                <div className="post__text-wrap">
-                                                    <div className="post__text-inner flexbox-wrap flexbox-wrap-direction-column">
-                                                        <div className="post__meta date-stamp">
-                                                            <a className="cat-4 post__cat cat-theme" href="https://atom.bk-ninja.com/technology/category/laptop/">Laptop</a>
-                                                            <span className="time-wrap"><time className="time published" dateTime="2019-10-18T08:16:49+00:00" title="October 18, 2019 at 8:16 am">
-                                                                18<span>Oct</span>
-                                                            </time></span>
-                                                        </div>
-                                                        <h3 className="post__title typescale-2">
-                                                            <a href="https://atom.bk-ninja.com/technology/do-you-want-stronger-friendships-a-more-balanced-mindset/">Do
-                                                                You Want Stronger Friendships</a>
-                                                        </h3>
-                                                        <div className="post__excerpt  ">
-                                                            <div className="excerpt">Set to launch on the manufacturers new A330neo
-                                                                aircraft ...</div>
-                                                        </div>
-                                                        <div className="post__readmore flexbox-space-y-bottom"><a href="https://atom.bk-ninja.com/technology/do-you-want-stronger-friendships-a-more-balanced-mindset/" className="button__readmore"><span className="readmore__text">Read
-                                                            more<i className="mdicon mdicon-navigate_next" /></span></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="https://atom.bk-ninja.com/technology/do-you-want-stronger-friendships-a-more-balanced-mindset/" className="link-overlay" />
-                                        </article>
-                                    </div>{/* .list-item */}
+                                            )
+                                        })
+                                    }
                                 </div>{/* .posts-list */}
                             </div>{/* .atbs-block__inner */}
                         </div>{/* .container */}
