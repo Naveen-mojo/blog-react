@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import logo from '../img/Group-18305.png'
 import logo2 from '../img/Group-18306.png'
 
@@ -349,9 +349,9 @@ function Header(props) {
                         <div className="atbs-atoms-search-full__inner">
                             <div className="atbs-atoms-search-full__form">
                                 <div className="container-sm">
-                                    <form action="https://atom.bk-ninja.com/technology/" id="searchform" className="search-form" method="get">
+                                    <form action="http://localhost:3000/" id="searchform" className="search-form" method="get">
                                         <div className="form-group">
-                                            <input type="search" name="s" className="search-form__input" autoComplete="off" placeholder="Search ..." />
+                                            <input type="search" onChange={props.getSearchValue} name="s" className="search-form__input" autoComplete="off" placeholder="Search ..." />
                                             <button type="submit" className="btn search-form__submit"><i className="atbs-atoms-icon-right-arrow" /></button>
                                         </div>
                                     </form>
@@ -372,7 +372,32 @@ function Header(props) {
                             <div className="atbs-atoms-search-full__results search-results">
                                 <div className="container-sm">
                                     <div className="search-results__inner">
-                                        <div className="search-results__content" />
+                                        {/* <div className="search-results__content" /> */}
+                                        <div className="mnmd-block mnmd-block--fullwidth atbs-post--listing-grid-d atbs-post--listing-grid-4-item-vertical">
+                                            <div className="posts-list">
+                                                {
+                                                    props.searchResult.map((curValue) => {
+                                                        return (
+
+                                                            <div className="list-item" key={curValue.ID}>
+                                                                <article className="post post--vertical post--vertical-3i-no-excerpt post__thumb-170 disable-thumb-placeholder" data-dark-mode="true">
+                                                                    <div className="post__thumb atbs-thumb-object-fit post-thumb-radius">
+                                                                        <a href={`/${curValue.PostSlug}`}><img width="400" height="300" src={curValue.PostThumbUrl} className="attachment-atbs-xs-4_3 size-atbs-xs-4_3 wp-post-image" alt="" loading="lazy" sizes="(max-width: 400px) 100vw, 400px" /></a></div>
+                                                                    <div className="post__text">
+                                                                        <div className="post__meta post-time-cat-wrap">
+                                                                            <a className="cat-6 post__cat post__cat--bg cat-theme-bg" href="#">Tips</a>
+                                                                            <span className="time-wrap"><time className="time published" dateTime="2019-10-29T10:46:00+00:00" title="October 29, 2019 at 10:46 am">October 29, 2019</time></span>                        </div>
+                                                                        <h3 className="post__title typescale-1 custom-typescale-1 line-limit-child line-limit-3">
+                                                                            <a href={`/${curValue.PostSlug}`}>{curValue.PostTitle}</a></h3>
+                                                                    </div>
+                                                                </article>
+                                                            </div>
+
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

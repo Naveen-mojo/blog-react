@@ -10,6 +10,8 @@ function CategoryController(props) {
 
     const queryPageNum = parseInt(pageNumber)
 
+    console.log(isNaN(queryPageNum));
+
     var [pageNum, setPageNum] = React.useState(0)
 
     const getPagenum = () => {
@@ -36,6 +38,13 @@ function CategoryController(props) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
+    const [items, setItems] = useState([]);
+    const [hasMore, sethasMore] = useState(true);
+    const [page, setpage] = useState(1);
+
+    const [search, setSearch] = React.useState('')
+    const [searchData, setSearchData] = useState('')
+
 
     useEffect(() => {
         const getUserList = () => {
@@ -43,7 +52,6 @@ function CategoryController(props) {
             fetch(`${apiEndPoint}/all?npp=${skip}&page=${pageNum}`)
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res)
                     setTotalPages(res.pagination.total_pages);
                     setError(res.pagination.err);
                     setUserList([...userList, ...res.results]);
@@ -57,24 +65,93 @@ function CategoryController(props) {
         window.onload = (event) => {
             const getUserLists = () => {
                 setLoading(true);
-                fetch(`${apiEndPoint}/all?npp=${(queryPageNum + 1) * 3}&page=0`)
-                    .then(res => res.json())
-                    .then(res => {
-                        console.log(res)
-                        setTotalPages(res.pagination.total_pages);
-                        setError(res.pagination.err);
-                        setUserList([...userList, ...res.results]);
-                        setLoading(false);
-                    });
+                if (isNaN(queryPageNum) === true) {
+                    fetch(`${apiEndPoint}/all?npp=${(0 + 1) * 3}&page=0`)
+                        .then(res => res.json())
+                        .then(res => {
+                            setTotalPages(res.pagination.total_pages);
+                            setError(res.pagination.err);
+                            setUserList([...userList, ...res.results]);
+                            setLoading(false);
+                        });
+                } else {
+                    fetch(`${apiEndPoint}/all?npp=${(queryPageNum + 1) * 3}&page=0`)
+                        .then(res => res.json())
+                        .then(res => {
+                            setTotalPages(res.pagination.total_pages);
+                            setError(res.pagination.err);
+                            setUserList([...userList, ...res.results]);
+                            setLoading(false);
+                        });
+                }
             }
             getUserLists();
         }
     }, []);
 
 
+    useEffect(() => {
+        const getComments = async () => {
+            const res = await fetch(
+                `http://localhost:5000/api/v1/post/all?npp=20&page=0`
+            );
+            const data = await res.json();
+            setItems(data.results);
+        };
+
+        getComments();
+    }, []);
+
+    const fetchComments = async () => {
+        const res = await fetch(
+            `http://localhost:5000/api/v1/post/all?npp=20&page=${page}`
+        );
+        const data = await res.json();
+        return data.results;
+    };
+
+    const fetchData = async () => {
+        const commentsFormServer = await fetchComments();
+
+        setItems([...items, ...commentsFormServer]);
+        if (commentsFormServer.length === 0 || commentsFormServer.length < 20) {
+            sethasMore(false);
+        }
+        setpage(page + 1);
+    };
+
+    const getSearchValue = (event) => {
+        setSearch(event.target.value)
+    }
+
+    const searchValue = (event) => {
+        event.preventDefault()
+        setSearchData(search)
+    }
+
+    const getSearchData = () => {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+        fetch(`${apiEndPoint}search?q=${searchData}`, requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                setItems(result)
+            })
+            .catch(error => {
+                console.log('error', error)
+            });
+    }
+
+    useEffect(() => {
+        getSearchData();
+    }, [searchData])
+
     return (
         <>
-            <Category getPagenum={getPagenum} userList={userList} loading={loading} totalPages={totalPages} pageNum={pageNum} error={error} />
+            <Category getPagenum={getPagenum} userList={userList} loading={loading} totalPages={totalPages} pageNum={pageNum} error={error} items={items} hasMore={hasMore} fetchData={fetchData} getSearchValue={getSearchValue} searchValue={searchValue} />
         </>
     )
 }
