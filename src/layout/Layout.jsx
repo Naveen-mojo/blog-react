@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import View from './View'
+// import View from './View'
 
 function Layout() {
   return (

@@ -1,5 +1,5 @@
 import './App.css';
-import Footer from './component/Footer';
+import FooterController from './controller/FooterController';
 import HeaderController from './controller/HeaderController';
 import Router from './routes';
 
@@ -11,7 +11,7 @@ function App() {
       <div className="site-wrapper header-1" style={{ transform: "none" }}>
         <HeaderController />
         <Router />
-        <Footer />
+        <FooterController />
       </div>
 
       

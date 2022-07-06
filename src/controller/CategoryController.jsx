@@ -10,8 +10,6 @@ function CategoryController(props) {
 
     const queryPageNum = parseInt(pageNumber)
 
-    console.log(isNaN(queryPageNum));
-
     var [pageNum, setPageNum] = React.useState(0)
 
     const getPagenum = () => {

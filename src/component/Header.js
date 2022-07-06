@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import logo from '../img/Group-18305.png'
 import logo2 from '../img/Group-18306.png'
+import moment from 'moment'
 
 function Header(props) {
     const termData = props.term
@@ -15,14 +16,14 @@ function Header(props) {
                         {/* mobile logo open */}
                         <div className="header-branding header-branding--mobile mobile-header__section text-left">
                             <div className="header-logo header-logo--mobile flexbox__item text-left">
-                                <a href="https://atom.bk-ninja.com/technology">
+                                <Link to="/">
                                     {/* begin logo */}
                                     <span className="logo-wrapper">
                                         <img className="logo-light-mode" src={logo} alt="Logo" />
                                         <img className="logo-dark-mode" src={logo2} alt="Logo" />
                                     </span>{/* .logo-wrapper */}
                                     {/* end logo  */}
-                                </a>
+                                </Link>
                             </div>
                         </div>
                         {/* logo close */}
@@ -63,8 +64,8 @@ function Header(props) {
                             </div>
                             <div className="col-xs-6">
                                 <div className="site-logo header-logo text-center">
-                                    <a href="#">
-                                        <span className="logo-wrapper"><img className="logo-light-mode" src="https://atom.bk-ninja.com/technology/wp-content/uploads/2021/04/Group-18305.png" alt="Logo" width={340} /><img className="logo-dark-mode" src="https://atom.bk-ninja.com/technology/wp-content/uploads/2021/04/Group-18306.png" alt="Logo" width={340} /></span>  </a>
+                                    <a href="/">
+                                        <span className="logo-wrapper"><img className="logo-light-mode" src={logo} alt="Logo" width={340} /><img className="logo-dark-mode" src={logo} alt="Logo" width={340} /></span>  </a>
                                 </div>{/* .site-logo */}              </div>
                             <div className="col-xs-3 text-right">
                                 <a href="#subscribe-modal" className="btn btn-default" data-toggle="modal" data-target="#subscribe-modal">
@@ -131,28 +132,24 @@ function Header(props) {
                                     <i className="mdicon mdicon-menu" />
                                 </a>
                                 <div className="site-logo header-logo">
-                                    <a href="https://atom.bk-ninja.com/technology">
+                                    <a href="/">
                                         <span className="logo-wrapper"><img className="logo-light-mode" src={logo} alt="Logo" /><img className="logo-dark-mode" src={logo2} alt="Logo" /></span> </a>
                                 </div>{/* .site-logo */}
                             </div>
                             <div className="navigation-wrapper navigation-bar__section js-priority-nav text-center">
                                 <div id="sticky-main-menu" className="menu-main-menu-container">
-                                    <ul id="menu-main-menu-2" className="navigation navigation--main navigation--inline">
-                                        <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-763 current_page_item menu-item-860">
-                                            <a href="https://atom.bk-ninja.com/technology/" aria-current="page">Home</a></li>
-                                        <li className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-861 menu-item-cat-4">
-                                            <a href="https://atom.bk-ninja.com/technology/category/laptop/">Laptop</a></li>
-                                        <li className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-862 menu-item-cat-7">
-                                            <a href="https://atom.bk-ninja.com/technology/category/laptop/fashion/">Fashion</a>
-                                        </li>
-                                        <li className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-863 menu-item-cat-6">
-                                            <a href="https://atom.bk-ninja.com/technology/category/laptop/tips/">Tips</a></li>
-                                        <li className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-864 menu-item-cat-2">
-                                            <a href="https://atom.bk-ninja.com/technology/category/news/">News</a></li>
-                                        <li className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-865 menu-item-cat-5">
-                                            <a href="https://atom.bk-ninja.com/technology/category/review/">Review</a></li>
-                                        <li className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-866 menu-item-cat-3">
-                                            <a href="https://atom.bk-ninja.com/technology/category/build-pc/">Build PC</a></li>
+                                    <ul id="menu-main-menu" className="navigation navigation--main navigation--inline">
+                                        <li id="menu-item-860" className="nav-item"><NavLink to="/" aria-current="page">Home</NavLink></li>
+                                        {
+                                            termData.map((curValue) => {
+                                                return (
+
+                                                    <li key={curValue.TermId} id={`menu-item-861-${curValue.TermId}`} className="nav-item"><NavLink to={`category/${curValue.TermSlug}`}>{curValue.TermName}</NavLink></li>
+
+                                                )
+                                            })
+                                        }
+
                                     </ul>
                                 </div>
                             </div>
@@ -188,7 +185,7 @@ function Header(props) {
                         <div className="atbs-offcanvas__section-group scrollbar-hidden">
                             <div className="atbs-offcanvas__section atbs-offcanvas__title">
                                 <h2 className="site-logo offcanvas-desktop-logo">
-                                    <a href="https://atom.bk-ninja.com/technology">
+                                    <a href="/">
                                         <span className="logo-wrapper"><img className="logo-light-mode" src={logo} alt="Logo" /><img className="logo-dark-mode" src={logo2} alt="Logo" /></span> </a>
                                 </h2>{/* .site-logo */}
                                 <ul className="social-list list-horizontal">
@@ -200,21 +197,17 @@ function Header(props) {
                             <div className="atbs-offcanvas__section atbs-offcanvas__section-navigation">
                                 <div id="offcanvas-menu-desktop" className="menu-main-menu-container">
                                     <ul id="menu-main-menu-3" className="navigation navigation--offcanvas">
-                                        <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-763 current_page_item menu-item-860">
-                                            <a href="https://atom.bk-ninja.com/technology/" aria-current="page">Home</a></li>
-                                        <li className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-861 menu-item-cat-4">
-                                            <a href="https://atom.bk-ninja.com/technology/category/laptop/">Laptop</a></li>
-                                        <li className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-862 menu-item-cat-7">
-                                            <a href="https://atom.bk-ninja.com/technology/category/laptop/fashion/">Fashion</a>
-                                        </li>
-                                        <li className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-863 menu-item-cat-6">
-                                            <a href="https://atom.bk-ninja.com/technology/category/laptop/tips/">Tips</a></li>
-                                        <li className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-864 menu-item-cat-2">
-                                            <a href="https://atom.bk-ninja.com/technology/category/news/">News</a></li>
-                                        <li className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-865 menu-item-cat-5">
-                                            <a href="https://atom.bk-ninja.com/technology/category/review/">Review</a></li>
-                                        <li className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-866 menu-item-cat-3">
-                                            <a href="https://atom.bk-ninja.com/technology/category/build-pc/">Build PC</a></li>
+                                        <li id="menu-item-860" className="nav-item"><NavLink to="/" aria-current="page">Home</NavLink></li>
+                                        {
+                                            termData.map((curValue) => {
+                                                return (
+
+                                                    <li key={curValue.TermId} id={`menu-item-861-${curValue.TermId}`} className="nav-item"><NavLink to={`category/${curValue.TermSlug}`}>{curValue.TermName}</NavLink></li>
+
+                                                )
+                                            })
+                                        }
+
                                     </ul>
                                 </div>
                             </div>
@@ -241,7 +234,7 @@ function Header(props) {
                                     <div role="tabpanel" className="tab-pane fade in active" id="login-tab">
                                         <div className="login-with-social">
                                         </div>
-                                        <form name="lwa-form" className="bk-lwa-form" action="https://atom.bk-ninja.com/technology/wp-login.php" method="post">
+                                        <form name="lwa-form" className="bk-lwa-form" action="/" method="post">
                                             <div className="bk-login-status">
                                                 <span className="lwa-status" />
                                             </div>
@@ -262,11 +255,11 @@ function Header(props) {
                                                     <input id="wp-submit" className="btn btn-block btn-primary lwa-wp-submit" type="submit" name="wp-submit" defaultValue="Log In" tabIndex={100} />
                                                     <input type="hidden" name="lwa_profile_link" />
                                                     <input type="hidden" name="login-with-ajax" defaultValue="login" />
-                                                    <input type="hidden" name="redirect_to" defaultValue="https://atom.bk-ninja.com/technology/" />
+                                                    <input type="hidden" name="redirect_to" defaultValue="/" />
                                                 </div>
                                             </div>
                                             <p className="login-lost-password">
-                                                <a className="lwa-links-remember link link--darken" href="https://atom.bk-ninja.com/technology/wp-login.php?action=lostpassword" title="Password Lost and Found">Lost your password?</a>
+                                                <a className="lwa-links-remember link link--darken" href="#" title="Password Lost and Found">Lost your password?</a>
                                             </p>
                                         </form>
                                     </div>
@@ -278,8 +271,8 @@ function Header(props) {
                 <div id="atbs-offcanvas-mobile" className="atbs-offcanvas js-atbs-offcanvas js-perfect-scrollbar">
                     <div className="atbs-offcanvas__title">
                         <h2 className="site-logo offcanvas-mobile-logo">
-                            <a href="https://atom.bk-ninja.com/technology">
-                                <span className="logo-wrapper"><img className="logo-light-mode" src="assets/img/Group-18305.png" alt="Logo" /><img className="logo-dark-mode" src="assets/img/Group-18306.png" alt="Logo" /></span> </a>
+                            <a href="/">
+                                <span className="logo-wrapper"><img className="logo-light-mode" src={logo} alt="Logo" /><img className="logo-dark-mode" src={logo} alt="Logo" /></span> </a>
                         </h2>{/* .site-logo */}
                         <ul className="social-list list-horizontal">
                         </ul>
@@ -289,21 +282,18 @@ function Header(props) {
                     </div>
                     <div className="atbs-offcanvas__section atbs-offcanvas__section-navigation">
                         <div id="offcanvas-menu-mobile" className="menu-main-menu-container">
-                            <ul id="menu-main-menu-4" className="navigation navigation--offcanvas">
-                                <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-763 current_page_item menu-item-860">
-                                    <a href="https://atom.bk-ninja.com/technology/" aria-current="page">Home</a></li>
-                                <li className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-861 menu-item-cat-4">
-                                    <a href="https://atom.bk-ninja.com/technology/category/laptop/">Laptop</a></li>
-                                <li className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-862 menu-item-cat-7">
-                                    <a href="https://atom.bk-ninja.com/technology/category/laptop/fashion/">Fashion</a></li>
-                                <li className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-863 menu-item-cat-6">
-                                    <a href="https://atom.bk-ninja.com/technology/category/laptop/tips/">Tips</a></li>
-                                <li className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-864 menu-item-cat-2">
-                                    <a href="https://atom.bk-ninja.com/technology/category/news/">News</a></li>
-                                <li className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-865 menu-item-cat-5">
-                                    <a href="https://atom.bk-ninja.com/technology/category/review/">Review</a></li>
-                                <li className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-866 menu-item-cat-3">
-                                    <a href="https://atom.bk-ninja.com/technology/category/build-pc/">Build PC</a></li>
+                            <ul id="menu-main-menu-3" className="navigation navigation--offcanvas">
+                                <li id="menu-item-860" className="nav-item"><NavLink to="/" aria-current="page">Home</NavLink></li>
+                                {
+                                    termData.map((curValue) => {
+                                        return (
+
+                                            <li key={curValue.TermId} id={`menu-item-861-${curValue.TermId}`} className="nav-item"><NavLink to={`category/${curValue.TermSlug}`}>{curValue.TermName}</NavLink></li>
+
+                                        )
+                                    })
+                                }
+
                             </ul>
                         </div>
                     </div>
@@ -351,7 +341,7 @@ function Header(props) {
                                 <div className="container-sm">
                                     <form action="http://localhost:3000/" id="searchform" className="search-form" method="get">
                                         <div className="form-group">
-                                            <input type="search" onChange={props.getSearchValue} name="s" className="search-form__input" autoComplete="off" placeholder="Search ..." />
+                                            <input type="s" onChange={props.getSearchValue} name="s" className="search-form__input" autoComplete="off" placeholder="Search ..." />
                                             <button type="submit" className="btn search-form__submit"><i className="atbs-atoms-icon-right-arrow" /></button>
                                         </div>
                                     </form>
@@ -385,8 +375,8 @@ function Header(props) {
                                                                         <a href={`/${curValue.PostSlug}`}><img width="400" height="300" src={curValue.PostThumbUrl} className="attachment-atbs-xs-4_3 size-atbs-xs-4_3 wp-post-image" alt="" loading="lazy" sizes="(max-width: 400px) 100vw, 400px" /></a></div>
                                                                     <div className="post__text">
                                                                         <div className="post__meta post-time-cat-wrap">
-                                                                            <a className="cat-6 post__cat post__cat--bg cat-theme-bg" href="#">Tips</a>
-                                                                            <span className="time-wrap"><time className="time published" dateTime="2019-10-29T10:46:00+00:00" title="October 29, 2019 at 10:46 am">October 29, 2019</time></span>                        </div>
+                                                                            <a className="cat-6 post__cat post__cat--bg cat-theme-bg" href={`/category/videos`}>Videos</a>
+                                                                            <span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>                        </div>
                                                                         <h3 className="post__title typescale-1 custom-typescale-1 line-limit-child line-limit-3">
                                                                             <a href={`/${curValue.PostSlug}`}>{curValue.PostTitle}</a></h3>
                                                                     </div>

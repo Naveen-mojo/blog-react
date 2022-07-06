@@ -1,6 +1,4 @@
 import * as React from 'react';
-import admin from '../img/e7ea5bdbee1c7e6d2f0517eb9dfd5595.jpg'
-import { Helmet } from "react-helmet";
 import OwlCarousel from 'react-owl-carousel';
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from '../component/Loader';
@@ -14,7 +12,6 @@ function Home(props) {
     const data = props.items
     const carouselData = props.carousel
     const loading = props.loading
-
 
     var options1 = {
         items: 1,
@@ -91,13 +88,11 @@ function Home(props) {
         },
     }
 
-    const min = 1;
-    const max = 100;
-    const initialData = Math.ceil(min + Math.random() * (max - min))
+    // const min = 1;
+    // const max = 100;
+    // const initialData = Math.ceil(min + Math.random() * (max - min))
 
     const pageUrl = useLocation()
-
-    console.log(pageUrl)
 
     if (pageUrl.search === '') {
         return (
@@ -119,20 +114,22 @@ function Home(props) {
                                                     <div className="slide-content item" key={index}>
                                                         <article className="post post--vertical post--vertical-text-wrap post__thumb-700" data-dark-mode="true">
                                                             <div className="post__thumb atbs-thumb-object-fit">
-                                                                <a href=""><img width={1920} height={1125} src={curValue.PostThumbUrl} className="attachment-atbs-xxl size-atbs-xxl wp-post-image" alt="" /></a>
+                                                                <Link to={`/${curValue.PostSlug}`}><img width={1920} height={1125} src={curValue.PostThumbUrl} className="attachment-atbs-xxl size-atbs-xxl wp-post-image" alt="" /></Link>
 
                                                             </div>
                                                             <div className="post__text">
                                                                 <div className="post__meta post-time-cat-wrap">
-                                                                    <a className="cat-6 post__cat post__cat--bg cat-theme-bg" href="https://atom.bk-ninja.com/technology/category/laptop/tips/">Tips</a>
-                                                                    <span className="time-wrap"><time className="time published" dateTime="2019-10-29T10:46:00+00:00" title={moment(curValue.CreationDate).format('MMMM Do YYYY, h:mm:ss a')}>{moment(curValue.CreationDate).format('MMMM Do YYYY, h:mm:ss a')}</time></span>
+                                                                    <Link className="cat-6 post__cat post__cat--bg cat-theme-bg" to={`/${curValue.PostSlug}`}>Videos</Link>
+                                                                    <span className="time-wrap"><time className="time published" dateTime="2019-10-29T10:46:00+00:00" title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>
                                                                 </div>
                                                                 <div className="post__text--wrap flexbox clearfix">
                                                                     <h3 className="post__title typescale-3_5 line-limit-child line-limit-3">
-                                                                        <a href=""></a>
+                                                                        <Link to={`/${curValue.PostSlug}`}>{curValue.PostTitle}</Link>
                                                                     </h3>
-                                                                    <div className="post__excerpt  flexbox__item">
-                                                                        <div className="excerpt">{curValue.PostTitle}</div>
+                                                                    <div className="post__excerpt flexbox__item">
+                                                                        <div className="excerpt">
+                                                                            <div dangerouslySetInnerHTML={{ __html: curValue.PostContent.replace(/(<([^>]+)>)/gi, "").slice(0, 110) + '...' }} />
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -148,7 +145,7 @@ function Home(props) {
                         <div id="atbs_posts_grid_3-623810b591e7d" className="atbs-block atbs-block--fullwidth atbs-block-custom-margin atbs-post--grid-c ">
                             <div className="container">
                                 <div className="block-heading block-heading--style-1 block-heading--has-button">
-                                    <h4 className="block-heading__title">Recent Post</h4><a href="#" target="_blank" className="view-all-btn">See all</a>
+                                    <h4 className="block-heading__title">Recent Post</h4><Link to={`category/videos`} target="_blank" className="view-all-btn">See all</Link>
                                 </div>
                             </div>{/* .container */}
                             <div className="container">
@@ -161,20 +158,20 @@ function Home(props) {
                                                         <article className="post post--no-thumb post-no-thumb-not-readmore hover-text-color-white" data-dark-mode="true">
                                                             <div className="post__text">
                                                                 <div className="post__meta post-time-cat-wrap">
-                                                                    <a className="cat-4 post__cat post__cat--bg cat-theme-bg" href="">Laptop</a>
+                                                                    <Link className="cat-4 post__cat post__cat--bg cat-theme-bg" to={`category/videos`}>Videos</Link>
                                                                     <span className="time-wrap"><time className="time published" dateTime="2019-10-18T08:41:13+00:00" title={moment(curValue.CreationDate).format('MMMM Do YYYY, h:mm:ss a')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>
                                                                 </div>
                                                                 <h3 className="post__title typescale-1 line-limit-child line-limit-3">
-                                                                    <a href="">{curValue.PostTitle}</a>
+                                                                    <Link to={`/${curValue.PostSlug}`}>{curValue.PostTitle}</Link>
                                                                 </h3>
-                                                                <div className="post__meta">
+                                                                {/* <div className="post__meta">
                                                                     <div className="entry-author entry-author-has-avatar post-author author-circle">
-                                                                        <a className="post-author__avatar" href=""><img alt="admin" src={admin} srcSet="https://secure.gravatar.com/avatar/e7ea5bdbee1c7e6d2f0517eb9dfd5595?s=100&d=mm&r=g 2x" className="avatar avatar-50 photo author-avatar" height={50} width={50} loading="lazy" /></a>
+                                                                        <Link className="post-author__avatar" to={`/${curValue.PostSlug}`}><img alt="admin" src={admin} srcSet="https://secure.gravatar.com/avatar/e7ea5bdbee1c7e6d2f0517eb9dfd5595?s=100&d=mm&r=g 2x" className="avatar avatar-50 photo author-avatar" height={50} width={50} loading="lazy" /></Link>
                                                                         <div className="post-author__text">
                                                                             <span className="hint-span">By</span><a className="post-author__name" href="https://atom.bk-ninja.com/technology/author/admin/">admin</a>
                                                                         </div>
                                                                     </div><span className="post__comment entry-comment"><a title="0 Comments" href="https://atom.bk-ninja.com/technology/choosing-my-own-adventure/"><i className="mdicon mdicon-comment-o" />0</a></span>
-                                                                </div>
+                                                                </div> */}
                                                             </div>
                                                         </article>
                                                     </div>
@@ -252,8 +249,9 @@ function Home(props) {
                                                                             <Link to={`/${curValue.PostSlug}`}>{curValue.PostTitle}</Link>
                                                                         </h3>
                                                                         <div className="post__excerpt  ">
-                                                                            <div className="excerpt">Set to launch on the manufacturers new A330neo
-                                                                                aircraft ...</div>
+                                                                            <div className="excerpt">
+                                                                                <div dangerouslySetInnerHTML={{ __html: curValue.PostContent.replace(/(<([^>]+)>)/gi, "").slice(0, 70) + '...' }} />
+                                                                            </div>
                                                                         </div>
                                                                         <div className="post__readmore flexbox-space-y-bottom"><Link to={`/${curValue.PostSlug}`} className="button__readmore"><span className="readmore__text">Read
                                                                             more<i className="mdicon mdicon-navigate_next" /></span></Link>
@@ -284,15 +282,16 @@ function Home(props) {
                                                         </div>
                                                         <div className="post__text">
                                                             <div className="post__meta post-time-cat-wrap">
-                                                                <Link className="cat-7 post__cat post__cat--bg cat-theme-bg" to={`/${curValue.PostSlug}`}>Fashion</Link>
+                                                                <Link className="cat-7 post__cat post__cat--bg cat-theme-bg" to={`/${curValue.PostSlug}`}>Videos</Link>
                                                                 <span className="time-wrap"><time className="time published" dateTime="2019-10-18T08:15:15+00:00" title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>
                                                             </div>
                                                             <h3 className="post__title typescale-4 line-limit-child line-limit-3">
                                                                 <Link to={`/${curValue.PostSlug}`}>{curValue.PostTitle}</Link>
                                                             </h3>
                                                             <div className="post__excerpt  flexbox__item">
-                                                                <div className="excerpt">Set to launch on the manufacturers new A330neo aircraft in
-                                                                    2017, its offering lots of ...</div>
+                                                                <div className="excerpt">
+                                                                    <div dangerouslySetInnerHTML={{ __html: curValue.PostContent.replace(/(<([^>]+)>)/gi, "").slice(0, 110) + '...' }} />
+                                                                </div>
                                                             </div>
                                                             <div className="post__readmore"><Link to={`/${curValue.PostSlug}`} className="button__readmore"><span className="readmore__text">Read more<i className="mdicon mdicon-navigate_next" /></span></Link></div>
                                                         </div>
@@ -307,7 +306,7 @@ function Home(props) {
                         <div id="atbs_posts_carousel_1-623810b59846c" className="atbs-block atbs-block--fullwidth atbs-block-custom-margin atbs-carousel-grid " style={{ postBackgroundColor: '#2a2a2a' }}>
                             <div className="container">
                                 <div className="block-heading block-heading--style-1 block-heading--has-button">
-                                    <h4 className="block-heading__title">Most Post</h4><a href="#" target="_blank" className="view-all-btn">See all</a>
+                                    <h4 className="block-heading__title">Most Post</h4><Link to={`category/videos`} target="_blank" className="view-all-btn">See all</Link>
                                 </div>
                             </div>{/* .container */}
                             <div className="container">
@@ -324,7 +323,7 @@ function Home(props) {
                                                             <div className="post__text-wrap">
                                                                 <div className="post__text-inner">
                                                                     <div className="post__meta post-time-cat-wrap">
-                                                                        <Link className="cat-7 post__cat post__cat--bg cat-theme-bg" to={`/${curValue.PostSlug}`}>Fashion</Link>
+                                                                        <Link className="cat-7 post__cat post__cat--bg cat-theme-bg" to={`category/videos`}>Videos</Link>
                                                                         <span className="time-wrap"><time className="time published" dateTime="2019-10-18T08:10:33+00:00" title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>
                                                                     </div>
                                                                     <h3 className="post__title typescale-2 custom-typescale-2 line-limit-child line-limit-3">
@@ -333,10 +332,10 @@ function Home(props) {
                                                                     <div className="post__footer">
                                                                         <div className="post__meta">
                                                                             <div className="post-author post-author--style-1">
-                                                                                <div className="post-author__text">
+                                                                                {/* <div className="post-author__text">
                                                                                     <span className="hint-span">By</span>
                                                                                     <a className="post-author__name" href="https://atom.bk-ninja.com/technology/author/admin/">admin</a>
-                                                                                </div>
+                                                                                </div> */}
                                                                             </div>
                                                                             <div className="post__readmore post__readmore-right icon-circle-50">
                                                                                 <Link to={`/${curValue.PostSlug}`} className="button__readmore">
@@ -348,7 +347,7 @@ function Home(props) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <a href="#" className="link-overlay" />
+                                                        <Link to={`/${curValue.PostSlug}`} className="link-overlay" />
                                                     </article>
                                                 </div>
                                             )
@@ -380,21 +379,22 @@ function Home(props) {
                                                                     <div className="list-item" key={curValue.ID}>
                                                                         <article className="post post--vertical post--vertical-medium post__thumb-250 disable-thumb-placeholder" data-dark-mode="true">
                                                                             <div className="post__thumb atbs-thumb-object-fit post-thumb-radius">
-                                                                                <a href="https://atom.bk-ninja.com/technology/want-to-strengthen-your-relationship-embrace-the-little-things/"><img width={400} height={300} src={curValue.PostThumbUrl} className="attachment-atbs-xs-4_3 size-atbs-xs-4_3 wp-post-image" alt="" sizes="(max-width: 400px) 100vw, 400px" /></a>
+                                                                                <Link to={`/${curValue.PostSlug}`}><img width={400} height={300} src={curValue.PostThumbUrl} className="attachment-atbs-xs-4_3 size-atbs-xs-4_3 wp-post-image" alt="" sizes="(max-width: 400px) 100vw, 400px" /></Link>
                                                                                 {/* close a tag */}
                                                                             </div>
                                                                             <div className="post__text">
                                                                                 <div className="post__meta post-time-cat-wrap">
-                                                                                    <a className="cat-2 post__cat post__cat--bg cat-theme-bg" href="https://atom.bk-ninja.com/technology/category/news/">News</a>
+                                                                                    <Link className="cat-2 post__cat post__cat--bg cat-theme-bg" to={`category/videos`}>Videos</Link>
                                                                                     <span className="time-wrap"><time className="time published" dateTime="2019-10-18T08:02:29+00:00" title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>
                                                                                 </div>
                                                                                 <h3 className="post__title typescale-2 line-limit-child line-limit-3">
-                                                                                    <a href="https://atom.bk-ninja.com/technology/want-to-strengthen-your-relationship-embrace-the-little-things/">If
-                                                                                        {curValue.PostTitle}</a>
+                                                                                    <Link to={`/${curValue.PostSlug}`}>If
+                                                                                        {curValue.PostTitle}</Link>
                                                                                 </h3>
                                                                                 <div className="post__excerpt ">
-                                                                                    <div className="excerpt">Set to launch on the manufacturers new
-                                                                                        A330neo aircraft in ...</div>
+                                                                                    <div className="excerpt">
+                                                                                    <div dangerouslySetInnerHTML={{ __html: curValue.PostContent.replace(/(<([^>]+)>)/gi, "").slice(0, 110) + '...' }} />
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </article>
@@ -429,14 +429,14 @@ function Home(props) {
                                                                             <article className="post post--no-thumb post-no-thumb" data-dark-mode="true">
                                                                                 <div className="post__text">
                                                                                     <div className="post__meta post-time-cat-wrap">
-                                                                                        <a className="cat-6 post__cat cat-theme" href="https://atom.bk-ninja.com/technology/category/laptop/tips/">Tips</a>
+                                                                                        <Link className="cat-6 post__cat cat-theme" to={`category/videos`}>Videos</Link>
                                                                                         <span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>
                                                                                     </div>
                                                                                     <div className="post__text--wrap">
                                                                                         <h3 className="post__title typescale-0 custom-typescale-0 line-limit-child line-limit-3">
-                                                                                            <a href="">{curValue.PostTitle}</a>
+                                                                                            <Link to={`/${curValue.PostSlug}`}>{curValue.PostTitle}</Link>
                                                                                         </h3>
-                                                                                        <div className="post__readmore button-readmore-no-text"><a href="" className="button__readmore"><span className="readmore__text"><i className="mdicon mdicon-navigate_next" /></span></a>
+                                                                                        <div className="post__readmore button-readmore-no-text"><Link to={`/${curValue.PostSlug}`} className="button__readmore"><span className="readmore__text"><i className="mdicon mdicon-navigate_next" /></span></Link>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -450,7 +450,7 @@ function Home(props) {
                                                     </div>
                                                 </div>{/* End Widget Module*/}
                                             </div>
-                                            <div id="bk_widget_review_list-2" className="widget atbs-widget">
+                                            {/* <div id="bk_widget_review_list-2" className="widget atbs-widget">
                                                 <div className="atbs-widget-reviews-list">
                                                     <div className="widget__title widget__title--style-1">
                                                         <h4 className="widget__title-text">Review Post</h4>
@@ -461,7 +461,7 @@ function Home(props) {
                                                                 <article className="post post--horizontal post--horizontal post--horizontal-xxs post--horizontal-score-star" data-dark-mode="true">
                                                                     <div className="post__thumb atbs-thumb-object-fit post-thumb-radius">
                                                                         <a href="https://atom.bk-ninja.com/technology/tomorrow-is-often-the-busiest-day-of-the-week/"><img width={180} height={180} src="assets/img/32-180x180.jpg" className="attachment-atbs-xxs-1_1 size-atbs-xxs-1_1 wp-post-image" alt="" loading="lazy" srcSet="https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/32-180x180.jpg 180w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/32-150x150.jpg 150w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/32-400x400.jpg 400w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/32-600x600.jpg 600w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/32-800x800.jpg 800w" sizes="(max-width: 180px) 100vw, 180px" /></a>
-                                                                        {/* close a tag */}
+                                                                        
                                                                     </div>
                                                                     <div className="post__text">
                                                                         <h3 className="post__title typescale-0 custom-typescale-0 line-limit-child line-limit-3">
@@ -470,15 +470,15 @@ function Home(props) {
                                                                         </h3>
                                                                         <div className="post-score-star">
                                                                             <span className="mdicon mdicon-star" /><span className="mdicon mdicon-star" /><span className="mdicon mdicon-star" /><span className="mdicon mdicon-star" /><span className="mdicon mdicon-star_half" />
-                                                                        </div>{/* .post-score-star */}
+                                                                        </div>
                                                                     </div>
                                                                 </article>
-                                                            </li>{/* .list-item */}
+                                                            </li>
                                                             <li className="list-item">
                                                                 <article className="post post--horizontal post--horizontal post--horizontal-xxs post--horizontal-score-star" data-dark-mode="true">
                                                                     <div className="post__thumb atbs-thumb-object-fit post-thumb-radius">
                                                                         <a href="https://atom.bk-ninja.com/technology/ukraine%e2%80%8a-%e2%80%8aa-brief-guide-to-travelling-in-the-country/"><img width={180} height={180} src="assets/img/13-180x180.jpg" className="attachment-atbs-xxs-1_1 size-atbs-xxs-1_1 wp-post-image" alt="" loading="lazy" srcSet="https://atom.bk-ninja.com/technology/wp-content/uploads/2021/04/13-180x180.jpg 180w, https://atom.bk-ninja.com/technology/wp-content/uploads/2021/04/13-150x150.jpg 150w, https://atom.bk-ninja.com/technology/wp-content/uploads/2021/04/13-400x400.jpg 400w, https://atom.bk-ninja.com/technology/wp-content/uploads/2021/04/13-600x600.jpg 600w, https://atom.bk-ninja.com/technology/wp-content/uploads/2021/04/13-800x800.jpg 800w" sizes="(max-width: 180px) 100vw, 180px" /></a>
-                                                                        {/* close a tag */}
+                                                                       
                                                                     </div>
                                                                     <div className="post__text">
                                                                         <h3 className="post__title typescale-0 custom-typescale-0 line-limit-child line-limit-3">
@@ -487,14 +487,14 @@ function Home(props) {
                                                                         </h3>
                                                                         <div className="post-score-star">
                                                                             <span className="mdicon mdicon-star" /><span className="mdicon mdicon-star" /><span className="mdicon mdicon-star" /><span className="mdicon mdicon-star" /><span className="mdicon mdicon-star_half" />
-                                                                        </div>{/* .post-score-star */}
+                                                                        </div>
                                                                     </div>
                                                                 </article>
-                                                            </li>{/* .list-item */}
+                                                            </li>
                                                         </ul>
                                                     </div>
-                                                </div>{/* End Widget Module*/}
-                                            </div>
+                                                </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                 </div>
@@ -503,10 +503,6 @@ function Home(props) {
                     </div >
 
                 }
-
-                <Helmet>
-                    {/* <script type="text/javascript" src="./assest/js/home-owl-script.js" id="atbs-scripts-js"></script> */}
-                </Helmet>
 
             </>
         );
