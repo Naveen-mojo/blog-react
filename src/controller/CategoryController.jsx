@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom'
 
 function CategoryController(props) {
 
+    const mSearch = props.monsterSearch
+
     let { pageNumber } = useParams();
 
     const queryPageNum = parseInt(pageNumber)
@@ -91,7 +93,7 @@ function CategoryController(props) {
     useEffect(() => {
         const getComments = async () => {
             const res = await fetch(
-                `http://localhost:5000/api/v1/post/all?npp=20&page=0`
+                `http://localhost:5000/api/v1/post/all?npp=5&page=0`
             );
             const data = await res.json();
             setItems(data.results);
@@ -102,7 +104,7 @@ function CategoryController(props) {
 
     const fetchComments = async () => {
         const res = await fetch(
-            `http://localhost:5000/api/v1/post/all?npp=20&page=${page}`
+            `http://localhost:5000/api/v1/post/all?npp=5&page=${page}`
         );
         const data = await res.json();
         return data.results;
@@ -112,7 +114,7 @@ function CategoryController(props) {
         const commentsFormServer = await fetchComments();
 
         setItems([...items, ...commentsFormServer]);
-        if (commentsFormServer.length === 0 || commentsFormServer.length < 20) {
+        if (commentsFormServer.length === 0 || commentsFormServer.length < 5) {
             sethasMore(false);
         }
         setpage(page + 1);
@@ -144,12 +146,12 @@ function CategoryController(props) {
     }
 
     useEffect(() => {
-        getSearchData();
+        // getSearchData();
     }, [searchData])
 
     return (
         <>
-            <Category getPagenum={getPagenum} userList={userList} loading={loading} totalPages={totalPages} pageNum={pageNum} error={error} items={items} hasMore={hasMore} fetchData={fetchData} getSearchValue={getSearchValue} searchValue={searchValue} />
+            <Category mSearch={mSearch} getPagenum={getPagenum} userList={userList} loading={loading} totalPages={totalPages} pageNum={pageNum} error={error} items={items} hasMore={hasMore} fetchData={fetchData} getSearchValue={getSearchValue} searchValue={searchValue} />
         </>
     )
 }

@@ -3,7 +3,12 @@ import Header from '../component/Header';
 import apiEndPoint from '../environment';
 
 
-function HeaderController() {
+function HeaderController(props) {
+
+    const mSearch = props.monsterSearch
+    const siteTitle= props.siteTitle
+    const siteLogo = props.siteLogo
+    
     const [term, setTerm] = useState([])
     const [search, setSearch] = useState('')
     const [searchResult, setSearchResult] = useState([])
@@ -48,7 +53,7 @@ function HeaderController() {
 
     return (
         <>
-            <Header term={term} getSearchValue={getSearchValue} searchResult={searchResult} />
+            <Header monsterSearch={mSearch} headerAds={props.headerData} term={term} getSearchValue={getSearchValue} searchResult={searchResult} siteLogo={siteLogo} siteTitle={siteTitle} siteLogo2={props.siteLogo2} />
         </>
     )
 }

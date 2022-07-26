@@ -3,7 +3,10 @@ import PostDetails from '../pages/PostDetails'
 import { useLocation } from 'react-router-dom'
 import apiEndPoint from '../environment';
 
-function PostDetailsController() {
+function PostDetailsController(props) {
+
+    const mSearch = props.monsterSearch
+    const articleAds = props.articleAds
 
     let location = useLocation();
 
@@ -44,7 +47,7 @@ function PostDetailsController() {
     useEffect(() => {
         const getComments = async () => {
             const res = await fetch(
-                `http://localhost:5000/api/v1/post/all?npp=20&page=0`
+                `http://localhost:5000/api/v1/post/all?npp=5&page=0`
             );
             const data = await res.json();
             setItems(data.results);
@@ -55,7 +58,7 @@ function PostDetailsController() {
 
     const fetchComments = async () => {
         const res = await fetch(
-            `http://localhost:5000/api/v1/post/all?npp=20&page=${page}`
+            `http://localhost:5000/api/v1/post/all?npp=5&page=${page}`
         );
         const data = await res.json();
         return data.results;
@@ -65,7 +68,7 @@ function PostDetailsController() {
         const commentsFormServer = await fetchComments();
 
         setItems([...items, ...commentsFormServer]);
-        if (commentsFormServer.length === 0 || commentsFormServer.length < 20) {
+        if (commentsFormServer.length === 0 || commentsFormServer.length < 5) {
             sethasMore(false);
         }
         setpage(page + 1);
@@ -97,7 +100,7 @@ function PostDetailsController() {
     }
 
     useEffect(() => {
-        getSearchData();
+        // getSearchData();
     }, [searchData])
 
     const getRandomPost = () => {
@@ -128,7 +131,7 @@ function PostDetailsController() {
 
     return (
         <>
-            <PostDetails loading={loading} recPost={recPost} data={data} items={items} hasMore={hasMore} fetchData={fetchData} getSearchValue={getSearchValue} searchValue={searchValue} />
+            <PostDetails inPageAds={props.inPageAds} articleAds={articleAds} monsterSearch={mSearch} loading={loading} recPost={recPost} data={data} items={items} hasMore={hasMore} fetchData={fetchData} getSearchValue={getSearchValue} searchValue={searchValue} />
         </>
     )
 }

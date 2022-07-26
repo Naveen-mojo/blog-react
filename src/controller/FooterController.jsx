@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Footer from '../component/Footer'
 import apiEndPoint from '../environment';
 
-function FooterController() {
+function FooterController(props) {
 
     const [term, setTerm] = useState([])
 
@@ -25,7 +25,7 @@ function FooterController() {
 
     return (
         <>
-            <Footer term={term} />
+            <Footer term={term} footerAds={props.footerData} siteLogo={props.siteLogo} />
         </>
     )
 }

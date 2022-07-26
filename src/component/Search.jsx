@@ -5,6 +5,7 @@ import moment from 'moment';
 function Search(props) {
     const items = props.items;
     const itemsLength = items.length
+    const monsterSearch = props.monsterSearch
     return (
         <>
             <div id="site-content" className="site-content">
@@ -26,7 +27,18 @@ function Search(props) {
                                                     <div className="list-item" key={curValue.ID}>
                                                         <article className="post post--vertical list-large-post--vertical-large list-large-post--vertical-large-has-sidebar disable-thumb-placeholder" data-dark-mode="true">
                                                             <div className="post__thumb atbs-thumb-object-fit post-thumb-radius">
-                                                                <Link to={`/${curValue.PostSlug}`}><img width={1200} height={600} src={curValue.PostThumbUrl} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" sizes="(max-width: 1200px) 100vw, 1200px" /></Link></div>
+                                                                <Link to={`/${curValue.PostSlug}`}>
+
+                                                                    {
+                                                                        (curValue.PostThumbUrl !== '') ?
+                                                                            <img width={1200} height={600} src={curValue.PostThumbUrl} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" sizes="(max-width: 1200px) 100vw, 1200px" />
+                                                                            :
+                                                                            <img width={1200} height={600} src={curValue.PostThumb} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" sizes="(max-width: 1200px) 100vw, 1200px" />
+
+                                                                    }
+
+
+                                                                </Link></div>
                                                             <div className="post__text">
                                                                 <div className="post__meta post-time-cat-wrap">
                                                                     <Link className="cat-6 post__cat post__cat--bg cat-theme-bg" to={`/category/videos`}>Videos</Link><span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span></div>
@@ -35,7 +47,7 @@ function Search(props) {
                                                                         <Link to={`/${curValue.PostSlug}`}>{curValue.PostTitle}</Link></h3>
                                                                     <div className="post__excerpt ">
                                                                         <div className="excerpt">
-                                                                        <div dangerouslySetInnerHTML={{ __html: curValue.PostContent.replace(/(<([^>]+)>)/gi, "").slice(0, 110) + '...' }} />
+                                                                            <div dangerouslySetInnerHTML={{ __html: curValue.PostContent.replace(/(<([^>]+)>)/gi, "").slice(0, 110) + '...' }} />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -67,10 +79,17 @@ function Search(props) {
 
                             <div className="atbs-sub-col atbs-sub-col--right sidebar js-sticky-sidebar" role="complementary">
                                 <div id="search-2" className="widget widget_search">
-                                    <form className="search-form">
-                                        <input type="text" value={props.search} onChange={props.getSearchValue} name="s" className="search-form__input" placeholder="Search" />
-                                        <button type="submit" className="search-form__submit"><i className="mdicon mdicon-search" /></button>
-                                    </form>
+                                    {
+                                        (`${monsterSearch.actionUrl}` === 'null')
+                                            ? <form action='http://localhost:3000/' className="search-form">
+                                                <input type="text" name="q" value={props.search} onChange={props.getSearchValue} className="search-form__input" placeholder="Search" />
+                                                <button type="submit" className="search-form__submit"><i className="mdicon mdicon-search" /></button>
+                                            </form>
+                                            : <form action={`${monsterSearch.actionUrl}`} className="search-form">
+                                                <input type="text" name="q" value={props.search} onChange={props.getSearchValue} className="search-form__input" placeholder="Search" />
+                                                <button type="submit" className="search-form__submit"><i className="mdicon mdicon-search" /></button>
+                                            </form>
+                                    }
                                 </div><div id="bk_widget_posts_list-2" className="widget atbs-widget">
                                     <div className="atbs-widget atbs-widget-posts-4">
                                         <div className="widget__title widget__title--style-1">
@@ -122,7 +141,7 @@ function Search(props) {
                                     </div>
                                 </article>
                                     </li></ul></div>  </div></div>    */}
-                                                   </div> {/* .atbs-sub-col */}
+                            </div> {/* .atbs-sub-col */}
                         </div>{/* .row */}      </div>{/* .container */}
                 </div>{/* .atbs-block */}
             </div>

@@ -6,6 +6,7 @@ import EndMsg from '../component/EndMsg';
 import moment from 'moment';
 import { Link, useLocation } from 'react-router-dom';
 import SearchController from '../controller/SearchController';
+import { Helmet } from 'react-helmet';
 
 
 function Home(props) {
@@ -93,10 +94,15 @@ function Home(props) {
     // const initialData = Math.ceil(min + Math.random() * (max - min))
 
     const pageUrl = useLocation()
+    const monsterSearch = props.monsterSearch
 
     if (pageUrl.search === '') {
         return (
             <>
+                <Helmet>
+                    <title>Home</title>
+                    <meta name='desciption' content='Home Page of Blog App' />
+                </Helmet>
                 {loading ? <div className="d-flex justify-content-center my-5">
                     <div className="spinner-border" role="status">
                         <span className="sr-only">Loading...</span>
@@ -114,7 +120,17 @@ function Home(props) {
                                                     <div className="slide-content item" key={index}>
                                                         <article className="post post--vertical post--vertical-text-wrap post__thumb-700" data-dark-mode="true">
                                                             <div className="post__thumb atbs-thumb-object-fit">
-                                                                <Link to={`/${curValue.PostSlug}`}><img width={1920} height={1125} src={curValue.PostThumbUrl} className="attachment-atbs-xxl size-atbs-xxl wp-post-image" alt="" /></Link>
+                                                                <Link to={`/${curValue.PostSlug}`}>
+
+                                                                    {
+                                                                        (curValue.PostThumbUrl !== '') ?
+                                                                            <img width={1920} height={1125} src={curValue.PostThumbUrl} className="attachment-atbs-xxl size-atbs-xxl wp-post-image" alt="" />
+
+                                                                            :
+                                                                            <img width={1920} height={1125} src={curValue.PostThumb} className="attachment-atbs-xxl size-atbs-xxl wp-post-image" alt="" />
+                                                                    }
+
+                                                                </Link>
 
                                                             </div>
                                                             <div className="post__text">
@@ -152,7 +168,7 @@ function Home(props) {
                                 <div className="atbs-block__inner">
                                     <div className="posts-list">
                                         {
-                                            carouselData.map((curValue, index) => {
+                                            props.recentPost.map((curValue, index) => {
                                                 return (
                                                     <div className="list-item" key={index}>
                                                         <article className="post post--no-thumb post-no-thumb-not-readmore hover-text-color-white" data-dark-mode="true">
@@ -229,12 +245,21 @@ function Home(props) {
                                 <div className="atbs-block__inner">
                                     <div className="posts-list flexbox-wrap flexbox-wrap-3i">
                                         {
-                                            carouselData.map((curValue, index) => {
+                                            props.post3.map((curValue, index) => {
                                                 return (
                                                     <div className="list-item" key={index}>
                                                         <article className="post post--overlay post--overlay-style-card post--overlay-md post--overlay-padding-lg" data-dark-mode="true">
                                                             <div className="post__thumb post__thumb--overlay background-img background-img--darkened post__thumb--overlay atbs-thumb-object-fit background-img-dots-circle">
-                                                                <Link to={`/${curValue.PostSlug}`}><img width={600} height={600} src={curValue.PostThumbUrl} className="attachment-atbs-s-1_1 size-atbs-s-1_1 wp-post-image" alt="" loading="lazy" sizes="(max-width: 600px) 100vw, 600px" /></Link>
+                                                                <Link to={`/${curValue.PostSlug}`}>
+
+                                                                    {
+                                                                        (curValue.PostThumbUrl !== '') ?
+                                                                            <img width={600} height={600} src={curValue.PostThumbUrl} className="attachment-atbs-s-1_1 size-atbs-s-1_1 wp-post-image" alt="" loading="lazy" sizes="(max-width: 600px) 100vw, 600px" />
+                                                                            :
+                                                                            <img width={600} height={600} src={curValue.PostThumb} className="attachment-atbs-s-1_1 size-atbs-s-1_1 wp-post-image" alt="" loading="lazy" sizes="(max-width: 600px) 100vw, 600px" />
+
+                                                                    }
+                                                                </Link>
                                                             </div>
                                                             <div className="post__text">
                                                                 <div className="post__text-wrap">
@@ -273,12 +298,22 @@ function Home(props) {
                             <div className="atbs-block__inner">
                                 <OwlCarousel {...options2} id="atbs_carousel-623810b5973c6" className="owl-carousel js-carousel-2i-auto-width atbs-carousel dots-circle">
                                     {
-                                        carouselData.map((curValue, index) => {
+                                        props.carouselPost2.map((curValue, index) => {
                                             return (
                                                 <div className="slide-content" key={index}>
                                                     <article className="post post--horizontal post--horizontal-fullwidth-large" data-dark-mode="true">
                                                         <div className="post__thumb atbs-thumb-object-fit post-thumb-radius">
-                                                            <Link to={`/${curValue.PostSlug}`}><img width={1920} height={1125} src={curValue.PostThumbUrl} className="attachment-atbs-xxl size-atbs-xxl wp-post-image" alt="" /></Link> {/* close a tag */}
+                                                            <Link to={`/${curValue.PostSlug}`}>
+
+                                                                {
+                                                                    (curValue.PostThumbUrl !== '') ?
+                                                                        <img width={1920} height={1125} src={curValue.PostThumbUrl} className="attachment-atbs-xxl size-atbs-xxl wp-post-image" alt="" />
+
+                                                                        :
+                                                                        <img width={1920} height={1125} src={curValue.PostThumb} className="attachment-atbs-xxl size-atbs-xxl wp-post-image" alt="" />
+                                                                }
+
+                                                            </Link> {/* close a tag */}
                                                         </div>
                                                         <div className="post__text">
                                                             <div className="post__meta post-time-cat-wrap">
@@ -312,12 +347,23 @@ function Home(props) {
                             <div className="container">
                                 <div className="atbs-block__inner">
                                     <OwlCarousel {...options3} id="atbs_carousel-623810b598c3a" className="owl-carousel js-carousel-3i30m-nav-svg atbs-carousel dots-circle">
-                                        {carouselData.map((curValue, index) => {
+                                        {props.carouselPost3.map((curValue, index) => {
                                             return (
                                                 <div className="slide-content" key={index} tabIndex={0}>
                                                     <article className="post post--overlay post--overlay-background-hover post-thumb-radius post--overlay-height-270" data-dark-mode="false">
                                                         <div className="post__thumb post__thumb--overlay atbs-thumb-object-fit post-thumb-radius background-img background-img--darkened background-img-dots-circle">
-                                                            <Link to={`/${curValue.PostSlug}`}><img width={600} height={450} src={curValue.PostThumbUrl} className="attachment-atbs-s-4_3 size-atbs-s-4_3 wp-post-image" alt="" sizes="(max-width: 600px) 100vw, 600px" /></Link>
+                                                            <Link to={`/${curValue.PostSlug}`}>
+
+                                                                {
+                                                                    (curValue.PostThumbUrl !== '') ?
+                                                                        <img width={600} height={450} src={curValue.PostThumbUrl} className="attachment-atbs-s-4_3 size-atbs-s-4_3 wp-post-image" alt="" sizes="(max-width: 600px) 100vw, 600px" />
+
+                                                                        :
+                                                                        <img width={600} height={450} src={curValue.PostThumb} className="attachment-atbs-s-4_3 size-atbs-s-4_3 wp-post-image" alt="" sizes="(max-width: 600px) 100vw, 600px" />
+                                                                }
+
+
+                                                            </Link>
                                                         </div>
                                                         <div className="post__text inverse-text">
                                                             <div className="post__text-wrap">
@@ -379,7 +425,18 @@ function Home(props) {
                                                                     <div className="list-item" key={curValue.ID}>
                                                                         <article className="post post--vertical post--vertical-medium post__thumb-250 disable-thumb-placeholder" data-dark-mode="true">
                                                                             <div className="post__thumb atbs-thumb-object-fit post-thumb-radius">
-                                                                                <Link to={`/${curValue.PostSlug}`}><img width={400} height={300} src={curValue.PostThumbUrl} className="attachment-atbs-xs-4_3 size-atbs-xs-4_3 wp-post-image" alt="" sizes="(max-width: 400px) 100vw, 400px" /></Link>
+                                                                                <Link to={`/${curValue.PostSlug}`}>
+
+
+                                                                                    {
+                                                                                        (curValue.PostThumbUrl !== '') ?
+                                                                                            <img width={400} height={300} src={curValue.PostThumbUrl} className="attachment-atbs-xs-4_3 size-atbs-xs-4_3 wp-post-image" alt="" sizes="(max-width: 400px) 100vw, 400px" />
+                                                                                            :
+                                                                                            <img width={400} height={300} src={curValue.PostThumb} className="attachment-atbs-xs-4_3 size-atbs-xs-4_3 wp-post-image" alt="" sizes="(max-width: 400px) 100vw, 400px" />
+
+                                                                                    }
+
+                                                                                </Link>
                                                                                 {/* close a tag */}
                                                                             </div>
                                                                             <div className="post__text">
@@ -388,12 +445,12 @@ function Home(props) {
                                                                                     <span className="time-wrap"><time className="time published" dateTime="2019-10-18T08:02:29+00:00" title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>
                                                                                 </div>
                                                                                 <h3 className="post__title typescale-2 line-limit-child line-limit-3">
-                                                                                    <Link to={`/${curValue.PostSlug}`}>If
+                                                                                    <Link to={`/${curValue.PostSlug}`}>
                                                                                         {curValue.PostTitle}</Link>
                                                                                 </h3>
                                                                                 <div className="post__excerpt ">
                                                                                     <div className="excerpt">
-                                                                                    <div dangerouslySetInnerHTML={{ __html: curValue.PostContent.replace(/(<([^>]+)>)/gi, "").slice(0, 110) + '...' }} />
+                                                                                        <div dangerouslySetInnerHTML={{ __html: curValue.PostContent.replace(/(<([^>]+)>)/gi, "").slice(0, 110) + '...' }} />
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -409,10 +466,18 @@ function Home(props) {
 
                                         <div className="atbs-sub-col atbs-sub-col--right js-sticky-sidebar" role="complementary">
                                             <div id="search-2" className="widget widget_search">
-                                                <form className="search-form" onSubmit={props.searchValue}>
-                                                    <input type="text" name="search" value={props.search} onChange={props.getSearchValue} className="search-form__input" placeholder="Search" />
-                                                    <button type="submit" className="search-form__submit"><i className="mdicon mdicon-search" /></button>
-                                                </form>
+                                                {
+                                                    (`${monsterSearch.actionUrl}` === 'null')
+                                                        ? <form action='http://localhost:3000/' className="search-form">
+                                                            <input type="text" name="q" value={props.search} onChange={props.getSearchValue} className="search-form__input" placeholder="Search" />
+                                                            <button type="submit" className="search-form__submit"><i className="mdicon mdicon-search" /></button>
+                                                        </form>
+                                                        : <form action={`${monsterSearch.actionUrl}`} className="search-form">
+                                                            <input type="text" name="q" value={props.search} onChange={props.getSearchValue} className="search-form__input" placeholder="Search" />
+                                                            <button type="submit" className="search-form__submit"><i className="mdicon mdicon-search" /></button>
+                                                        </form>
+                                                }
+
                                             </div>
                                             <div id="bk_widget_posts_list-2" className="widget atbs-widget">
                                                 <div className="atbs-widget atbs-widget-posts-4">

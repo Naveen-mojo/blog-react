@@ -11,6 +11,7 @@ function PostDetails(props) {
     const min = 1;
     const max = 100;
     const initialData = Math.ceil(min + Math.random() * (max - min))
+    const monsterSearch = props.monsterSearch
 
     return (
         <>
@@ -32,7 +33,15 @@ function PostDetails(props) {
                                                 <div className="container">
                                                     <div className="single-header__inner">
                                                         <div className="entry-thumb single-entry-thumb atbs-thumb-object-fit">
-                                                            <img width={800} height={400} src={curValue.PostThumbUrl} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="" sizes="(max-width: 800px) 100vw, 800px" />                          </div>
+                                                            {
+                                                                (curValue.PostThumbUrl !== '') ?
+                                                                    <img width={800} height={400} src={curValue.PostThumbUrl} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="" sizes="(max-width: 800px) 100vw, 800px" />
+                                                                    :
+                                                                    <img width={800} height={400} src={curValue.PostThumb} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="" sizes="(max-width: 800px) 100vw, 800px" />
+
+                                                            }
+
+                                                        </div>
                                                         <header className="single-header--body single-header">
                                                             <div className="entry-meta">
                                                                 <Link className="cat-6 entry-cat post__cat post__cat--bg cat-theme-bg" to={`/category/videos`}>Videos</Link><span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}><i className="mdicon mdicon-schedule" />{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>                          </div>
@@ -84,13 +93,19 @@ function PostDetails(props) {
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            
+
                                                                             <div className="single-column-right">
-                                                                                <div dangerouslySetInnerHTML={{ __html: content}}  />
+                                                                                <div dangerouslySetInnerHTML={{ __html: content }} />
+                                                                                <div className='my-5'>
+                                                                                    {props.articleAds}
+                                                                                </div>
                                                                             </div>
 
                                                                         </div>
-                                                                    </div>{/* .single-body */}
+
+                                                                    </div>
+
+                                                                    {/* .single-body */}
                                                                     {/* Post Pagination */}
                                                                     {/* Single Footer */}
                                                                     {/* <footer className="single-footer entry-footer">
@@ -167,7 +182,16 @@ function PostDetails(props) {
                                                                     <article className="post post--vertical list-large-post--vertical-large list-large-post--vertical-large-has-sidebar disable-thumb-placeholder" data-dark-mode="true">
                                                                         <div className="post__thumb atbs-thumb-object-fit post-thumb-radius">
                                                                             <a href={`/${props.recPost[initialData].PostSlug}`}>
-                                                                                <img width={1200} height={600} src={props.recPost[initialData].PostThumbUrl} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" loading="lazy" sizes="(max-width: 1200px) 100vw, 1200px" /></a></div>
+
+                                                                                {
+                                                                                    (props.recPost[initialData].PostThumbUrl !== '') ?
+                                                                                        <img width={1200} height={600} src={props.recPost[initialData].PostThumbUrl} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" loading="lazy" sizes="(max-width: 1200px) 100vw, 1200px" />
+                                                                                        :
+                                                                                        <img width={1200} height={600} src={props.recPost[initialData].PostThumb} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" loading="lazy" sizes="(max-width: 1200px) 100vw, 1200px" />
+
+                                                                                }
+
+                                                                            </a></div>
                                                                         <div className="post__text">
                                                                             <div className="post__meta post-time-cat-wrap">
                                                                                 <Link className="cat-6 post__cat post__cat--bg cat-theme-bg" to={`/category/videos`}>Videos</Link><span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>                      </div>
@@ -187,7 +211,17 @@ function PostDetails(props) {
 
                                                                 <div className="list-item"><article className="post post--vertical list-large-post--vertical-large list-large-post--vertical-large-has-sidebar disable-thumb-placeholder" data-dark-mode="true">
                                                                     <div className="post__thumb atbs-thumb-object-fit post-thumb-radius">
-                                                                        <a href={`/${props.recPost[initialData + 1].PostSlug}`}><img width={1200} height={600} src={props.recPost[initialData + 1].PostThumbUrl} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" loading="lazy" sizes="(max-width: 1200px) 100vw, 1200px" /></a></div>
+                                                                        <a href={`/${props.recPost[initialData + 1].PostSlug}`}>
+
+                                                                            {
+                                                                                (props.recPost[initialData + 1].PostThumbUrl !== '') ?
+                                                                                    <img width={1200} height={600} src={props.recPost[initialData + 1].PostThumbUrl} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" loading="lazy" sizes="(max-width: 1200px) 100vw, 1200px" />
+                                                                                    :
+                                                                                    <img width={1200} height={600} src={props.recPost[initialData + 1].PostThumb} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" loading="lazy" sizes="(max-width: 1200px) 100vw, 1200px" />
+
+                                                                            }
+
+                                                                        </a></div>
                                                                     <div className="post__text">
                                                                         <div className="post__meta post-time-cat-wrap">
                                                                             <Link className="cat-4 post__cat post__cat--bg cat-theme-bg" to={`/category/videos`}>Videos</Link><span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>                      </div>
@@ -217,12 +251,19 @@ function PostDetails(props) {
                                                             </div>
                                                         </div> */}
                                                         </div>{/* .atbs-main-col */}
-                                                        <div className="atbs-sub-col sidebar js-sticky-sidebar" role="complementary">
+                                                        <div className="atbs-sub-col js-sticky-sidebar" role="complementary">
                                                             <div id="search-2" className="widget widget_search">
-                                                                <form action="http://localhost:3000/" method='get' className="search-form">
-                                                                    <input type="text" name="s" value={props.search} onChange={props.getSearchValue} className="search-form__input" placeholder="Search" />
-                                                                    <button type="submit" className="search-form__submit"><i className="mdicon mdicon-search" /></button>
-                                                                </form>
+                                                                {
+                                                                    (`${monsterSearch.actionUrl}` === 'null')
+                                                                        ? <form action='http://localhost:3000/' className="search-form">
+                                                                            <input type="text" name="q" value={props.search} onChange={props.getSearchValue} className="search-form__input" placeholder="Search" />
+                                                                            <button type="submit" className="search-form__submit"><i className="mdicon mdicon-search" /></button>
+                                                                        </form>
+                                                                        : <form action={`${monsterSearch.actionUrl}`} className="search-form">
+                                                                            <input type="text" name="q" value={props.search} onChange={props.getSearchValue} className="search-form__input" placeholder="Search" />
+                                                                            <button type="submit" className="search-form__submit"><i className="mdicon mdicon-search" /></button>
+                                                                        </form>
+                                                                }
                                                             </div>
                                                             <div id="bk_widget_posts_list-2" className="widget atbs-widget">
                                                                 <div className="atbs-widget atbs-widget-posts-4">
@@ -237,18 +278,20 @@ function PostDetails(props) {
                                                                                             <article className="post post--no-thumb post-no-thumb" data-dark-mode="true">
                                                                                                 <div className="post__text">
                                                                                                     <div className="post__meta post-time-cat-wrap">
-                                                                                                        <a className="cat-6 post__cat cat-theme" href="https://atom.bk-ninja.com/technology/category/laptop/tips/">Tips</a>                            <span className="time-wrap"><time className="time published" dateTime="2019-10-29T10:46:00+00:00" title="October 29, 2019 at 10:46 am">October 29, 2019</time></span>                      </div>
+                                                                                                        <Link className="cat-6 post__cat cat-theme" to={`/category/videos`}>Videos</Link><span className="time-wrap"><time className="time published" dateTime={moment(CurValue.CreationDate).format('MMMM Do YYYY')} title={moment(CurValue.CreationDate).format('MMMM Do YYYY')}>{moment(CurValue.CreationDate).format('MMMM Do YYYY')}</time></span>                      </div>
                                                                                                     <div className="post__text--wrap">
                                                                                                         <h3 className="post__title typescale-0 custom-typescale-0 line-limit-child line-limit-3">
-                                                                                                            <a href="https://atom.bk-ninja.com/technology/family-owned-florist-business-looks-to-bloom-in-chestertown/">{CurValue.PostTitle}</a>                      </h3>
-                                                                                                        <div className="post__readmore button-readmore-no-text"><a href="https://atom.bk-ninja.com/technology/family-owned-florist-business-looks-to-bloom-in-chestertown/" className="button__readmore"><span className="readmore__text"><i className="mdicon mdicon-navigate_next" /></span></a></div>                  </div>
+                                                                                                            <a href={`/${CurValue.PostSlug}`}>{CurValue.PostTitle}</a>                      </h3>
+                                                                                                        <div className="post__readmore button-readmore-no-text"><a href={`/${CurValue.PostSlug}`} className="button__readmore"><span className="readmore__text"><i className="mdicon mdicon-navigate_next" /></span></a></div>                  </div>
                                                                                                 </div>
                                                                                             </article>
                                                                                         </li>
                                                                                     )
                                                                                 })
                                                                             }
-                                                                        </ul></div>  </div>{/* End Widget Module*/}</div>
+                                                                        </ul>
+                                                                        <div className='my-5'>{props.inPageAds}</div>
+                                                                    </div>  </div>{/* End Widget Module*/}</div>
                                                             {/* <div id="bk_widget_review_list-2" className="widget atbs-widget"><div className="atbs-widget-reviews-list"><div className="widget__title widget__title--style-1"><h4 className="widget__title-text">Review Post</h4></div><div className="widget__inner"><ul className="posts-list widget-posts-list-style-1 list-space-md list-unstyled"><li className="list-item">            <article className="post post--horizontal post--horizontal post--horizontal-xxs post--horizontal-score-star" data-dark-mode="true">
                                                                                 <div className="post__thumb atbs-thumb-object-fit post-thumb-radius">
                                                                                     <a href="https://atom.bk-ninja.com/technology/tomorrow-is-often-the-busiest-day-of-the-week/"><img width={180} height={180} src="../wp-content/uploads/2019/10/32-180x180.jpg" className="attachment-atbs-xxs-1_1 size-atbs-xxs-1_1 wp-post-image" alt="" loading="lazy" srcSet="https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/32-180x180.jpg 180w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/32-150x150.jpg 150w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/32-400x400.jpg 400w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/32-600x600.jpg 600w, https://atom.bk-ninja.com/technology/wp-content/uploads/2019/10/32-800x800.jpg 800w" sizes="(max-width: 180px) 100vw, 180px" /></a>            </div>
