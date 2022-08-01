@@ -9,9 +9,16 @@ import Createsitemap from './component/Createsitemap';
 import AboutController from './controller/AboutController';
 import apiEndPoint from './environment';
 import Dashboard from './admin/pages/Dashboard';
-import BlogPostController from './admin/model/BlogPostController';
+import BlogPostCreateController from './admin/model/BlogPostCreateController';
 import AdminLayout from './admin/layout/Layout';
+import BlogCategoryCreateController from './admin/model/BlogCategoryCreateController';
+import BlogAddPageController from './admin/model/BlogAddPageController';
+import SiteSettingController from './admin/model/SiteSettingController';
+import BlogPostController from './admin/model/BlogPostController';
 import BlogCategoryController from './admin/model/BlogCategoryController';
+import BlogAllPagesController from './admin/model/BlogAllPagesController';
+import BlogEditPageController from './admin/model/BlogEditPageController';
+import BlogEditCategoryController from './admin/model/BlogEditCategoryController';
 
 
 export default function Router(props) {
@@ -19,6 +26,8 @@ export default function Router(props) {
     const articleAds = props.articleAds
 
     const [state, setState] = useState([])
+    const [category, setcategory] = useState([])
+    const [loading, setloading] = useState(false)
 
     const getSettingData = () => {
         var requestOptions = {
@@ -36,8 +45,28 @@ export default function Router(props) {
             });
     }
 
+    const getCategory = () => {
+        setloading(true)
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+        fetch(`${apiEndPoint}category`, requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                setcategory(result)
+                setloading(false)
+            })
+            .catch(error => {
+                console.log('error', error)
+                setloading(false)
+            });
+    }
+
     useEffect(() => {
         getSettingData();
+        getCategory();
     }, [])
 
 
@@ -67,9 +96,22 @@ export default function Router(props) {
             path: '/dashboard',
             element: <AdminLayout />,
             children: [
-                { path: '', element: <Dashboard /> },
-                { path: 'create-post', element: <BlogPostController /> },
-                { path: 'add-category', element: <BlogCategoryController /> },
+                { path: 'home', element: <Dashboard /> },
+                { path: 'create-post', element: <BlogPostCreateController /> },
+                { path: 'add-category', element: <BlogCategoryCreateController /> },
+                { path: 'add-page', element: <BlogAddPageController /> },
+                { path: 'site-setting', element: <SiteSettingController /> },
+                { path: 'all-posts', element: <BlogPostController category={category} loading={loading} /> },
+                { path: 'all-category', element: <BlogCategoryController /> },
+                { path: 'all-pages', element: <BlogAllPagesController /> },
+            ]
+        },
+        {
+            path: '/dashboard',
+            element: <AdminLayout />,
+            children: [
+                { path: 'edit-page/:id', element: <BlogEditPageController /> },
+                { path: 'edit-category/:id', element: <BlogEditCategoryController /> },
             ]
         },
         { path: '*', element: <Navigate to="/" replace /> }

@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import BlogCategory from '../pages/BlogCategory'
+import BlogAllPages from '../pages/BlogAllPages'
 import apiEndPoint from '../../environment'
 
-function BlogCategoryController() {
-
-    const [category, setCategory] = useState([])
+function BlogAllPagesController() {
+    const [pages, setpages] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const getCategory = () => {
+    const getPages = () => {
         setLoading(true)
         var requestOptions = {
             method: 'GET',
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}/term`, requestOptions)
+        fetch(`${apiEndPoint}/pages`, requestOptions)
             .then(response => response.json())
             .then(result => {
-                setCategory(result)
+                setpages(result)
                 setLoading(false)
             })
             .catch(error => {
@@ -27,14 +26,14 @@ function BlogCategoryController() {
     }
 
     useEffect(() => {
-        getCategory()
+        getPages()
     }, [])
 
     return (
         <>
-            <BlogCategory category={category} loading={loading} />
+            <BlogAllPages pages={pages} />
         </>
     )
 }
 
-export default BlogCategoryController
+export default BlogAllPagesController

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import BlogCategory from '../pages/BlogCategory'
-import apiEndPoint from '../../environment'
+import React, { useEffect, useState } from 'react'
+import BlogPostCreate from '../pages/BlogPostCreate'
+import apiEndPoint from '../../environment';
 
-function BlogCategoryController() {
+function BlogPostCreateController() {
 
-    const [category, setCategory] = useState([])
+    const [term, setTerm] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const getCategory = () => {
+    const getTerm = () => {
         setLoading(true)
         var requestOptions = {
             method: 'GET',
@@ -17,7 +17,7 @@ function BlogCategoryController() {
         fetch(`${apiEndPoint}/term`, requestOptions)
             .then(response => response.json())
             .then(result => {
-                setCategory(result)
+                setTerm(result)
                 setLoading(false)
             })
             .catch(error => {
@@ -27,14 +27,14 @@ function BlogCategoryController() {
     }
 
     useEffect(() => {
-        getCategory()
+        getTerm()
     }, [])
 
     return (
         <>
-            <BlogCategory category={category} loading={loading} />
+            <BlogPostCreate term={term} loading={loading} />
         </>
     )
 }
 
-export default BlogCategoryController
+export default BlogPostCreateController

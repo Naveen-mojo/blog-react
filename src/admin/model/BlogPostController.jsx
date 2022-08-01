@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import BlogPost from '../pages/BlogPost'
-import apiEndPoint from '../../environment';
+import apiEndPoint from '../../environment'
 
-function BlogPostController() {
+function BlogPostController(props) {
 
-    const [term, setTerm] = useState([])
+    const [posts, setPost] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const getTerm = () => {
+    const getPost = () => {
         setLoading(true)
         var requestOptions = {
             method: 'GET',
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}/term`, requestOptions)
+        fetch(`${apiEndPoint}`, requestOptions)
             .then(response => response.json())
             .then(result => {
-                setTerm(result)
+                setPost(result)
                 setLoading(false)
             })
             .catch(error => {
@@ -27,12 +27,13 @@ function BlogPostController() {
     }
 
     useEffect(() => {
-        getTerm()
+        getPost()
     }, [])
+
 
     return (
         <>
-            <BlogPost term={term} loading={loading} />
+            <BlogPost posts={posts} loading={loading} category={props.category} categoryloader={props.loading} />
         </>
     )
 }

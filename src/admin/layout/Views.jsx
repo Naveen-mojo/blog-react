@@ -2,9 +2,13 @@ import React from 'react'
 import adminlogo from '../../img/logo.svg'
 import profileimg from '../../img/profile_av.jpg'
 import { Outlet } from 'react-router-dom'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 function Views() {
+
+    const getLocation = useLocation()
+
     return (
         <>
             <div className="overlay_menu">
@@ -457,7 +461,7 @@ function Views() {
                                     </div>
                                     <div className="detail">
                                         <h6>Michael</h6>
-                                        <p className="m-b-0"><a href="https://www.wrraptheme.com/cdn-cgi/l/email-protection" className="__cf_email__" data-cfemail="dcb5b2bab39cb9a4bdb1acb0b9f2bfb3b1">[email&nbsp;protected]</a></p>
+                                        <p className="m-b-0"><a href="https://www.wrraptheme.com/cdn-cgi/l/email-protection" className="__cf_email__" data-cfemail="dcb5b2bab39cb9a4bdb1acb0b9f2bfb3b1">michael@gmail.com</a></p>
                                         <a href="javascript:void(0);" title="true" className=" waves-effect waves-block"><i className="zmdi zmdi-facebook-box" /></a>
                                         <a href="javascript:void(0);" title="true" className=" waves-effect waves-block"><i className="zmdi zmdi-linkedin-box" /></a>
                                         <a href="javascript:void(0);" title="true" className=" waves-effect waves-block"><i className="zmdi zmdi-instagram" /></a>
@@ -466,14 +470,29 @@ function Views() {
                                 </div>
                             </li>
                             <li className="header">MAIN</li>
-                            <li className="open">
-                                <NavLink to="dashboard"><i className="zmdi zmdi-blogger" /><span>Blog Dashboard</span> </NavLink>
+                            <li>
+                                <NavLink to="/dashboard/home"><i className="zmdi zmdi-blogger" /><span>Dashboard</span> </NavLink>
                             </li>
                             <li>
                                 <NavLink to="create-post"><i className="zmdi zmdi-plus-circle" /><span>New Post</span> </NavLink>
                             </li>
                             <li>
+                                <NavLink to="all-posts"><i className="zmdi zmdi-plus-circle" /><span> All Posts</span> </NavLink>
+                            </li>
+                            <li>
                                 <NavLink to="add-category"><i className="zmdi zmdi-plus-circle" /><span>Add Category</span> </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="add-page"><i className="zmdi zmdi-plus-circle" /><span>Add Page</span> </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="site-setting"><i className="zmdi zmdi-plus-circle" /><span>Site Setting</span> </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="all-category"><i className="zmdi zmdi-plus-circle" /><span>All Category</span> </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="all-pages"><i className="zmdi zmdi-plus-circle" /><span>All Pages</span> </NavLink>
                             </li>
                         </ul>
                     </div>
@@ -487,9 +506,9 @@ function Views() {
                             <div className="col-lg-5 col-md-5 col-sm-12">
                                 <h2>Blog Dashboard</h2>
                                 <ul className="breadcrumb p-l-0 p-b-0">
-                                    <li className="breadcrumb-item"><a href="index.html"><i className="zmdi zmdi-home" /></a></li>
-                                    <li className="breadcrumb-item"><a href="blog-dashboard.html">Blog</a></li>
-                                    <li className="breadcrumb-item active">Dashboard</li>
+                                    <li className="breadcrumb-item"><Link to="/dashboard/home"><i className="zmdi zmdi-home" /></Link></li>
+                                    <li className="breadcrumb-item"><Link to="/dashboard/home">{getLocation.pathname.split('/')[1]}</Link></li>
+                                    <li className="breadcrumb-item active">{getLocation.pathname.split('/')[2]}</li>
                                 </ul>
                             </div>
                             <div className="col-lg-7 col-md-7 col-sm-12">
