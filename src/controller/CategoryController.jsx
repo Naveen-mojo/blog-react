@@ -151,7 +151,7 @@ function CategoryController(props) {
 
     return (
         <>
-            <Category mSearch={mSearch} getPagenum={getPagenum} userList={userList} loading={loading} totalPages={totalPages} pageNum={pageNum} error={error} items={items} hasMore={hasMore} fetchData={fetchData} getSearchValue={getSearchValue} searchValue={searchValue} />
+            <Category mSearch={mSearch} getPagenum={getPagenum} userList={userList} loading={loading} totalPages={totalPages} pageNum={pageNum} error={error} items={items} hasMore={hasMore} fetchData={fetchData} getSearchValue={getSearchValue} searchValue={searchValue} category={props.category} categoryloader={props.categoryloader} />
         </>
     )
 }

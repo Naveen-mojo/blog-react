@@ -52,8 +52,6 @@ function BlogEditPage(props) {
       PageStatus: pageStatus ? 1 : 0,
     });
 
-    console.log(raw)
-
     var requestOptions = {
       method: "PUT",
       headers: myHeaders,
@@ -64,7 +62,6 @@ function BlogEditPage(props) {
     fetch(`${apiEndPoint}/updateabout/${id}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result)
         if (result.status === true) {
           toast("About updated Successfully");
         }

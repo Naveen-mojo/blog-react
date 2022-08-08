@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet'
 
 function About(props) {
     const aboutData = props.about
+    console.log(aboutData);
     return (
         <>
             <div className='my-5 text-center'>

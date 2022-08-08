@@ -72,8 +72,6 @@ function BlogPostCreate(props) {
         reader.readAsArrayBuffer(file);
     }
 
-    console.log("docContent", docContent);
-
     const editorData = (event) => {
         setEditorValue(event.editor.getData())
     }

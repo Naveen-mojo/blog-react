@@ -21,7 +21,6 @@ function BlogEditCategoryController() {
     fetch(`${apiEndPoint}/term/${id}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         setcategory(result[0]);
         setLoading(false);
       })

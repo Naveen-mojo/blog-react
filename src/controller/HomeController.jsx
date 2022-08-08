@@ -189,7 +189,7 @@ function HomeController(props) {
 
     return (
         <>
-            <Home carouselPost3={carouselPost3} carouselPost2={carouselPost2} post3={post3} recentPost={recentPost} monsterSearch={mSearch} items={items} fetchData={fetchData} hasMore={hasMore} carousel={carousel} loading={loading} getSearchValue={getSearchValue} searchValue={searchValue} search={search} />
+            <Home carouselPost3={carouselPost3} carouselPost2={carouselPost2} post3={post3} recentPost={recentPost} monsterSearch={mSearch} items={items} fetchData={fetchData} hasMore={hasMore} carousel={carousel} loading={loading} getSearchValue={getSearchValue} searchValue={searchValue} search={search} category={props.category} categoryloader={props.categoryloader} />
         </>
     )
 }

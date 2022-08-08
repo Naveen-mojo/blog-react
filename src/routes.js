@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate, useRoutes } from 'react-router-dom';
+import { Navigate, useLocation, useRoutes } from 'react-router-dom';
 import Layout from './layout/Layout';
 import CategoryController from './controller/CategoryController';
 import HomeController from './controller/HomeController';
@@ -19,6 +19,8 @@ import BlogCategoryController from './admin/model/BlogCategoryController';
 import BlogAllPagesController from './admin/model/BlogAllPagesController';
 import BlogEditPageController from './admin/model/BlogEditPageController';
 import BlogEditCategoryController from './admin/model/BlogEditCategoryController';
+import BlogEditPostController from './admin/model/BlogEditPostController';
+import Login from './admin/auth/Login';
 
 
 export default function Router(props) {
@@ -69,15 +71,18 @@ export default function Router(props) {
         getCategory();
     }, [])
 
+    const location = useLocation();
+    const path = location.pathname.split('/')[2];
+
 
     return useRoutes([
         {
             path: '/',
             element: <Layout />,
             children: [
-                { path: '', element: <HomeController monsterSearch={state} /> },
+                { path: '', element: <HomeController monsterSearch={state} category={category} categoryloader={loading} /> },
                 { path: 'createsitemap', element: <Createsitemap /> },
-                { path: 'about', element: <AboutController /> },
+                { path: 'about-page', element: <AboutController /> },
                 { path: '*', element: <Navigate to="/" /> },
             ]
         },
@@ -85,10 +90,10 @@ export default function Router(props) {
             path: '/:id',
             element: <Layout />,
             children: [
-                { path: `videos/page/:pageNumber`, element: <CategoryController monsterSearch={state} /> },
-                { path: `videos`, element: <CategoryController monsterSearch={state} /> },
+                { path: `videos/page/:pageNumber`, element: <CategoryController monsterSearch={state} category={category} categoryloader={loading} /> },
+                { path: `videos`, element: <CategoryController monsterSearch={state} category={category} categoryloader={loading} /> },
                 { path: 'ipl2021', element: <Fashion /> },
-                { path: ':slug', element: <PostDetailsController articleAds={articleAds} monsterSearch={state} inPageAds={props.inPageAds} /> },
+                { path: ':slug', element: <PostDetailsController articleAds={articleAds} monsterSearch={state} inPageAds={props.inPageAds}  category={category} categoryloader={loading}/> },
                 { path: '*', element: <Navigate to="/" /> },
             ]
         },
@@ -96,10 +101,11 @@ export default function Router(props) {
             path: '/dashboard',
             element: <AdminLayout />,
             children: [
+                { path: 'login', element: <Login /> },
                 { path: 'home', element: <Dashboard /> },
                 { path: 'create-post', element: <BlogPostCreateController /> },
-                { path: 'add-category', element: <BlogCategoryCreateController /> },
-                { path: 'add-page', element: <BlogAddPageController /> },
+                { path: 'create-category', element: <BlogCategoryCreateController /> },
+                { path: 'create-page', element: <BlogAddPageController /> },
                 { path: 'site-setting', element: <SiteSettingController /> },
                 { path: 'all-posts', element: <BlogPostController category={category} loading={loading} /> },
                 { path: 'all-category', element: <BlogCategoryController /> },
@@ -112,6 +118,13 @@ export default function Router(props) {
             children: [
                 { path: 'edit-page/:id', element: <BlogEditPageController /> },
                 { path: 'edit-category/:id', element: <BlogEditCategoryController /> },
+                { path: 'edit-post/:id', element: <BlogEditPostController category={category} cateloading={loading} /> },
+            ]
+        },
+        {
+            path: '/admin',
+            children: [
+                { path: 'login', element: <Login /> }
             ]
         },
         { path: '*', element: <Navigate to="/" replace /> }

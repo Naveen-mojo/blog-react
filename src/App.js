@@ -5,6 +5,7 @@ import Router from "./routes";
 import React from "react";
 import apiEndPoint from "./environment";
 import { useLocation } from "react-router-dom";
+import Login from "./admin/auth/Login";
 
 function App() {
   const [header, setheader] = React.useState(null);
@@ -103,6 +104,8 @@ function App() {
 
   if (location.pathname.split("/")[1] === "dashboard") {
     return <Router />;
+  }else if (location.pathname.split("/")[2] === "login") {
+    return <Login />;
   } else {
     return (
       <>

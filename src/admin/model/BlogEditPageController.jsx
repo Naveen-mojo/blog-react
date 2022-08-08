@@ -18,7 +18,7 @@ function BlogEditPageController() {
       redirect: "follow",
     };
 
-    fetch(`${apiEndPoint}/pages/${id}`, requestOptions)
+    fetch(`${apiEndPoint}admin/pages/${id}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setpages(result[0]);

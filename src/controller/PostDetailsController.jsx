@@ -131,7 +131,7 @@ function PostDetailsController(props) {
 
     return (
         <>
-            <PostDetails inPageAds={props.inPageAds} articleAds={articleAds} monsterSearch={mSearch} loading={loading} recPost={recPost} data={data} items={items} hasMore={hasMore} fetchData={fetchData} getSearchValue={getSearchValue} searchValue={searchValue} />
+            <PostDetails inPageAds={props.inPageAds} articleAds={articleAds} monsterSearch={mSearch} loading={loading} recPost={recPost} data={data} items={items} hasMore={hasMore} fetchData={fetchData} getSearchValue={getSearchValue} searchValue={searchValue} category={props.category} categoryloader={props.categoryloader} />
         </>
     )
 }
