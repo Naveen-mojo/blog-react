@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 function Login() {
+  const { loginUser, error, loadingbutton } = useContext(AuthContext);
+
   return (
     <>
       <div className="authentication">
@@ -22,55 +25,37 @@ function Login() {
                   <div className="footer">
                     <ul className="social_link list-unstyled">
                       <li>
-                        <a href="https://thememakker.com/" title="ThemeMakker">
+                        <a href="#" title="ThemeMakker">
                           <i className="zmdi zmdi-globe" />
                         </a>
                       </li>
                       <li>
-                        <a
-                          href="https://themeforest.net/user/thememakker"
-                          title="Themeforest"
-                        >
+                        <a href="#" title="Themeforest">
                           <i className="zmdi zmdi-shield-check" />
                         </a>
                       </li>
                       <li>
-                        <a
-                          href="https://www.linkedin.com/company/thememakker/"
-                          title="LinkedIn"
-                        >
+                        <a href="#" title="LinkedIn">
                           <i className="zmdi zmdi-linkedin" />
                         </a>
                       </li>
                       <li>
-                        <a
-                          href="https://www.facebook.com/thememakkerteam"
-                          title="Facebook"
-                        >
+                        <a href="#" title="Facebook">
                           <i className="zmdi zmdi-facebook" />
                         </a>
                       </li>
                       <li>
-                        <a
-                          href="https://twitter.com/thememakker"
-                          title="Twitter"
-                        >
+                        <a href="#" title="Twitter">
                           <i className="zmdi zmdi-twitter" />
                         </a>
                       </li>
                       <li>
-                        <a
-                          href="https://plus.google.com/+thememakker"
-                          title="Google plus"
-                        >
+                        <a href="#" title="Google plus">
                           <i className="zmdi zmdi-google-plus" />
                         </a>
                       </li>
                       <li>
-                        <a
-                          href="https://www.behance.net/thememakker"
-                          title="Behance"
-                        >
+                        <a href="#" title="Behance">
                           <i className="zmdi zmdi-behance" />
                         </a>
                       </li>
@@ -78,23 +63,17 @@ function Login() {
                     <hr />
                     <ul>
                       <li>
-                        <a
-                          href="http://thememakker.com/contact/"
-                          target="_blank"
-                        >
+                        <a href="#" target="_blank">
                           Contact Us
                         </a>
                       </li>
                       <li>
-                        <a href="http://thememakker.com/about/" target="_blank">
+                        <a href="#" target="_blank">
                           About Us
                         </a>
                       </li>
                       <li>
-                        <a
-                          href="http://thememakker.com/services/"
-                          target="_blank"
-                        >
+                        <a href="#" target="_blank">
                           Services
                         </a>
                       </li>
@@ -110,12 +89,13 @@ function Login() {
                   <div className="header">
                     <h5>Log in</h5>
                   </div>
-                  <form className="form">
+                  <form className="form" onSubmit={loginUser}>
                     <div className="input-group">
                       <input
-                        type="text"
+                        type="email"
                         className="form-control"
-                        placeholder="User Name"
+                        placeholder="Email"
+                        name="email"
                       />
                       <div className="input-group-append">
                         <span className="input-group-text">
@@ -128,6 +108,7 @@ function Login() {
                         type="password"
                         className="form-control"
                         placeholder="Password"
+                        name="password"
                       />
                       <div className="input-group-append">
                         <span className="input-group-text">
@@ -135,24 +116,15 @@ function Login() {
                         </span>
                       </div>
                     </div>
+                    <div className="footer">
+                      <button
+                        type="submit"
+                        className="btn btn-primary btn-round btn-block"
+                      >
+                        SIGN IN
+                      </button>
+                    </div>
                   </form>
-                  <div className="footer">
-                    <a
-                      href="index.html"
-                      className="btn btn-primary btn-round btn-block"
-                    >
-                      SIGN IN
-                    </a>
-                    <a
-                      href="sign-up.html"
-                      className="btn btn-primary btn-simple btn-round btn-block"
-                    >
-                      SIGN UP
-                    </a>
-                  </div>
-                  <a href="forgot-password.html" className="link">
-                    Forgot Password?
-                  </a>
                 </div>
               </div>
             </div>

@@ -1,6 +1,8 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import axios from 'axios';
-
+import jwtDecode from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const AuthContext = createContext();
 
@@ -9,7 +11,17 @@ export { AuthContext };
 
 const AuthProvider = ({ children }) => {
 
+    const [tokens, setTokens] = useState(() => localStorage.getItem('tokens') ? JSON.parse(localStorage.getItem('tokens')) : null)
+    const [user, setUser] = useState(() => localStorage.getItem('tokens') ? jwtDecode(localStorage.getItem('tokens')) : null)
+    const [error, setErrors] = useState('')
     const [loadingbutton, setLoadingButton] = useState(false)
+    const [loading, setLoading] = useState(true)
+
+    const navigate = useNavigate();
+
+    const notify = (msg) => {
+        toast(msg)
+    }
 
     const loginUser = (e) => {
         e.preventDefault();
@@ -25,21 +37,78 @@ const AuthProvider = ({ children }) => {
 
         axios(config)
             .then(response => {
-                console.log(response);
+                setTokens(response.data.token)
+                setUser(jwtDecode(response.data.token.access));
+                localStorage.setItem('tokens', JSON.stringify(response.data.token))
+                notify(response.data.msg)
                 setLoadingButton(false)
+                navigate('/dashboard/home')
 
             })
             .catch(error => {
-                console.log(error.response.data.errors);
+                setErrors(error.response.data.errors)
                 setLoadingButton(false)
             });
+    }
+
+    const logoutUser = () => {
+        setTokens(null)
+        setUser(null);
+        localStorage.removeItem('tokens')
+        navigate('/admin/login')
+    }
+
+    const updateToken = () => {
+        const config = {
+            method: 'post',
+            url: 'http://127.0.0.1:8000/api/token/refresh/',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: { "refresh": tokens?.refresh }
+        };
+
+        axios(config)
+            .then(response => {
+                setTokens(response.data)
+                setUser(jwtDecode(response.data.access));
+                localStorage.setItem('tokens', JSON.stringify(response.data))
+
+            })
+            .catch(error => {
+                logoutUser()
+            });
+
+        if (loading) {
+            setLoading(false)
+        }
+
     }
 
     const contextData = {
         "user": user,
         "loginUser": loginUser,
+        "logoutUser": logoutUser,
+        "error": error,
         "loadingbutton": loadingbutton,
+        "tokens": tokens,
     }
+
+    const twentynine = 1000 * 60 * 29
+
+    useEffect(() => {
+
+        if (loading) {
+            updateToken()
+        }
+
+        const interval = setInterval(() => {
+            if (tokens) {
+                updateToken()
+            }
+        }, twentynine)
+        return () => clearInterval(interval)
+    }, [tokens, loading])
 
 
     return (

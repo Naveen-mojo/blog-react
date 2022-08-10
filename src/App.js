@@ -6,6 +6,7 @@ import React from "react";
 import apiEndPoint from "./environment";
 import { useLocation } from "react-router-dom";
 import Login from "./admin/auth/Login";
+import AuthProvider from "./context/AuthContext";
 
 function App() {
   const [header, setheader] = React.useState(null);
@@ -103,9 +104,21 @@ function App() {
   const location = useLocation();
 
   if (location.pathname.split("/")[1] === "dashboard") {
-    return <Router />;
-  }else if (location.pathname.split("/")[2] === "login") {
-    return <Login />;
+    return (
+      <>
+        <AuthProvider>
+          <Router />
+        </AuthProvider>
+      </>
+    );
+  } else if (location.pathname.split("/")[2] === "login") {
+    return (
+      <>
+        <AuthProvider>
+          <Login />
+        </AuthProvider>
+      </>
+    );
   } else {
     return (
       <>
