@@ -120,9 +120,11 @@ function Header(props) {
                                                 </svg>
                                             </span>
                                         </span>
-                                    </button>                    <a href="#login-modal" className="navigation-bar__login-btn navigation-bar-btn" data-toggle="modal" data-target="#login-modal">
+                                    </button>                   
+                                     <Link to="/admin/login" className="navigation-bar-btn">
                                         <i className="mdicon mdicon-person" />
-                                    </a>                    <button type="submit" className="navigation-bar-btn search-toggle js-search-toggle">
+                                    </Link>          
+                                              <button type="submit" className="navigation-bar-btn search-toggle js-search-toggle">
                                         <i className="mdicon mdicon-search" />
                                     </button>              </div>
                             </div>{/* .navigation-bar__inner */}
@@ -166,9 +168,10 @@ function Header(props) {
                                     </div>
                                 </div>
                                 <div className="navigation-bar__section lwa lwa-template-modal flexbox-wrap justify-content-center align-item-center">
-                                    <a href="#login-modal" className="navigation-bar__login-btn navigation-bar-btn" data-toggle="modal" data-target="#login-modal">
+                                <Link to="/admin/login" className="navigation-bar-btn">
                                         <i className="mdicon mdicon-person" />
-                                    </a> {/* Button Dark Mode & Light Mode   */}
+                                    </Link> 
+                                    {/* Button Dark Mode & Light Mode   */}
                                     <button className="atbs-theme-switch is-toggle-switch">
                                         <span className="atbs-theme-switch__inner">
                                             <span className="atbs-theme-switch__light">
@@ -319,7 +322,7 @@ function Header(props) {
                         </div>
                         <div className="atbs-offcanvas__section visible-xs visible-sm">
                             <div className="text-center">
-                                <a href="#login-modal" className="btn btn-default" data-toggle="modal" data-target="#login-modal"><i className="mdicon mdicon-person mdicon--first" /><span>Login / Sign up</span></a>
+                                {/* <a href="#login-modal" className="btn btn-default" data-toggle="modal" data-target="#login-modal"><i className="mdicon mdicon-person mdicon--first" /><span>Login / Sign up</span></a> */}
                             </div>
                         </div>
                     </div>{/* Off-canvas menu */}
@@ -545,9 +548,11 @@ function Header(props) {
                                                 </svg>
                                             </span>
                                         </span>
-                                    </button>                    <a href="#login-modal" className="navigation-bar__login-btn navigation-bar-btn" data-toggle="modal" data-target="#login-modal">
+                                    </button>                
+                                    <Link to="/admin/login" className="navigation-bar-btn">
                                         <i className="mdicon mdicon-person" />
-                                    </a>                    <button type="submit" className="navigation-bar-btn search-toggle js-search-toggle">
+                                    </Link>               
+                                      <button type="submit" className="navigation-bar-btn search-toggle js-search-toggle">
                                         <i className="mdicon mdicon-search" />
                                     </button>              </div>
                             </div>{/* .navigation-bar__inner */}
@@ -590,9 +595,10 @@ function Header(props) {
                                     </div>
                                 </div>
                                 <div className="navigation-bar__section lwa lwa-template-modal flexbox-wrap justify-content-center align-item-center">
-                                    <a href="#login-modal" className="navigation-bar__login-btn navigation-bar-btn" data-toggle="modal" data-target="#login-modal">
+                                <Link to="/admin/login" className="navigation-bar-btn">
                                         <i className="mdicon mdicon-person" />
-                                    </a> {/* Button Dark Mode & Light Mode   */}
+                                    </Link> 
+                                    {/* Button Dark Mode & Light Mode   */}
                                     <button className="atbs-theme-switch is-toggle-switch">
                                         <span className="atbs-theme-switch__inner">
                                             <span className="atbs-theme-switch__light">
@@ -741,7 +747,7 @@ function Header(props) {
                         </div>
                         <div className="atbs-offcanvas__section visible-xs visible-sm">
                             <div className="text-center">
-                                <a href="#login-modal" className="btn btn-default" data-toggle="modal" data-target="#login-modal"><i className="mdicon mdicon-person mdicon--first" /><span>Login / Sign up</span></a>
+                                {/* <a href="#login-modal" className="btn btn-default" data-toggle="modal" data-target="#login-modal"><i className="mdicon mdicon-person mdicon--first" /><span>Login / Sign up</span></a> */}
                             </div>
                         </div>
                     </div>{/* Off-canvas menu */}

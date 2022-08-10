@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 function Login() {
@@ -63,6 +64,9 @@ function Login() {
                     <hr />
                     <ul>
                       <li>
+                        <Link to="/">Home</Link>
+                      </li>
+                      <li>
                         <a href="#" target="_blank">
                           Contact Us
                         </a>
@@ -77,9 +81,6 @@ function Login() {
                           Services
                         </a>
                       </li>
-                      <li>
-                        <a href="javascript:void(0);">FAQ</a>
-                      </li>
                     </ul>
                   </div>
                 </div>
@@ -92,10 +93,10 @@ function Login() {
                   <form className="form" onSubmit={loginUser}>
                     <div className="input-group">
                       <input
-                        type="email"
+                        type="text"
                         className="form-control"
-                        placeholder="Email"
-                        name="email"
+                        placeholder="Username"
+                        name="username"
                       />
                       <div className="input-group-append">
                         <span className="input-group-text">

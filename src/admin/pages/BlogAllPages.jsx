@@ -64,11 +64,9 @@ function BlogAllPages(props) {
       selector: (row) => (
         <div>
           <Link to={`/dashboard/edit-page/${row.ID}`}>
-            
             <i className="zmdi zmdi-edit btn btn-success radius-15"></i>
           </Link>
           <span>
-            
             <i
               className="zmdi zmdi-delete btn btn-danger radius-15"
               onClick={() => deleteData(row.ID)}
@@ -144,6 +142,8 @@ function BlogAllPages(props) {
                 sortIcon={<i className="zmdi zmdi-long-arrow-up"></i>}
                 pagination
                 selectableRows
+                selectableRowsHighlight
+                selectableRowsVisibleOnly
               />
             </div>
           </div>

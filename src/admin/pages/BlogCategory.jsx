@@ -15,7 +15,6 @@ function BlogCategory(props) {
     fetch(`${apiEndPoint}/term/${id}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        // console.log(result);
         if (result.success === true) {
           toast("Category deleted successully!");
         }
@@ -74,7 +73,6 @@ function BlogCategory(props) {
     fetch(`${apiEndPoint}search/category?q=${search}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         setItems(result);
       })
       .catch((error) => console.log("error", error));
@@ -121,6 +119,8 @@ function BlogCategory(props) {
                 sortIcon={<i className="zmdi zmdi-long-arrow-up"></i>}
                 pagination
                 selectableRows
+                selectableRowsHighlight
+                selectableRowsVisibleOnly
               />
             </div>
           </div>

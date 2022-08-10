@@ -170,10 +170,14 @@ function BlogPost(props) {
                   title="Posts"
                   columns={columns}
                   data={items}
-                  defaultSortFieldId={1}
+                  defaultSortFieldId={items.ID}
                   sortIcon={<i className="zmdi zmdi-long-arrow-up"></i>}
                   pagination
+                  highlightOnHover
                   selectableRows
+                  selectableRowsHighlight
+                  selectableRowsVisibleOnly
+                  // contextActions=<button className="btn btn-danger">DELETE</button>
                 />
               </div>
             </div>

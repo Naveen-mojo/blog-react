@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import adminlogo from "../../img/logo.svg";
 import profileimg from "../../img/profile_av.jpg";
 import { Outlet } from "react-router-dom";
 import { NavLink, Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-
+import { AuthContext } from "../../context/AuthContext";
 
 function Views() {
   const getLocation = useLocation();
+  const { logoutUser, user } = useContext(AuthContext);
 
   return (
     <>
@@ -268,9 +269,12 @@ function Views() {
             <a href="javascript:void(0);" className="js-right-sidebar">
               <i className="zmdi zmdi-settings zmdi-hc-spin" />
             </a>
-            <Link to="/admin/login" className="mega-menu">
+            <button onClick={logoutUser} title="Logout" className="mega-menu btn-danger">
               <i className="zmdi zmdi-power" />
-            </Link>
+            </button>
+            {/* <Link to="/admin/login" className="mega-menu">
+              <i className="zmdi zmdi-power" />
+            </Link> */}
           </li>
         </ul>
       </aside>
@@ -787,20 +791,18 @@ function Views() {
               <li>
                 <div className="user-info m-b-20">
                   <div className="image">
-                    <a href="profile.html">
+                    <p>
                       <img src={profileimg} alt="User" />
-                    </a>
+                    </p>
                   </div>
                   <div className="detail">
-                    <h6>Michael</h6>
+                    <h6>{user.username}</h6>
                     <p className="m-b-0">
-                      <a
-                        href="https://www.wrraptheme.com/cdn-cgi/l/email-protection"
+                      <span
                         className="__cf_email__"
-                        data-cfemail="dcb5b2bab39cb9a4bdb1acb0b9f2bfb3b1"
                       >
-                        michael@gmail.com
-                      </a>
+                        {user.email}
+                      </span>
                     </p>
                     <a
                       href="javascript:void(0);"
