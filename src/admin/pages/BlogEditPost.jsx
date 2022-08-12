@@ -8,7 +8,6 @@ import { useLocation } from "react-router-dom";
 
 function BlogEditPost(props) {
   const posts = props.posts;
-  console.log("posts", posts);
   const categoryByID = props.category[posts.CatId];
 
   const location = useLocation();
@@ -97,6 +96,8 @@ function BlogEditPost(props) {
     setEditorValue(event.editor.getData());
   };
 
+  const categoryName = props.category[categoryValue]
+
   const updatePost = (e) => {
     e.preventDefault();
     var myHeaders = new Headers();
@@ -108,7 +109,7 @@ function BlogEditPost(props) {
       PostTitle: postData.title,
       post_excerpt: "",
       PostContent: editorValue,
-      PostSlug: `${slug}`.toLowerCase(),
+      PostSlug: `${convertToSlug(categoryName.termName)}/${slug}`.toLowerCase(),
       PostThumb: uploadImage,
       PostViews: postData.views,
       PostThumbUrl: postData.thumburl,
@@ -412,7 +413,7 @@ function BlogEditPost(props) {
                     placeholder="Tag"
                   />
                 </div>
-                {posts.PostStatus === "0" ? (
+                {posts.PostStatus === "1" ? (
                   <div className="form-group">
                     <input
                       name="postSuccess"

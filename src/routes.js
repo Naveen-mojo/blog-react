@@ -153,7 +153,7 @@ export default function Router(props) {
           path: "create-post",
           element: (
             <PrivateRoute>
-              <BlogPostCreateController />
+              <BlogPostCreateController  category={category} />
             </PrivateRoute>
           ),
         },

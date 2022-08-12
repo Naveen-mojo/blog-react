@@ -16,6 +16,7 @@ function BlogPostCreate(props) {
     const [deleted, setDeleted] = useState(false);
 
     const [uploadImage, setUploadImage] = useState(null)
+    const [fileInfo, setFileInfo] = useState([])
 
     const [postData, setPostData] = useState({
         category: 0,
@@ -43,6 +44,7 @@ function BlogPostCreate(props) {
 
     const getImage = (e) => {
         setUploadImage(URL.createObjectURL(e.target.files[0]));
+        setFileInfo(e.target.files[0]);
     }
 
     const getPostStatusValue = (e) => {
@@ -76,6 +78,10 @@ function BlogPostCreate(props) {
         setEditorValue(event.editor.getData())
     }
 
+    const categoryName = props.categoryName
+
+    // console.log("fileInfo",fileInfo);
+
     const createPost = (e) => {
         e.preventDefault();
         var myHeaders = new Headers();
@@ -86,8 +92,8 @@ function BlogPostCreate(props) {
             "PostTitle": postData.title,
             "post_excerpt": '',
             "PostContent": editorValue,
-            "PostSlug": `videos/${postData.postSlug}`.toLowerCase(),
-            "PostThumb": uploadImage,
+            "PostSlug": `${convertToSlug(categoryName[postData.category].termName)}/${convertToSlug(postData.title)}`.toLowerCase(),
+            "PostThumb": fileInfo,
             "PostViews": postData.views,
             "PostThumbUrl": postData.thumburl,
             "PostStatus": postStatus ? 1 : 0,
@@ -98,6 +104,8 @@ function BlogPostCreate(props) {
             "is_deleted": deleted ? 0 : 1,
             "Affiliate": ''
         });
+
+        // console.log("raw Data",raw);
 
         var requestOptions = {
             method: 'POST',

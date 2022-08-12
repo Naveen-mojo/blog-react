@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import BlogPostCreate from '../pages/BlogPostCreate'
 import apiEndPoint from '../../environment';
 
-function BlogPostCreateController() {
+function BlogPostCreateController(props) {
 
     const [term, setTerm] = useState([])
     const [loading, setLoading] = useState(false)
@@ -32,7 +32,7 @@ function BlogPostCreateController() {
 
     return (
         <>
-            <BlogPostCreate term={term} loading={loading} />
+            <BlogPostCreate term={term} loading={loading}  categoryName={props.category} />
         </>
     )
 }
