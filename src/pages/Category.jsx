@@ -115,7 +115,7 @@ function Category(props) {
                     <div className="clearfix"></div>
                     {props.totalPages !== props.pageNum && (
                       <Link
-                        to={`/category/videos/page/${props.pageNum + 1}`}
+                        to={`/category/${path}/page/${props.pageNum + 1}`}
                         className="text-white bg-danger load-btn"
                         onClick={() => props.getPagenum()}
                       >

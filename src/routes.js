@@ -91,7 +91,7 @@ export default function Router(props) {
             />
           ),
         },
-        { path: ":id/ipl2021", element: <Fashion /> },
+        { path: `:id/ipl2021`, element: <Fashion /> },
         {
           path: ":id/:slug",
           element: (

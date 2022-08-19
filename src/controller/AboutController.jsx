@@ -18,7 +18,6 @@ function AboutController() {
     fetch(`${apiEndPoint}pages/${path}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        // console.log("result",result)
         setState(result);
       })
       .catch((error) => {

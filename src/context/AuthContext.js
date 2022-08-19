@@ -100,7 +100,7 @@ const AuthProvider = ({ children }) => {
     tokens: tokens,
   };
     
-  const twentynine = 24 * 60 * 60;
+  const twentynine = 24 * 60 * 3;
 
   useEffect(() => {
     if (loading) {
