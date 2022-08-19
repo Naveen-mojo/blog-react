@@ -28,6 +28,7 @@ function PostDetails(props) {
                             {
                                 data.map((curValue) => {
                                     const content = curValue.PostContent
+                                    console.log(curValue)
                                     return (
                                         <div key={curValue.ID}>
                                             <div className="atbs-block atbs-block--fullwidth single-header-wrap">
@@ -35,10 +36,10 @@ function PostDetails(props) {
                                                     <div className="single-header__inner">
                                                         <div className="entry-thumb single-entry-thumb atbs-thumb-object-fit">
                                                             {
-                                                                (curValue.PostThumbUrl !== '') ?
-                                                                    <img width={800} height={400} src={curValue.PostThumbUrl} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="" sizes="(max-width: 800px) 100vw, 800px" />
+                                                                (`${curValue.PostThumbUrl}` !== 'null') ?
+                                                                    <img width={800} height={400} src={curValue.PostThumbUrl} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="post img" sizes="(max-width: 800px) 100vw, 800px" />
                                                                     :
-                                                                    <img width={800} height={400} src={curValue.PostThumb} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="" sizes="(max-width: 800px) 100vw, 800px" />
+                                                                    <img width={800} height={400} src={curValue.PostThumb} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="details img" sizes="(max-width: 800px) 100vw, 800px" />
 
                                                             }
 

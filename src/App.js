@@ -2,7 +2,7 @@ import "./App.css";
 import FooterController from "./controller/FooterController";
 import HeaderController from "./controller/HeaderController";
 import Router from "./routes";
-import React from "react";
+import React, { useState } from "react";
 import apiEndPoint from "./environment";
 import { useLocation } from "react-router-dom";
 import Login from "./admin/auth/Login";
@@ -16,12 +16,15 @@ function App() {
   const [siteLogo, setSiteLogo] = React.useState(null);
   const [siteLogo2, setSiteLogo2] = React.useState(null);
   const [siteTitle, setSiteTitle] = React.useState(null);
-  const [loading, setLoading] = React.useState(false);
+  const [settingloading, setSettingLoading] = React.useState(false);
+
+  const [category, setcategory] = useState([]);
+  const [loading, setloading] = useState(false);
 
   const headTag = document.querySelector("head");
 
   function seoData() {
-    setLoading(true);
+    setSettingLoading(true);
     var requestOptions = {
       method: "GET",
       redirect: "follow",
@@ -30,7 +33,7 @@ function App() {
     fetch("http://localhost:5000/api/v1/post/setting", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        setLoading(false);
+        setSettingLoading(false);
         var head = `
         ${result[0].seoInfo}
         ${result[0].metaVerification}
@@ -97,8 +100,29 @@ function App() {
       });
   };
 
+  const getCategory = () => {
+    setloading(true);
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(`${apiEndPoint}category`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setcategory(result);
+        setloading(false);
+      })
+      .catch((error) => {
+        console.log("error", error);
+        setloading(false);
+      });
+  };
+
+
   React.useEffect(() => {
     getSettingData();
+    getCategory();
   }, []);
 
   const location = useLocation();
@@ -107,7 +131,7 @@ function App() {
     return (
       <>
         <AuthProvider>
-          <Router />
+          <Router category={category} loading={loading} />
         </AuthProvider>
       </>
     );
@@ -129,8 +153,9 @@ function App() {
             siteLogo={siteLogo}
             siteTitle={siteTitle}
             siteLogo2={siteLogo2}
+            category={category} loading={loading}
           />
-          <Router articleAds={articleAds} inPageAds={inPageAds} />
+          <Router articleAds={articleAds} inPageAds={inPageAds} category={category} loading={loading} />
           <FooterController footerData={footer} siteLogo={siteLogo} />
         </div>
       </>

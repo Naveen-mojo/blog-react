@@ -31,7 +31,7 @@ function Category(props) {
         <div className="atbs-block atbs-block--fullwidth">
           <div className="container ">
             <div className="row">
-              
+
               <div className="atbs-main-col " role="main">
                 <div
                   id="atbs_block_listing_list_3_has_sidebar-623810b6cd8a7"
@@ -48,25 +48,13 @@ function Category(props) {
                             >
                               <div className="post__thumb atbs-thumb-object-fit post-thumb-radius">
                                 <Link to={`/${curValue.PostSlug}`}>
-                                  {curValue.PostThumbUrl !== "" ? (
-                                    <img
-                                      width={1200}
-                                      height={600}
-                                      src={curValue.PostThumbUrl}
-                                      className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image"
-                                      alt=""
-                                      sizes="(max-width: 1200px) 100vw, 1200px"
-                                    />
-                                  ) : (
-                                    <img
-                                      width={1200}
-                                      height={600}
-                                      src={curValue.PostThumb}
-                                      className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image"
-                                      alt=""
-                                      sizes="(max-width: 1200px) 100vw, 1200px"
-                                    />
-                                  )}
+                                  {
+                                    (`${curValue.PostThumbUrl}` !== 'null') ?
+                                      <img width={1200} height={600} src={curValue.PostThumbUrl} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="post img" sizes="(max-width: 1200px) 100vw, 1200px" />
+                                      :
+                                      <img width={1200} height={600} src={curValue.PostThumb} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="details img" sizes="(max-width: 1200px) 100vw, 1200px" />
+
+                                  }
                                 </Link>
                                 {/* close a tag */}
                               </div>

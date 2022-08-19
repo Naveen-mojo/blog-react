@@ -53,7 +53,7 @@ function HeaderController(props) {
 
     return (
         <>
-            <Header monsterSearch={mSearch} headerAds={props.headerData} term={term} getSearchValue={getSearchValue} searchResult={searchResult} siteLogo={siteLogo} siteTitle={siteTitle} siteLogo2={props.siteLogo2} />
+            <Header monsterSearch={mSearch} headerAds={props.headerData} term={term} getSearchValue={getSearchValue} searchResult={searchResult} siteLogo={siteLogo} siteTitle={siteTitle} siteLogo2={props.siteLogo2} category={props.category} loading={props.loading} />
         </>
     )
 }

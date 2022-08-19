@@ -1,13 +1,12 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import logo from '../img/Group-18305.png'
-import logo2 from '../img/Group-18306.png'
 import moment from 'moment'
 
 function Header(props) {
     const termData = props.term
     const monsterSearch = props.monsterSearch
     const siteLogo = props.siteLogo
+    const categoryName = props.category
 
     if (siteLogo === null & props.siteTitle === null) {
         return (
@@ -120,11 +119,11 @@ function Header(props) {
                                                 </svg>
                                             </span>
                                         </span>
-                                    </button>                   
-                                     <Link to="/admin/login" className="navigation-bar-btn">
+                                    </button>
+                                    <Link to="/admin/login" className="navigation-bar-btn">
                                         <i className="mdicon mdicon-person" />
-                                    </Link>          
-                                              <button type="submit" className="navigation-bar-btn search-toggle js-search-toggle">
+                                    </Link>
+                                    <button type="submit" className="navigation-bar-btn search-toggle js-search-toggle">
                                         <i className="mdicon mdicon-search" />
                                     </button>              </div>
                             </div>{/* .navigation-bar__inner */}
@@ -168,9 +167,9 @@ function Header(props) {
                                     </div>
                                 </div>
                                 <div className="navigation-bar__section lwa lwa-template-modal flexbox-wrap justify-content-center align-item-center">
-                                <Link to="/admin/login" className="navigation-bar-btn">
+                                    <Link to="/admin/login" className="navigation-bar-btn">
                                         <i className="mdicon mdicon-person" />
-                                    </Link> 
+                                    </Link>
                                     {/* Button Dark Mode & Light Mode   */}
                                     <button className="atbs-theme-switch is-toggle-switch">
                                         <span className="atbs-theme-switch__inner">
@@ -403,10 +402,10 @@ function Header(props) {
                                                                             <a href={`/${curValue.PostSlug}`}>
 
                                                                                 {
-                                                                                    (curValue.PostThumbUrl !== '') ?
-                                                                                        <img width="400" height="300" src={curValue.PostThumbUrl} className="attachment-atbs-xs-4_3 size-atbs-xs-4_3 wp-post-image" alt="" loading="lazy" sizes="(max-width: 400px) 100vw, 400px" />
+                                                                                    (`${curValue.PostThumbUrl}` !== 'null') ?
+                                                                                        <img width={800} height={400} src={curValue.PostThumbUrl} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="post img" sizes="(max-width: 800px) 100vw, 800px" />
                                                                                         :
-                                                                                        <img width="400" height="300" src={curValue.PostThumb} className="attachment-atbs-xs-4_3 size-atbs-xs-4_3 wp-post-image" alt="" loading="lazy" sizes="(max-width: 400px) 100vw, 400px" />
+                                                                                        <img width={800} height={400} src={curValue.PostThumb} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="details img" sizes="(max-width: 800px) 100vw, 800px" />
 
                                                                                 }
 
@@ -548,11 +547,11 @@ function Header(props) {
                                                 </svg>
                                             </span>
                                         </span>
-                                    </button>                
+                                    </button>
                                     <Link to="/admin/login" className="navigation-bar-btn">
                                         <i className="mdicon mdicon-person" />
-                                    </Link>               
-                                      <button type="submit" className="navigation-bar-btn search-toggle js-search-toggle">
+                                    </Link>
+                                    <button type="submit" className="navigation-bar-btn search-toggle js-search-toggle">
                                         <i className="mdicon mdicon-search" />
                                     </button>              </div>
                             </div>{/* .navigation-bar__inner */}
@@ -595,9 +594,9 @@ function Header(props) {
                                     </div>
                                 </div>
                                 <div className="navigation-bar__section lwa lwa-template-modal flexbox-wrap justify-content-center align-item-center">
-                                <Link to="/admin/login" className="navigation-bar-btn">
+                                    <Link to="/admin/login" className="navigation-bar-btn">
                                         <i className="mdicon mdicon-person" />
-                                    </Link> 
+                                    </Link>
                                     {/* Button Dark Mode & Light Mode   */}
                                     <button className="atbs-theme-switch is-toggle-switch">
                                         <span className="atbs-theme-switch__inner">
@@ -828,10 +827,10 @@ function Header(props) {
                                                                             <a href={`/${curValue.PostSlug}`}>
 
                                                                                 {
-                                                                                    (curValue.PostThumbUrl !== '') ?
-                                                                                        <img width="400" height="300" src={curValue.PostThumbUrl} className="attachment-atbs-xs-4_3 size-atbs-xs-4_3 wp-post-image" alt="" loading="lazy" sizes="(max-width: 400px) 100vw, 400px" />
+                                                                                    (`${curValue.PostThumbUrl}` !== 'null') ?
+                                                                                        <img width={800} height={400} src={curValue.PostThumbUrl} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="post img" sizes="(max-width: 800px) 100vw, 800px" />
                                                                                         :
-                                                                                        <img width="400" height="300" src={curValue.PostThumb} className="attachment-atbs-xs-4_3 size-atbs-xs-4_3 wp-post-image" alt="" loading="lazy" sizes="(max-width: 400px) 100vw, 400px" />
+                                                                                        <img width={800} height={400} src={curValue.PostThumb} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="details img" sizes="(max-width: 800px) 100vw, 800px" />
 
                                                                                 }
 
@@ -839,7 +838,7 @@ function Header(props) {
                                                                             </a></div>
                                                                         <div className="post__text">
                                                                             <div className="post__meta post-time-cat-wrap">
-                                                                                <a className="cat-6 post__cat post__cat--bg cat-theme-bg" href={`/category/videos`}>Videos</a>
+                                                                                <a className="cat-6 post__cat post__cat--bg cat-theme-bg" href={`/category/videos`}>{categoryName[curValue.CatId].termName}</a>
                                                                                 <span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>                        </div>
                                                                             <h3 className="post__title typescale-1 custom-typescale-1 line-limit-child line-limit-3">
                                                                                 <a href={`/${curValue.PostSlug}`}>{curValue.PostTitle}</a></h3>

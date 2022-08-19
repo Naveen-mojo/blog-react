@@ -16,7 +16,7 @@ function BlogPostCreate(props) {
     const [deleted, setDeleted] = useState(false);
 
     const [uploadImage, setUploadImage] = useState(null)
-    const [fileInfo, setFileInfo] = useState([])
+    const [fileInfo, setFileInfo] = useState(null)
 
     const [postData, setPostData] = useState({
         category: 0,
@@ -80,37 +80,32 @@ function BlogPostCreate(props) {
 
     const categoryName = props.categoryName
 
-    // console.log("fileInfo",fileInfo);
-
     const createPost = (e) => {
         e.preventDefault();
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        var raw = JSON.stringify({
-            "CatId": postData.category,
-            "SubCatId": 0,
-            "PostTitle": postData.title,
-            "post_excerpt": '',
-            "PostContent": editorValue,
-            "PostSlug": `${convertToSlug(categoryName[postData.category].termName)}/${convertToSlug(postData.title)}`.toLowerCase(),
-            "PostThumb": fileInfo,
-            "PostViews": postData.views,
-            "PostThumbUrl": postData.thumburl,
-            "PostStatus": postStatus ? 1 : 0,
-            "MetaTitle": postData.metaTitle,
-            "MetaKey": postData.metaKeyword,
-            "MetaDesc": postData.metaDescription,
-            "PostTags": postData.tag,
-            "is_deleted": deleted ? 0 : 1,
-            "Affiliate": ''
-        });
 
-        // console.log("raw Data",raw);
+        var formdata = new FormData();
+        
+        formdata.append("PostTitle", postData.title);
+        formdata.append("PostContent", editorValue);
+        formdata.append("PostSlug", `${convertToSlug(categoryName[postData.category].termName)}/${convertToSlug(postData.title)}`.toLowerCase());
+        formdata.append("PostThumbUrl", postData.thumburl)
+        formdata.append("PostStatus", postStatus ? 1 : 0);
+        formdata.append("MetaTitle", postData.metaTitle)
+        formdata.append("MetaKey", postData.metaKeyword)
+        formdata.append("MetaDesc", postData.metaDescription)
+        formdata.append("PostTags", postData.tag);
+        formdata.append("is_deleted", deleted ? 0 : 1)
+        formdata.append("Affiliate", '');
+        formdata.append("PostViews", postData.views);
+        formdata.append("CatId", postData.category);
+        formdata.append("SubCatId", 0);
+        formdata.append("post_excerpt", '')
+
+        formdata.append("PostThumb", fileInfo);
 
         var requestOptions = {
             method: 'POST',
-            headers: myHeaders,
-            body: raw,
+            body: formdata,
             redirect: 'follow'
         };
 
@@ -139,7 +134,7 @@ function BlogPostCreate(props) {
         <>
             <div className="row">
                 <div className="col-lg-12">
-                    <form onSubmit={createPost}>
+                    <form onSubmit={createPost} encType="multipart/form-data">
                         {props.loading ? <div className="d-flex justify-content-center my-5">
                             <div className="spinner-border" role="status">
                                 <span className="sr-only">Loading...</span>
@@ -148,7 +143,7 @@ function BlogPostCreate(props) {
                             <div className="card">
                                 <div className="body">
                                     <div className="form-group">
-                                        <select name="category" onChange={getInputValue} required className="form-control show-tick">
+                                        <select name="category" onChange={getInputValue} className="form-control show-tick">
                                             <option selected disabled>Select Category --</option>
                                             {
                                                 term.map((curValue) => {
@@ -162,7 +157,7 @@ function BlogPostCreate(props) {
 
                                     <label>Post Title</label>
                                     <div className="form-group">
-                                        <input type="text" name='title' onChange={getInputValue} className="form-control" placeholder="Enter Post Title" required />
+                                        <input type="text" name='title' onChange={getInputValue} className="form-control" placeholder="Enter Post Title" />
                                     </div>
 
                                     <label>Post Slug</label>
@@ -191,11 +186,11 @@ function BlogPostCreate(props) {
                                 </div>
 
                                 {
-                                    (`${docContent}` === 'null') ? '' : <CKEditor onChange={editorData} name="editor1" id="editor1" rows="15" cols="80" initData={`${docContent}`} required />
+                                    (`${docContent}` === 'null') ? '' : <CKEditor onChange={editorData} name="editor1" id="editor1" rows="15" cols="80" initData={`${docContent}`} />
                                 }
 
                                 {
-                                    (`${docContent}` !== 'null') ? '' : <CKEditor onChange={editorData} name="editor1" id="editor1" rows="15" cols="80" initData='CKEditor4' required />
+                                    (`${docContent}` !== 'null') ? '' : <CKEditor onChange={editorData} name="editor1" id="editor1" rows="15" cols="80" initData='CKEditor4' />
                                 }
 
 
@@ -211,7 +206,7 @@ function BlogPostCreate(props) {
                                     </div>
 
                                     <div className="fallback">
-                                        <input name="image" onChange={getImage} accept="image/*" className='inputfilecss' type="file" />
+                                        <input name="PostThumb" onChange={getImage} accept="image/*" className='inputfilecss' type="file" />
                                     </div>
                                 </div>
                                 {

@@ -29,6 +29,7 @@ function BlogPost(props) {
       });
   };
 
+
   const category = props.category;
 
   const columns = [
@@ -50,7 +51,7 @@ function BlogPost(props) {
       id: 3,
       name: "Post Image",
       selector: (row) =>
-        row.PostThumbUrl !== "" ? (
+        row.PostThumbUrl !== null ? (
           <img
             src={`${row.PostThumbUrl}`}
             style={{ height: "50px", width: "70px", margin: "7px" }}
@@ -129,6 +130,8 @@ function BlogPost(props) {
   useEffect(() => {
     getSearch();
   }, [search]);
+
+  console.log(items)
 
   return (
     <>

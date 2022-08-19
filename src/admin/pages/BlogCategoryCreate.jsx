@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function BlogCategoryCreate() {
 
     const [uploadImage, setUploadImage] = useState(null)
+    const [fileInfo, setFileInfo] = useState(null)
     const [status, setStatus] = useState(true)
 
     const [categoryValue, setCategoryValue] = useState({
@@ -27,6 +28,7 @@ function BlogCategoryCreate() {
 
     const getImage = (e) => {
         setUploadImage(URL.createObjectURL(e.target.files[0]));
+        setFileInfo(e.target.files[0]);
     }
 
     function convertToSlug(Text) {
@@ -38,22 +40,22 @@ function BlogCategoryCreate() {
 
     const createPost = (e) => {
         e.preventDefault();
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        var raw = JSON.stringify({
-            "TermName": categoryValue.categoryName,
-            "TermSlug": categoryValue.categoryslug,
-            "TermImage": uploadImage,
-            "RssFeedUrl": categoryValue.rssfeedurl,
-            "TermStatus": status ? 1 : 0
-        });
+
+        var formdata = new FormData();
+        
+        formdata.append("TermName", categoryValue.categoryName);
+        formdata.append("TermSlug",  `${convertToSlug(categoryValue.categoryName)}`.toLowerCase());
+        formdata.append("TermImage", fileInfo);
+        formdata.append("RssFeedUrl", categoryValue.rssfeedurl);
+        formdata.append("TermStatus", status ? 1 : 0);
 
         var requestOptions = {
             method: 'POST',
-            headers: myHeaders,
-            body: raw,
+            body: formdata,
             redirect: 'follow'
         };
+
+        console.log("requestOptions", requestOptions);
 
         fetch(`${apiEndPoint}/term`, requestOptions)
             .then(response => response.json())
@@ -108,7 +110,7 @@ function BlogCategoryCreate() {
                                         </div>
                                 }
                                 <div className="form-group">
-                                    <input onChange={(e) => { setStatus(e.target.checked) }} defaultChecked name='status' type="checkbox" />
+                                    <input onChange={(e) => { setStatus(e.target.checked) }} name='status' type="checkbox" />
                                     <span>Category Status</span>
                                 </div>
                                 <div>

@@ -72,9 +72,9 @@ function Login() {
                         </a>
                       </li>
                       <li>
-                        <a href="#" target="_blank">
+                        <Link to="/about-page" target="_blank">
                           About Us
-                        </a>
+                        </Link>
                       </li>
                       <li>
                         <a href="#" target="_blank">

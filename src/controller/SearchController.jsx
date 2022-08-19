@@ -3,7 +3,7 @@ import Search from '../component/Search';
 import { useSearchParams } from 'react-router-dom';
 import apiEndPoint from '../environment';
 
-function SearchController() {
+function SearchController(props) {
 
     const [searchParams, setSearchParams] = useSearchParams();
     const searchValue = searchParams.get("q")
@@ -57,7 +57,7 @@ function SearchController() {
 
     return (
         <>
-            <Search items={items} searchValue={searchValue} getSearchValue={getSearchValue} search={search} monsterSearch={state} />
+            <Search items={items} searchValue={searchValue} getSearchValue={getSearchValue} search={search} monsterSearch={state} category={props.category} catgeloader={props.catgeloader} />
         </>
     )
 }

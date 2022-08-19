@@ -99,8 +99,8 @@ const AuthProvider = ({ children }) => {
     loadingbutton: loadingbutton,
     tokens: tokens,
   };
-
-  const twentynine = 72000;
+    
+  const twentynine = 24 * 60 * 60;
 
   useEffect(() => {
     if (loading) {

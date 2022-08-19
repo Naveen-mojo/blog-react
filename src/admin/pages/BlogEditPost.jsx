@@ -10,6 +10,8 @@ function BlogEditPost(props) {
   const posts = props.posts;
   const categoryByID = props.category[posts.CatId];
 
+  console.log("posts", posts)
+
   const location = useLocation();
   const id = location.pathname.split("/")[3];
 
@@ -22,11 +24,13 @@ function BlogEditPost(props) {
   const [deleted, setDeleted] = useState(true);
 
   const [uploadImage, setUploadImage] = useState(null);
+  const [fileInfo, setFileInfo] = useState(null)
   const [slug, setslug] = useState("");
 
   const [postData, setPostData] = useState({
     title: "",
     thumburl: "",
+    postthumb: '',
     views: 0,
     metaTitle: "",
     metaKeyword: "",
@@ -41,6 +45,7 @@ function BlogEditPost(props) {
       setPostData({
         title: posts.PostTitle,
         thumburl: posts.PostThumbUrl,
+        postthumb: posts.PostThumb,
         views: posts.PostViews,
         metaTitle: posts.MetaTitle,
         metaKeyword: posts.MetaKey,
@@ -71,6 +76,7 @@ function BlogEditPost(props) {
 
   const getImage = (e) => {
     setUploadImage(URL.createObjectURL(e.target.files[0]));
+    setFileInfo(e.target.files[0]); 
   };
 
   const fileuploaded = (inputElement) => {
@@ -100,35 +106,32 @@ function BlogEditPost(props) {
 
   const updatePost = (e) => {
     e.preventDefault();
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    var raw = JSON.stringify({
-      CatId: categoryValue,
-      SubCatId: 0,
-      PostId: id,
-      PostTitle: postData.title,
-      post_excerpt: "",
-      PostContent: editorValue,
-      PostSlug: `${convertToSlug(categoryName.termName)}/${slug}`.toLowerCase(),
-      PostThumb: uploadImage,
-      PostViews: postData.views,
-      PostThumbUrl: postData.thumburl,
-      PostStatus: (postStatus === true) ? 0 : 1,
-      MetaTitle: postData.metaTitle,
-      MetaKey: postData.metaKeyword,
-      MetaDesc: postData.metaDescription,
-      PostTags: postData.tag,
-      is_deleted: (deleted === true) ? 0 : 1,
-      Affiliate: 1,
-    });
 
-    console.log(raw);
+    var formdata = new FormData();
+        
+    formdata.append("PostTitle", postData.title);
+    formdata.append("PostContent", editorValue);
+    formdata.append("PostSlug", `${convertToSlug(categoryName.termName)}/${convertToSlug(postData.title)}`.toLowerCase());
+    formdata.append("PostThumbUrl", postData.thumburl)
+    formdata.append("PostStatus", (postStatus === true) ? 1 : 0);
+    formdata.append("MetaTitle", postData.metaTitle)
+    formdata.append("MetaKey", postData.metaKeyword)
+    formdata.append("MetaDesc", postData.metaDescription)
+    formdata.append("PostTags", postData.tag);
+    formdata.append("is_deleted", (deleted === true) ? 0 : 1)
+    formdata.append("Affiliate", 1);
+    formdata.append("PostViews", postData.views);
+    formdata.append("CatId", categoryValue);
+    formdata.append("SubCatId", 0);
+    formdata.append("post_excerpt", '') 
+    formdata.append("PostId", id)
+
+    formdata.append("PostThumb", fileInfo);
 
     var requestOptions = {
-      method: "PATCH",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
+        method: 'PATCH',
+        body: formdata,
+        redirect: 'follow'
     };
 
     fetch(`${apiEndPoint}/${id}`, requestOptions)
@@ -148,8 +151,8 @@ function BlogEditPost(props) {
     return Text.toLowerCase()
       .replace(/ /g, "-")
       .replace(/[^\w-]+/g, "")
-      .replaceAll("--", "-");
   }
+
 
   return (
     <>
@@ -259,8 +262,8 @@ function BlogEditPost(props) {
                 </div>
 
                 {`${editorValue}` === "undefined" ||
-                `${editorValue}` === "null" ||
-                `${docContent}` === "null" ? (
+                  `${editorValue}` === "null" ||
+                  `${docContent}` === "null" ? (
                   ""
                 ) : (
                   <CKEditor
@@ -275,8 +278,8 @@ function BlogEditPost(props) {
                 )}
 
                 {`${editorValue}` === "undefined" ||
-                `${editorValue}` === "null" ||
-                `${docContent}` !== "null" ? (
+                  `${editorValue}` === "null" ||
+                  `${docContent}` !== "null" ? (
                   ""
                 ) : (
                   <CKEditor
@@ -318,15 +321,23 @@ function BlogEditPost(props) {
                 </div>
                 {uploadImage === null ? (
                   <div>
-                    <img
-                      src={postData.thumburl}
-                      style={{
-                        height: "200px",
-                        marginBottom: "15px",
-                        border: "1px solid #000",
-                      }}
-                      alt="img"
-                    />
+                    {
+                      (`${postData.thumburl}` !== 'null') ?
+                        <img src={postData.thumburl} style={{
+                          height: "200px",
+                          marginBottom: "15px",
+                          border: "1px solid #000",
+                        }}
+                          alt="img" />
+                        :
+                        <img src={postData.postthumb} style={{
+                          height: "200px",
+                          marginBottom: "15px",
+                          border: "1px solid #000",
+                        }}
+                          alt="img" />
+
+                    }
                   </div>
                 ) : (
                   <div>

@@ -141,23 +141,13 @@ function Home(props) {
                           >
                             <div className="post__thumb atbs-thumb-object-fit">
                               <Link to={`/${curValue.PostSlug}`}>
-                                {curValue.PostThumbUrl !== "" ? (
-                                  <img
-                                    width={1920}
-                                    height={1125}
-                                    src={curValue.PostThumbUrl}
-                                    className="attachment-atbs-xxl size-atbs-xxl wp-post-image"
-                                    alt=""
-                                  />
-                                ) : (
-                                  <img
-                                    width={1920}
-                                    height={1125}
-                                    src={curValue.PostThumb}
-                                    className="attachment-atbs-xxl size-atbs-xxl wp-post-image"
-                                    alt=""
-                                  />
-                                )}
+                                {
+                                  (`${curValue.PostThumbUrl}` !== 'null') ?
+                                    <img width={1920} height={1125} src={curValue.PostThumbUrl} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="post img" sizes="(max-width: 1920px) 100vw, 1920px" />
+                                    :
+                                    <img width={1920} height={1125} src={curValue.PostThumb} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="details img" sizes="(max-width: 1920px) 100vw, 1920px" />
+
+                                }
                               </Link>
                             </div>
                             <div className="post__text">
@@ -339,27 +329,13 @@ function Home(props) {
                           >
                             <div className="post__thumb post__thumb--overlay background-img background-img--darkened post__thumb--overlay atbs-thumb-object-fit background-img-dots-circle">
                               <Link to={`/${curValue.PostSlug}`}>
-                                {curValue.PostThumbUrl !== "" ? (
-                                  <img
-                                    width={600}
-                                    height={600}
-                                    src={curValue.PostThumbUrl}
-                                    className="attachment-atbs-s-1_1 size-atbs-s-1_1 wp-post-image"
-                                    alt=""
-                                    loading="lazy"
-                                    sizes="(max-width: 600px) 100vw, 600px"
-                                  />
-                                ) : (
-                                  <img
-                                    width={600}
-                                    height={600}
-                                    src={curValue.PostThumb}
-                                    className="attachment-atbs-s-1_1 size-atbs-s-1_1 wp-post-image"
-                                    alt=""
-                                    loading="lazy"
-                                    sizes="(max-width: 600px) 100vw, 600px"
-                                  />
-                                )}
+                                {
+                                  (`${curValue.PostThumbUrl}` !== 'null') ?
+                                    <img width={600} height={600} src={curValue.PostThumbUrl} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="post img" sizes="(max-width: 600px) 100vw, 600px" />
+                                    :
+                                    <img width={600} height={600} src={curValue.PostThumb} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="details img" sizes="(max-width: 600px) 100vw, 600px" />
+
+                                }
                               </Link>
                             </div>
                             <div className="post__text">
@@ -460,23 +436,13 @@ function Home(props) {
                         >
                           <div className="post__thumb atbs-thumb-object-fit post-thumb-radius">
                             <Link to={`/${curValue.PostSlug}`}>
-                              {curValue.PostThumbUrl !== "" ? (
-                                <img
-                                  width={1920}
-                                  height={1125}
-                                  src={curValue.PostThumbUrl}
-                                  className="attachment-atbs-xxl size-atbs-xxl wp-post-image"
-                                  alt=""
-                                />
-                              ) : (
-                                <img
-                                  width={1920}
-                                  height={1125}
-                                  src={curValue.PostThumb}
-                                  className="attachment-atbs-xxl size-atbs-xxl wp-post-image"
-                                  alt=""
-                                />
-                              )}
+                              {
+                                (`${curValue.PostThumbUrl}` !== 'null') ?
+                                  <img width={1920} height={1125} src={curValue.PostThumbUrl} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="post img" sizes="(max-width: 1925px) 100vw, 1125px" />
+                                  :
+                                  <img width={1920} height={1125} src={curValue.PostThumb} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="details img" sizes="(max-width: 1925px) 100vw, 1125px" />
+
+                              }
                             </Link>{" "}
                             {/* close a tag */}
                           </div>
@@ -576,25 +542,13 @@ function Home(props) {
                           >
                             <div className="post__thumb post__thumb--overlay atbs-thumb-object-fit post-thumb-radius background-img background-img--darkened background-img-dots-circle">
                               <Link to={`/${curValue.PostSlug}`}>
-                                {curValue.PostThumbUrl !== "" ? (
-                                  <img
-                                    width={600}
-                                    height={450}
-                                    src={curValue.PostThumbUrl}
-                                    className="attachment-atbs-s-4_3 size-atbs-s-4_3 wp-post-image"
-                                    alt=""
-                                    sizes="(max-width: 600px) 100vw, 600px"
-                                  />
-                                ) : (
-                                  <img
-                                    width={600}
-                                    height={450}
-                                    src={curValue.PostThumb}
-                                    className="attachment-atbs-s-4_3 size-atbs-s-4_3 wp-post-image"
-                                    alt=""
-                                    sizes="(max-width: 600px) 100vw, 600px"
-                                  />
-                                )}
+                                {
+                                  (`${curValue.PostThumbUrl}` !== 'null') ?
+                                    <img width={600} height={450} src={curValue.PostThumbUrl} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="post img" sizes="(max-width: 600px) 100vw, 800px" />
+                                    :
+                                    <img width={600} height={450} src={curValue.PostThumb} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="details img" sizes="(max-width: 600px) 100vw, 800px" />
+
+                                }
                               </Link>
                             </div>
                             <div className="post__text inverse-text">
@@ -605,7 +559,7 @@ function Home(props) {
                                       className="cat-7 post__cat post__cat--bg cat-theme-bg"
                                       to={`category/videos`}
                                     >
-                                     {category[curValue.CatId].termName}
+                                      {category[curValue.CatId].termName}
                                     </Link>
                                     <span className="time-wrap">
                                       <time
@@ -690,25 +644,13 @@ function Home(props) {
                                   >
                                     <div className="post__thumb atbs-thumb-object-fit post-thumb-radius">
                                       <Link to={`/${curValue.PostSlug}`}>
-                                        {curValue.PostThumbUrl !== "" ? (
-                                          <img
-                                            width={400}
-                                            height={300}
-                                            src={curValue.PostThumbUrl}
-                                            className="attachment-atbs-xs-4_3 size-atbs-xs-4_3 wp-post-image"
-                                            alt=""
-                                            sizes="(max-width: 400px) 100vw, 400px"
-                                          />
-                                        ) : (
-                                          <img
-                                            width={400}
-                                            height={300}
-                                            src={curValue.PostThumb}
-                                            className="attachment-atbs-xs-4_3 size-atbs-xs-4_3 wp-post-image"
-                                            alt=""
-                                            sizes="(max-width: 400px) 100vw, 400px"
-                                          />
-                                        )}
+                                        {
+                                          (`${curValue.PostThumbUrl}` !== 'null') ?
+                                            <img width={400} height={300} src={curValue.PostThumbUrl} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="post img" sizes="(max-width: 400px) 100vw, 400px" />
+                                            :
+                                            <img width={400} height={300} src={curValue.PostThumb} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="details img" sizes="(max-width: 400px) 100vw, 400px" />
+
+                                        }
                                       </Link>
                                       {/* close a tag */}
                                     </div>
@@ -718,7 +660,7 @@ function Home(props) {
                                           className="cat-2 post__cat post__cat--bg cat-theme-bg"
                                           to={`category/videos`}
                                         >
-                                         {category[curValue.CatId].termName}
+                                          {category[curValue.CatId].termName}
                                         </Link>
                                         <span className="time-wrap">
                                           <time
@@ -932,7 +874,7 @@ function Home(props) {
       </>
     );
   } else {
-    return <SearchController />;
+    return <SearchController category={category} catgeloader={props.categoryloader} />;
   }
 }
 

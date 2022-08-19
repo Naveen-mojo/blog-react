@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, useLocation, useRoutes } from "react-router-dom";
+import { useLocation, useRoutes } from "react-router-dom";
 import Layout from "./layout/Layout";
 import CategoryController from "./controller/CategoryController";
 import HomeController from "./controller/HomeController";
@@ -22,13 +22,14 @@ import BlogEditCategoryController from "./admin/model/BlogEditCategoryController
 import BlogEditPostController from "./admin/model/BlogEditPostController";
 import Login from "./admin/auth/Login";
 import PrivateRoute from "./utils/PrivateRoute";
+import PageNotFound from "./component/PageNotFound";
 
 export default function Router(props) {
   const articleAds = props.articleAds;
+  const category = props.category;
+  const loading = props.loading;
 
   const [state, setState] = useState([]);
-  const [category, setcategory] = useState([]);
-  const [loading, setloading] = useState(false);
 
   const getSettingData = () => {
     var requestOptions = {
@@ -46,28 +47,8 @@ export default function Router(props) {
       });
   };
 
-  const getCategory = () => {
-    setloading(true);
-    var requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
-
-    fetch(`${apiEndPoint}category`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        setcategory(result);
-        setloading(false);
-      })
-      .catch((error) => {
-        console.log("error", error);
-        setloading(false);
-      });
-  };
-
   useEffect(() => {
     getSettingData();
-    getCategory();
   }, []);
 
   const location = useLocation();
@@ -90,15 +71,8 @@ export default function Router(props) {
         },
         { path: "createsitemap", element: <Createsitemap /> },
         { path: "about-page", element: <AboutController /> },
-        { path: "*", element: <Navigate to="/" /> },
-      ],
-    },
-    {
-      path: "/:id",
-      element: <Layout />,
-      children: [
         {
-          path: `videos/page/:pageNumber`,
+          path: `:id/videos/page/:pageNumber`,
           element: (
             <CategoryController
               monsterSearch={state}
@@ -108,7 +82,7 @@ export default function Router(props) {
           ),
         },
         {
-          path: `videos`,
+          path: `:id/videos`,
           element: (
             <CategoryController
               monsterSearch={state}
@@ -117,9 +91,9 @@ export default function Router(props) {
             />
           ),
         },
-        { path: "ipl2021", element: <Fashion /> },
+        { path: ":id/ipl2021", element: <Fashion /> },
         {
-          path: ":slug",
+          path: ":id/:slug",
           element: (
             <PostDetailsController
               articleAds={articleAds}
@@ -130,7 +104,7 @@ export default function Router(props) {
             />
           ),
         },
-        { path: "*", element: <Navigate to="/" /> },
+        { path: "*", element: <PageNotFound /> },
       ],
     },
     {
@@ -153,7 +127,7 @@ export default function Router(props) {
           path: "create-post",
           element: (
             <PrivateRoute>
-              <BlogPostCreateController  category={category} />
+              <BlogPostCreateController category={category} />
             </PrivateRoute>
           ),
         },
@@ -205,16 +179,6 @@ export default function Router(props) {
             </PrivateRoute>
           ),
         },
-      ],
-    },
-    {
-      path: "/dashboard",
-      element: (
-        <PrivateRoute>
-          <AdminLayout />
-        </PrivateRoute>
-      ),
-      children: [
         {
           path: "edit-page/:id",
           element: (
@@ -248,6 +212,6 @@ export default function Router(props) {
       path: "/admin",
       children: [{ path: "login", element: <Login /> }],
     },
-    { path: "*", element: <Navigate to="/" replace /> },
+    { path: "*", element: <PageNotFound /> },
   ]);
 }

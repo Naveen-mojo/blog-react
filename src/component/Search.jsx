@@ -6,8 +6,17 @@ function Search(props) {
     const items = props.items;
     const itemsLength = items.length
     const monsterSearch = props.monsterSearch
+    const categoryName = props.category
+
     return (
         <>
+       {props.catgeloader ? (
+          <div className="d-flex justify-content-center my-5">
+            <div className="spinner-border" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
+        ) : (
             <div id="site-content" className="site-content">
                 <div className="atbs-block atbs-block--fullwidth">
                     <div className="container">
@@ -30,10 +39,10 @@ function Search(props) {
                                                                 <Link to={`/${curValue.PostSlug}`}>
 
                                                                     {
-                                                                        (curValue.PostThumbUrl !== '') ?
-                                                                            <img width={1200} height={600} src={curValue.PostThumbUrl} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" sizes="(max-width: 1200px) 100vw, 1200px" />
+                                                                        (`${curValue.PostThumbUrl}` !== 'null') ?
+                                                                            <img width={800} height={400} src={curValue.PostThumbUrl} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="post img" sizes="(max-width: 800px) 100vw, 800px" />
                                                                             :
-                                                                            <img width={1200} height={600} src={curValue.PostThumb} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" sizes="(max-width: 1200px) 100vw, 1200px" />
+                                                                            <img width={800} height={400} src={curValue.PostThumb} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="details img" sizes="(max-width: 800px) 100vw, 800px" />
 
                                                                     }
 
@@ -41,7 +50,7 @@ function Search(props) {
                                                                 </Link></div>
                                                             <div className="post__text">
                                                                 <div className="post__meta post-time-cat-wrap">
-                                                                    <Link className="cat-6 post__cat post__cat--bg cat-theme-bg" to={`/category/videos`}>Videos</Link><span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span></div>
+                                                                    <Link className="cat-6 post__cat post__cat--bg cat-theme-bg" to={`/category/videos`}>{categoryName[curValue.CatId].termName}</Link><span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span></div>
                                                                 <div className="post__text--wrap ">
                                                                     <h3 className="post__title ">
                                                                         <Link to={`/${curValue.PostSlug}`}>{curValue.PostTitle}</Link></h3>
@@ -77,7 +86,7 @@ function Search(props) {
                             </div>
                         </div>
 
-                            <div className="atbs-sub-col atbs-sub-col--right sidebar js-sticky-sidebar" role="complementary">
+                            <div className="atbs-sub-col atbs-sub-col--right js-sticky-sidebar" role="complementary">
                                 <div id="search-2" className="widget widget_search">
                                     {
                                         (`${monsterSearch.actionUrl}` === 'null')
@@ -104,7 +113,7 @@ function Search(props) {
                                                                 <article className="post post--no-thumb post-no-thumb" data-dark-mode="true">
                                                                     <div className="post__text">
                                                                         <div className="post__meta post-time-cat-wrap">
-                                                                            <Link className="cat-6 post__cat cat-theme" to={`category/videos`}>Videos</Link><span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>                      </div>
+                                                                            <Link className="cat-6 post__cat cat-theme" to={`category/videos`}>{categoryName[curValue.CatId].termName}</Link><span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>                      </div>
                                                                         <div className="post__text--wrap">
                                                                             <h3 className="post__title typescale-0 custom-typescale-0 line-limit-child line-limit-3">
                                                                                 <Link to={`/${curValue.PostSlug}`}>{curValue.PostTitle}</Link></h3>
@@ -145,6 +154,7 @@ function Search(props) {
                         </div>{/* .row */}      </div>{/* .container */}
                 </div>{/* .atbs-block */}
             </div>
+        )}
         </>
     )
 }
