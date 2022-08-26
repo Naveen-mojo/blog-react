@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { useLocation, useRoutes } from "react-router-dom";
 import Layout from "./layout/Layout";
-import CategoryController from "./controller/CategoryController";
+
+// import CategoryController from "./controller/CategoryController";
+
 import HomeController from "./controller/HomeController";
 import PostDetailsController from "./controller/PostDetailsController";
-import Fashion from "./pages/Fashion";
+
+// import Fashion from "./pages/Fashion";
+
 import Createsitemap from "./component/Createsitemap";
 import AboutController from "./controller/AboutController";
 import apiEndPoint from "./environment";
@@ -24,6 +28,11 @@ import Login from "./admin/auth/Login";
 import PrivateRoute from "./utils/PrivateRoute";
 import PageNotFound from "./component/PageNotFound";
 
+// Lazy Loading Component
+const CategoryController = lazy(() => import('./controller/CategoryController'));
+const Fashion = lazy(() => import('./pages/Fashion'));
+
+
 export default function Router(props) {
   const articleAds = props.articleAds;
   const category = props.category;
@@ -37,7 +46,7 @@ export default function Router(props) {
       redirect: "follow",
     };
 
-    fetch(`${apiEndPoint}setting`, requestOptions)
+    fetch(`${apiEndPoint}setting/all`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setState(result[0]);
@@ -74,24 +83,28 @@ export default function Router(props) {
         {
           path: `:id/videos/page/:pageNumber`,
           element: (
+            <Suspense fallback={<div>Loading...</div>}>
             <CategoryController
               monsterSearch={state}
               category={category}
               categoryloader={loading}
             />
+            </Suspense>
           ),
         },
         {
           path: `:id/videos`,
           element: (
+            <Suspense fallback={<div>Loading...</div>}>
             <CategoryController
               monsterSearch={state}
               category={category}
               categoryloader={loading}
             />
+            </Suspense>
           ),
         },
-        { path: `:id/ipl2021`, element: <Fashion /> },
+        { path: `:id/ipl2021`, element: <Suspense fallback={<div>Loading...</div>}> <Fashion /> </Suspense>  },
         {
           path: ":id/:slug",
           element: (

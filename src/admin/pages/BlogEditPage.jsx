@@ -48,7 +48,7 @@ function BlogEditPage(props) {
     var raw = JSON.stringify({
       PageTitle: title,
       PageContent: editorValue,
-      PageSlug: `${slug}`.toLowerCase(),
+      PageSlug: `${convertToSlug(title)}`.toLowerCase(),
       PageStatus: pageStatus ? 1 : 0,
     });
 
@@ -59,15 +59,10 @@ function BlogEditPage(props) {
       redirect: "follow",
     };
 
-    fetch(`${apiEndPoint}/updateabout/${id}`, requestOptions)
+    fetch(`${apiEndPoint}update/page/${id}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        if (result.status === true) {
-          toast("About updated Successfully");
-        }
-        if (result.status === 500) {
-          toast("Something went wrong! please try again after sometime");
-        }
+          toast(result.message);
       })
       .catch((error) => console.log("error", error));
   };
@@ -125,7 +120,7 @@ function BlogEditPage(props) {
                       />
                     )}
                   </div>
-                  {editPage.PageStatus === "0" ? (
+                  {editPage.PageStatus === 1 ? (
                     <div className="form-group">
                       <input
                         name="postSuccess"

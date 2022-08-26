@@ -64,7 +64,7 @@ function Category(props) {
                                     className="cat-6 post__cat post__cat--bg cat-theme-bg"
                                     to={``}
                                   >
-                                    {category[curValue.CatId].termName}
+                                    {category[curValue.post_term.CatId].termName}
                                   </Link>
                                   <span className="time-wrap">
                                     <time
@@ -142,7 +142,7 @@ function Category(props) {
                 role="complementary"
               >
                 <div id="search-2" className="widget widget_search">
-                  {`${monsterSearch.actionUrl}` === "null" ? (
+                  {`${monsterSearch.actionUrl}` === "null" || `${monsterSearch.actionUrl}` === '' ? (
                     <form
                       action="http://localhost:3000/"
                       className="search-form"
@@ -198,7 +198,7 @@ function Category(props) {
                                       className="cat-6 post__cat cat-theme"
                                       to={``}
                                     >
-                                      {category[CurValue.CatId].termName}
+                                      {category[CurValue.post_term.CatId].termName}
                                     </Link>
                                     <span className="time-wrap">
                                       <time

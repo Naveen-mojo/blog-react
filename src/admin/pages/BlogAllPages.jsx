@@ -13,16 +13,10 @@ function BlogAllPages(props) {
       redirect: "follow",
     };
 
-    fetch(`${apiEndPoint}/pages/${id}`, requestOptions)
+    fetch(`${apiEndPoint}delete/page/${id}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        // console.log(result);
-        if (result.success === true) {
-          toast("Page deleted successully!");
-        }
-        if (result.success === 500) {
-          toast("Something went wrong! please try again after sometime");
-        }
+        toast(result.message);
       })
       .catch((error) => {
         console.log("error", error);
@@ -93,7 +87,7 @@ function BlogAllPages(props) {
       redirect: "follow",
     };
 
-    fetch(`${apiEndPoint}search/pages?q=${search}`, requestOptions)
+    fetch(`${apiEndPoint}page/search/all?q=${search}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setItems(result);
@@ -141,9 +135,9 @@ function BlogAllPages(props) {
                 defaultSortFieldId={1}
                 sortIcon={<i className="zmdi zmdi-long-arrow-up"></i>}
                 pagination
-                selectableRows
-                selectableRowsHighlight
-                selectableRowsVisibleOnly
+              // selectableRows
+              // selectableRowsHighlight
+              // selectableRowsVisibleOnly
               />
             </div>
           </div>

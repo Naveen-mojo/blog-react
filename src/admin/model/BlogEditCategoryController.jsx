@@ -18,10 +18,10 @@ function BlogEditCategoryController() {
       redirect: "follow",
     };
 
-    fetch(`${apiEndPoint}/term/${id}`, requestOptions)
+    fetch(`${apiEndPoint}term/${id}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        setcategory(result[0]);
+        setcategory(result.data[0]);
         setLoading(false);
       })
       .catch((error) => {

@@ -42,9 +42,9 @@ function BlogCategoryCreate() {
         e.preventDefault();
 
         var formdata = new FormData();
-        
+
         formdata.append("TermName", categoryValue.categoryName);
-        formdata.append("TermSlug",  `${convertToSlug(categoryValue.categoryName)}`.toLowerCase());
+        formdata.append("TermSlug", `${convertToSlug(categoryValue.categoryName)}`.toLowerCase());
         formdata.append("TermImage", fileInfo);
         formdata.append("RssFeedUrl", categoryValue.rssfeedurl);
         formdata.append("TermStatus", status ? 1 : 0);
@@ -55,16 +55,13 @@ function BlogCategoryCreate() {
             redirect: 'follow'
         };
 
-        console.log("requestOptions", requestOptions);
-
-        fetch(`${apiEndPoint}/term`, requestOptions)
+        fetch(`${apiEndPoint}create/term`, requestOptions)
             .then(response => response.json())
             .then(result => {
-                if (result.status === true) {
-                    toast("Term Created Successfully")
-                }
-                if (result.status === 500) {
-                    toast("Something went wrong! please try again after sometime")
+                if (result.status === 201) {
+                    toast("Category Created Successfully!")
+                } else {
+                    toast("server problem. please try again after some time")
                 }
             })
             .catch(error => console.log('error', error));

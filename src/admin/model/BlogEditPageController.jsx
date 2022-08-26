@@ -18,10 +18,10 @@ function BlogEditPageController() {
       redirect: "follow",
     };
 
-    fetch(`${apiEndPoint}admin/pages/${id}`, requestOptions)
+    fetch(`${apiEndPoint}page/${id}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        setpages(result[0]);
+        setpages(result.data[0]);
         setLoading(false);
       })
       .catch((error) => {

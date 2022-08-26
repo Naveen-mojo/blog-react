@@ -14,10 +14,10 @@ function BlogPostController(props) {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}`, requestOptions)
+        fetch(`${apiEndPoint}post/all`, requestOptions)
             .then(response => response.json())
             .then(result => {
-                setPost(result)
+                setPost(result.data)
                 setLoading(false)
             })
             .catch(error => {

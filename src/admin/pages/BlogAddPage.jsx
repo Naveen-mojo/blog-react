@@ -43,7 +43,7 @@ function BlogAddPage() {
         var raw = JSON.stringify({
             "PageTitle": state.pagetitle,
             "PageContent": editorValue,
-            "PageSlug": `${state.postSlug}`.toLowerCase(),
+            "PageSlug": `${convertToSlug(state.pagetitle)}`.toLowerCase(),
             "PageStatus": pageStatus ? 1 : 0,
         });
 
@@ -54,10 +54,10 @@ function BlogAddPage() {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}/about`, requestOptions)
+        fetch(`${apiEndPoint}create/page`, requestOptions)
             .then(response => response.json())
             .then(result => {
-                if (result.status === true) {
+                if (result.status === 201) {
                     toast("Page Created Successfully")
                 }
                 if (result.status === 500) {

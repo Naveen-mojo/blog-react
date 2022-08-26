@@ -156,7 +156,7 @@ function Home(props) {
                                   className="cat-6 post__cat post__cat--bg cat-theme-bg"
                                   to={`/${curValue.PostSlug}`}
                                 >
-                                  {category[curValue.CatId].termName}
+                                  {category[curValue.post_term.CatId].termName}
                                 </Link>
                                 <span className="time-wrap">
                                   <time
@@ -234,7 +234,7 @@ function Home(props) {
                                   className="cat-4 post__cat post__cat--bg cat-theme-bg"
                                   to={`category/videos`}
                                 >
-                                  {category[curValue.CatId].termName}
+                                  {category[curValue.post_term.CatId].termName}
                                 </Link>
                                 <span className="time-wrap">
                                   <time
@@ -452,7 +452,7 @@ function Home(props) {
                                 className="cat-7 post__cat post__cat--bg cat-theme-bg"
                                 to={`/${curValue.PostSlug}`}
                               >
-                                {category[curValue.CatId].termName}
+                                {category[curValue.post_term.CatId].termName}
                               </Link>
                               <span className="time-wrap">
                                 <time
@@ -559,7 +559,7 @@ function Home(props) {
                                       className="cat-7 post__cat post__cat--bg cat-theme-bg"
                                       to={`category/videos`}
                                     >
-                                      {category[curValue.CatId].termName}
+                                      {category[curValue.post_term.CatId].termName}
                                     </Link>
                                     <span className="time-wrap">
                                       <time
@@ -660,7 +660,7 @@ function Home(props) {
                                           className="cat-2 post__cat post__cat--bg cat-theme-bg"
                                           to={`category/videos`}
                                         >
-                                          {category[curValue.CatId].termName}
+                                          {category[curValue.post_term.CatId].termName}
                                         </Link>
                                         <span className="time-wrap">
                                           <time
@@ -774,7 +774,7 @@ function Home(props) {
                                             className="cat-6 post__cat cat-theme"
                                             to={`category/videos`}
                                           >
-                                            {category[curValue.CatId].termName}
+                                            {category[curValue.post_term.CatId].termName}
                                           </Link>
                                           <span className="time-wrap">
                                             <time
@@ -871,6 +871,7 @@ function Home(props) {
             </div>
           </div>
         )}
+        <Helmet type="text/javascript" src='./home-owl-script.js'></Helmet>
       </>
     );
   } else {

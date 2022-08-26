@@ -13,22 +13,15 @@ function BlogPost(props) {
       redirect: "follow",
     };
 
-    fetch(`${apiEndPoint}/${id}`, requestOptions)
+    fetch(`${apiEndPoint}delete/${id}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        // console.log(result);
-        if (result.success === true) {
-          toast("Post deleted successully!");
-        }
-        if (result.success === 500) {
-          toast("Something went wrong! please try again after sometime");
-        }
+        toast(result.message);
       })
       .catch((error) => {
         console.log("error", error);
       });
   };
-
 
   const category = props.category;
 
@@ -43,7 +36,7 @@ function BlogPost(props) {
     {
       id: 2,
       name: "Category",
-      selector: (row) => category[row.CatId].termName,
+      selector: (row) => category[row.post_term.CatId].termName,
       sortable: true,
       reorder: true,
     },
@@ -119,7 +112,7 @@ function BlogPost(props) {
       redirect: "follow",
     };
 
-    fetch(`${apiEndPoint}search?q=${search}`, requestOptions)
+    fetch(`${apiEndPoint}post/search/all?q=${search}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setItems(result);
@@ -130,8 +123,6 @@ function BlogPost(props) {
   useEffect(() => {
     getSearch();
   }, [search]);
-
-  console.log(items)
 
   return (
     <>
@@ -177,10 +168,10 @@ function BlogPost(props) {
                   sortIcon={<i className="zmdi zmdi-long-arrow-up"></i>}
                   pagination
                   highlightOnHover
-                  selectableRows
-                  selectableRowsHighlight
-                  selectableRowsVisibleOnly
-                  // contextActions=<button className="btn btn-danger">DELETE</button>
+                // selectableRows
+                // selectableRowsHighlight
+                // selectableRowsVisibleOnly
+                // contextActions=<button className="btn btn-danger">DELETE</button>
                 />
               </div>
             </div>

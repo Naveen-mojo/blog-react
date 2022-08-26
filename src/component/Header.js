@@ -838,7 +838,7 @@ function Header(props) {
                                                                             </a></div>
                                                                         <div className="post__text">
                                                                             <div className="post__meta post-time-cat-wrap">
-                                                                                <a className="cat-6 post__cat post__cat--bg cat-theme-bg" href={`/category/videos`}>{categoryName[curValue.CatId].termName}</a>
+                                                                                <a className="cat-6 post__cat post__cat--bg cat-theme-bg" href={`/category/videos`}>{categoryName[curValue.post_term.CatId].termName}</a>
                                                                                 <span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>                        </div>
                                                                             <h3 className="post__title typescale-1 custom-typescale-1 line-limit-child line-limit-3">
                                                                                 <a href={`/${curValue.PostSlug}`}>{curValue.PostTitle}</a></h3>

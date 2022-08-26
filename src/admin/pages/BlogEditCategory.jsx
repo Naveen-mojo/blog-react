@@ -10,6 +10,7 @@ function BlogEditCategory(props) {
   const [uploadImage, setUploadImage] = useState(null);
   const [status, setStatus] = useState(true);
   const [slug, setslug] = useState("");
+  const [fileInfo, setFileInfo] = useState(null)
 
   const [categoryValue, setCategoryValue] = useState({
     categoryName: "",
@@ -48,6 +49,7 @@ function BlogEditCategory(props) {
 
   const getImage = (e) => {
     setUploadImage(URL.createObjectURL(e.target.files[0]));
+    setFileInfo(e.target.files[0]);
   };
 
   function convertToSlug(Text) {
@@ -59,32 +61,25 @@ function BlogEditCategory(props) {
 
   const createPost = (e) => {
     e.preventDefault();
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    var raw = JSON.stringify({
-      TermName: categoryValue.categoryName,
-      TermSlug: slug,
-      TermImage: uploadImage,
-      RssFeedUrl: categoryValue.rssfeedurl,
-      TermStatus: status ? 1 : 0,
-    });
+
+    var formdata = new FormData();
+
+    formdata.append("TermName", categoryValue.categoryName);
+    formdata.append("TermSlug", `${convertToSlug(categoryValue.categoryName)}`.toLowerCase());
+    formdata.append("TermImage", fileInfo);
+    formdata.append("RssFeedUrl", categoryValue.rssfeedurl);
+    formdata.append("TermStatus", status ? 1 : 0);
 
     var requestOptions = {
-      method: "PUT",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
+      method: 'PUT',
+      body: formdata,
+      redirect: 'follow'
     };
 
-    fetch(`${apiEndPoint}/term/${id}`, requestOptions)
+    fetch(`${apiEndPoint}update/term/${id}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        if (result.status === true) {
-          toast("Term Updated Successfully");
-        }
-        if (result.status === 500) {
-          toast("Something went wrong! please try again after sometime");
-        }
+        toast(result.message);
       })
       .catch((error) => console.log("error", error));
   };

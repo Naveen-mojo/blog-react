@@ -34,7 +34,7 @@ function HomeController(props) {
     useEffect(() => {
         const getComments = async () => {
             const res = await fetch(
-                `http://localhost:5000/api/v1/post/all?npp=23&page=1`
+                `${apiEndPoint}post/pagination/all?page=1&size=23`
             );
             const data = await res.json();
             setItems(data.results);
@@ -45,7 +45,7 @@ function HomeController(props) {
 
     const fetchComments = async () => {
         const res = await fetch(
-            `http://localhost:5000/api/v1/post/all?npp=23&page=${page}`
+            `${apiEndPoint}post/pagination/all?page=${page}&size=23`
         );
         const data = await res.json();
         return data.results;
@@ -68,7 +68,7 @@ function HomeController(props) {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}carousel?npp=${carouselNppValue}&page=${carouselPageValue}`, requestOptions)
+        fetch(`${apiEndPoint}post/pagination/carousel?page=${carouselPageValue}&size=${carouselNppValue}`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 setCarousel(result.results)
@@ -87,7 +87,7 @@ function HomeController(props) {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}carousel?npp=4&page=1`, requestOptions)
+        fetch(`${apiEndPoint}post/pagination/carousel?size=4&page=1`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 setRecentPost(result.results)
@@ -106,7 +106,7 @@ function HomeController(props) {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}carousel?npp=6&page=2`, requestOptions)
+        fetch(`${apiEndPoint}post/pagination/carousel?size=6&page=2`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 setPost3(result.results)
@@ -125,7 +125,7 @@ function HomeController(props) {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}carousel?npp=3&page=6`, requestOptions)
+        fetch(`${apiEndPoint}post/pagination/carousel?size=3&page=6`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 setCarouselPost2(result.results)
@@ -144,7 +144,7 @@ function HomeController(props) {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}carousel?npp=3&page=7`, requestOptions)
+        fetch(`${apiEndPoint}post/pagination/carousel?size=3&page=7`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 setCarouselPost3(result.results)
@@ -162,7 +162,7 @@ function HomeController(props) {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}search?q=${searchData}`, requestOptions)
+        fetch(`${apiEndPoint}post/search/all?q=${searchData}`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 // setItems(result)

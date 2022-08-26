@@ -50,7 +50,7 @@ function Search(props) {
                                                                 </Link></div>
                                                             <div className="post__text">
                                                                 <div className="post__meta post-time-cat-wrap">
-                                                                    <Link className="cat-6 post__cat post__cat--bg cat-theme-bg" to={`/category/videos`}>{categoryName[curValue.CatId].termName}</Link><span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span></div>
+                                                                    <Link className="cat-6 post__cat post__cat--bg cat-theme-bg" to={`/category/videos`}>{categoryName[curValue.post_term.CatId].termName}</Link><span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span></div>
                                                                 <div className="post__text--wrap ">
                                                                     <h3 className="post__title ">
                                                                         <Link to={`/${curValue.PostSlug}`}>{curValue.PostTitle}</Link></h3>
@@ -113,7 +113,7 @@ function Search(props) {
                                                                 <article className="post post--no-thumb post-no-thumb" data-dark-mode="true">
                                                                     <div className="post__text">
                                                                         <div className="post__meta post-time-cat-wrap">
-                                                                            <Link className="cat-6 post__cat cat-theme" to={`category/videos`}>{categoryName[curValue.CatId].termName}</Link><span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>                      </div>
+                                                                            <Link className="cat-6 post__cat cat-theme" to={`category/videos`}>{categoryName[curValue.post_term.CatId].termName}</Link><span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>                      </div>
                                                                         <div className="post__text--wrap">
                                                                             <h3 className="post__title typescale-0 custom-typescale-0 line-limit-child line-limit-3">
                                                                                 <Link to={`/${curValue.PostSlug}`}>{curValue.PostTitle}</Link></h3>

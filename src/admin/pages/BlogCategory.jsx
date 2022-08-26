@@ -12,15 +12,10 @@ function BlogCategory(props) {
       redirect: "follow",
     };
 
-    fetch(`${apiEndPoint}/term/${id}`, requestOptions)
+    fetch(`${apiEndPoint}delete/term/${id}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        if (result.success === true) {
-          toast("Category deleted successully!");
-        }
-        if (result.success === 500) {
-          toast("Something went wrong! please try again after sometime");
-        }
+          toast(result.message);
       })
       .catch((error) => {
         console.log("error", error);
@@ -70,7 +65,7 @@ function BlogCategory(props) {
       redirect: "follow",
     };
 
-    fetch(`${apiEndPoint}search/category?q=${search}`, requestOptions)
+    fetch(`${apiEndPoint}term/search/all?q=${search}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setItems(result);
@@ -118,9 +113,9 @@ function BlogCategory(props) {
                 defaultSortFieldId={1}
                 sortIcon={<i className="zmdi zmdi-long-arrow-up"></i>}
                 pagination
-                selectableRows
-                selectableRowsHighlight
-                selectableRowsVisibleOnly
+                // selectableRows
+                // selectableRowsHighlight
+                // selectableRowsVisibleOnly
               />
             </div>
           </div>

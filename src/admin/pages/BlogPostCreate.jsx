@@ -13,7 +13,6 @@ function BlogPostCreate(props) {
     const [editorValue, setEditorValue] = useState(null);
 
     const [postStatus, setPostStatus] = useState(true);
-    const [deleted, setDeleted] = useState(false);
 
     const [uploadImage, setUploadImage] = useState(null)
     const [fileInfo, setFileInfo] = useState(null)
@@ -49,10 +48,6 @@ function BlogPostCreate(props) {
 
     const getPostStatusValue = (e) => {
         setPostStatus(e.target.checked);
-    }
-
-    const postDeleted = (e) => {
-        setDeleted(e.target.checked);
     }
 
     const fileuploaded = (inputElement) => {
@@ -94,7 +89,6 @@ function BlogPostCreate(props) {
         formdata.append("MetaKey", postData.metaKeyword)
         formdata.append("MetaDesc", postData.metaDescription)
         formdata.append("PostTags", postData.tag);
-        formdata.append("is_deleted", deleted ? 0 : 1)
         formdata.append("Affiliate", '');
         formdata.append("PostViews", postData.views);
         formdata.append("CatId", postData.category);
@@ -109,10 +103,10 @@ function BlogPostCreate(props) {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}`, requestOptions)
+        fetch(`${apiEndPoint}create/post`, requestOptions)
             .then(response => response.json())
             .then(result => {
-                if (result.status === true) {
+                if (result.status === 201) {
                     toast("Post Created Successfully")
                 }
                 if (result.status === 500) {
@@ -250,12 +244,6 @@ function BlogPostCreate(props) {
                                 <div className="form-group">
                                     <input name='postSuccess' onChange={getPostStatusValue} type="checkbox" defaultChecked />
                                     <span>Post Status</span>
-                                </div>
-
-
-                                <div className="form-group">
-                                    <input name='deleted' onChange={postDeleted} type="checkbox" />
-                                    <span>Is Deleted</span>
                                 </div>
 
 

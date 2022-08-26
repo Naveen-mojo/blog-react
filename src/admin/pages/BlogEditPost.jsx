@@ -10,8 +10,6 @@ function BlogEditPost(props) {
   const posts = props.posts;
   const categoryByID = props.category[posts.CatId];
 
-  console.log("posts", posts)
-
   const location = useLocation();
   const id = location.pathname.split("/")[3];
 
@@ -21,7 +19,6 @@ function BlogEditPost(props) {
   const [editorValue, setEditorValue] = useState(null);
 
   const [postStatus, setPostStatus] = useState(true);
-  const [deleted, setDeleted] = useState(true);
 
   const [uploadImage, setUploadImage] = useState(null);
   const [fileInfo, setFileInfo] = useState(null)
@@ -118,7 +115,6 @@ function BlogEditPost(props) {
     formdata.append("MetaKey", postData.metaKeyword)
     formdata.append("MetaDesc", postData.metaDescription)
     formdata.append("PostTags", postData.tag);
-    formdata.append("is_deleted", (deleted === true) ? 0 : 1)
     formdata.append("Affiliate", 1);
     formdata.append("PostViews", postData.views);
     formdata.append("CatId", categoryValue);
@@ -129,20 +125,15 @@ function BlogEditPost(props) {
     formdata.append("PostThumb", fileInfo);
 
     var requestOptions = {
-        method: 'PATCH',
+        method: 'PUT',
         body: formdata,
         redirect: 'follow'
     };
 
-    fetch(`${apiEndPoint}/${id}`, requestOptions)
+    fetch(`${apiEndPoint}update/post/${id}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        if (result.status === true) {
-          toast("Post Updated Successfully");
-        }
-        if (result.status === 500) {
-          toast("Something went wrong! please try again after sometime");
-        }
+        toast(result.message);
       })
       .catch((error) => console.log("error", error));
   };
@@ -444,28 +435,6 @@ function BlogEditPost(props) {
                       value={posts.PostStatus}
                     />
                     <span>Post Status</span>
-                  </div>
-                )}
-                {posts.is_deleted === "0" ? (
-                  <div className="form-group">
-                    <input
-                      name="postDeleted"
-                      onChange={(event) => setDeleted(event.target.checked)}
-                      type="checkbox"
-                      defaultChecked
-                      value={posts.is_deleted}
-                    />
-                    <span>Post Deleted</span>
-                  </div>
-                ) : (
-                  <div className="form-group">
-                    <input
-                      name="postDeleted"
-                      onChange={(event) => setDeleted(event.target.checked)}
-                      type="checkbox"
-                      value={posts.is_deleted}
-                    />
-                    <span>Post Deleted</span>
                   </div>
                 )}
 

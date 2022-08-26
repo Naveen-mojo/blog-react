@@ -23,9 +23,9 @@ function HeaderController(props) {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}/term`, requestOptions)
+        fetch(`${apiEndPoint}term/all`, requestOptions)
             .then(response => response.json())
-            .then(result => setTerm(result))
+            .then(result => setTerm(result.data))
             .catch(error => console.log('error', error));
     }
 
@@ -35,7 +35,7 @@ function HeaderController(props) {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}search?q=${search}`, requestOptions)
+        fetch(`${apiEndPoint}post/search/all?q=${search}`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 setSearchResult(result)

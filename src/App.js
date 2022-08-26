@@ -30,7 +30,7 @@ function App() {
       redirect: "follow",
     };
 
-    fetch("http://localhost:5000/api/v1/post/setting", requestOptions)
+    fetch(`${apiEndPoint}setting/all`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setSettingLoading(false);
@@ -90,7 +90,7 @@ function App() {
       redirect: "follow",
     };
 
-    fetch(`${apiEndPoint}setting`, requestOptions)
+    fetch(`${apiEndPoint}setting/all`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setState(result[0]);

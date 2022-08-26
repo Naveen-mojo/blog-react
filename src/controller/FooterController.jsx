@@ -13,9 +13,9 @@ function FooterController(props) {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}/term`, requestOptions)
+        fetch(`${apiEndPoint}term/all`, requestOptions)
             .then(response => response.json())
-            .then(result => setTerm(result))
+            .then(result => setTerm(result.data))
             .catch(error => console.log('error', error));
     }
 

@@ -30,10 +30,10 @@ function PostDetailsController(props) {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}${location.pathname.replace('/', '')}`, requestOptions)
+        fetch(`http://localhost:5000/${location.pathname.replace('/', '')}`, requestOptions)
             .then(response => response.json())
             .then(result => {
-                setData(result)
+                setData(result.data)
             })
             .catch(error => {
                 console.log('error', error)
@@ -47,7 +47,7 @@ function PostDetailsController(props) {
     useEffect(() => {
         const getComments = async () => {
             const res = await fetch(
-                `http://localhost:5000/api/v1/post/all?npp=5&page=0`
+                `${apiEndPoint}post/pagination/all?size=5&page=0`
             );
             const data = await res.json();
             setItems(data.results);
@@ -58,7 +58,7 @@ function PostDetailsController(props) {
 
     const fetchComments = async () => {
         const res = await fetch(
-            `http://localhost:5000/api/v1/post/all?npp=5&page=${page}`
+            `${apiEndPoint}post/pagination/all?size=5&page=${page}`
         );
         const data = await res.json();
         return data.results;
@@ -89,7 +89,7 @@ function PostDetailsController(props) {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}search?q=${searchData}`, requestOptions)
+        fetch(`${apiEndPoint}post/search/all?q=${searchData}`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 setItems(result)
@@ -110,10 +110,10 @@ function PostDetailsController(props) {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}`, requestOptions)
+        fetch(`${apiEndPoint}post/all`, requestOptions)
             .then(response => response.json())
             .then(result => {
-                setRecPost(result)
+                setRecPost(result.data)
                 setLoading(false)
             })
             .catch(error => {
@@ -126,8 +126,6 @@ function PostDetailsController(props) {
     useEffect(() => {
         getRandomPost();
     }, [])
-
-
 
     return (
         <>

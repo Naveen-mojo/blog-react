@@ -14,10 +14,10 @@ function BlogPostCreateController(props) {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}/term`, requestOptions)
+        fetch(`${apiEndPoint}term/all`, requestOptions)
             .then(response => response.json())
             .then(result => {
-                setTerm(result)
+                setTerm(result.data)
                 setLoading(false)
             })
             .catch(error => {

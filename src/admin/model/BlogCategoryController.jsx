@@ -14,10 +14,10 @@ function BlogCategoryController() {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}/term`, requestOptions)
+        fetch(`${apiEndPoint}term/all`, requestOptions)
             .then(response => response.json())
             .then(result => {
-                setCategory(result)
+                setCategory(result.data)
                 setLoading(false)
             })
             .catch(error => {

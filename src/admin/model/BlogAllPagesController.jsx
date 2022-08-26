@@ -13,7 +13,7 @@ function BlogAllPagesController() {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}/pages`, requestOptions)
+        fetch(`${apiEndPoint}page/all`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 setpages(result)

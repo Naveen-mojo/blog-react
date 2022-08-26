@@ -15,10 +15,10 @@ function AboutController() {
       redirect: "follow",
     };
 
-    fetch(`${apiEndPoint}pages/${path}`, requestOptions)
+    fetch(`${apiEndPoint}page/slug/${path}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        setState(result);
+        setState(result.data);
       })
       .catch((error) => {
         console.log("error", error);

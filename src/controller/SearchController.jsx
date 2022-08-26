@@ -18,7 +18,7 @@ function SearchController(props) {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}search?q=${search}`, requestOptions)
+        fetch(`${apiEndPoint}post/search/all?q=${search}`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 setItems(result)
@@ -37,7 +37,7 @@ function SearchController(props) {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}setting`, requestOptions)
+        fetch(`${apiEndPoint}setting/all`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 setState(result[0])

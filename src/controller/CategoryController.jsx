@@ -49,7 +49,7 @@ function CategoryController(props) {
     useEffect(() => {
         const getUserList = () => {
             setLoading(true);
-            fetch(`${apiEndPoint}/all?npp=${skip}&page=${pageNum}`)
+            fetch(`${apiEndPoint}post/pagination/all?size=${skip}&page=${pageNum}`)
                 .then(res => res.json())
                 .then(res => {
                     setTotalPages(res.pagination.total_pages);
@@ -62,11 +62,11 @@ function CategoryController(props) {
     }, [pageNum]);
 
     useEffect(() => {
-        window.onload = (event) => {
+        window.addEventListener = () => {
             const getUserLists = () => {
                 setLoading(true);
                 if (isNaN(queryPageNum) === true) {
-                    fetch(`${apiEndPoint}/all?npp=${(0 + 1) * 3}&page=0`)
+                    fetch(`${apiEndPoint}post/pagination/all?size=${(0 + 1) * 3}&page=0`)
                         .then(res => res.json())
                         .then(res => {
                             setTotalPages(res.pagination.total_pages);
@@ -75,7 +75,7 @@ function CategoryController(props) {
                             setLoading(false);
                         });
                 } else {
-                    fetch(`${apiEndPoint}/all?npp=${(queryPageNum + 1) * 3}&page=0`)
+                    fetch(`${apiEndPoint}post/pagination/all?size=${(queryPageNum + 1) * 3}&page=0`)
                         .then(res => res.json())
                         .then(res => {
                             setTotalPages(res.pagination.total_pages);
@@ -93,7 +93,7 @@ function CategoryController(props) {
     useEffect(() => {
         const getComments = async () => {
             const res = await fetch(
-                `http://localhost:5000/api/v1/post/all?npp=5&page=0`
+                `${apiEndPoint}post/pagination/all?size=5&page=0`
             );
             const data = await res.json();
             setItems(data.results);
@@ -104,7 +104,7 @@ function CategoryController(props) {
 
     const fetchComments = async () => {
         const res = await fetch(
-            `http://localhost:5000/api/v1/post/all?npp=5&page=${page}`
+            `${apiEndPoint}post/pagination/all?size=5&page=${page}`
         );
         const data = await res.json();
         return data.results;
@@ -135,7 +135,7 @@ function CategoryController(props) {
             redirect: 'follow'
         };
 
-        fetch(`${apiEndPoint}search?q=${searchData}`, requestOptions)
+        fetch(`${apiEndPoint}post/search/all?q=${searchData}`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 setItems(result)

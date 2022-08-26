@@ -20,10 +20,10 @@ function BlogEditPostController(props) {
       redirect: "follow",
     };
 
-    fetch(`${apiEndPoint}/post/${id}`, requestOptions)
+    fetch(`${apiEndPoint}post/${id}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        setposts(result[0]);
+        setposts(result.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -39,10 +39,10 @@ function BlogEditPostController(props) {
       redirect: "follow",
     };
 
-    fetch(`${apiEndPoint}/term`, requestOptions)
+    fetch(`${apiEndPoint}term/all`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        setTerm(result);
+        setTerm(result.data);
         setLoadingTerm(false);
       })
       .catch((error) => {
