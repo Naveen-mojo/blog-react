@@ -44,7 +44,7 @@ function BlogPost(props) {
       id: 3,
       name: "Post Image",
       selector: (row) =>
-        row.PostThumbUrl !== null ? (
+        (row.PostThumbUrl !== null || row.PostThumbUrl !== '') ? (
           <img
             src={`${row.PostThumbUrl}`}
             style={{ height: "50px", width: "70px", margin: "7px" }}

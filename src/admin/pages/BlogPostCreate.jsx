@@ -106,12 +106,12 @@ function BlogPostCreate(props) {
         fetch(`${apiEndPoint}create/post`, requestOptions)
             .then(response => response.json())
             .then(result => {
-                if (result.status === 201) {
-                    toast("Post Created Successfully")
+                if(result.status === 201){
+                    toast("Post Created successfully!")
+                }else{
+                    toast("Cannot create Post! please try again after sometime")
                 }
-                if (result.status === 500) {
-                    toast("Something went wrong! please try again after sometime")
-                }
+                
             })
             .catch(error => console.log('error', error));
     }
@@ -122,7 +122,6 @@ function BlogPostCreate(props) {
             .replace(/[^\w-]+/g, '')
             .replaceAll('--', '-');
     }
-
 
     return (
         <>
@@ -137,7 +136,7 @@ function BlogPostCreate(props) {
                             <div className="card">
                                 <div className="body">
                                     <div className="form-group">
-                                        <select name="category" onChange={getInputValue} className="form-control show-tick">
+                                        <select name="category" onChange={getInputValue} className="form-control show-tick" required>
                                             <option selected disabled>Select Category --</option>
                                             {
                                                 term.map((curValue) => {

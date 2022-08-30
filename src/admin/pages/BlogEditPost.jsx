@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 
 function BlogEditPost(props) {
   const posts = props.posts;
-  const categoryByID = props.category[posts.CatId];
+  const categoryByID = props.category[props.catId];
 
   const location = useLocation();
   const id = location.pathname.split("/")[3];
@@ -122,7 +122,7 @@ function BlogEditPost(props) {
     formdata.append("post_excerpt", '') 
     formdata.append("PostId", id)
 
-    formdata.append("PostThumb", fileInfo);
+    formdata.append("PostThumb", (fileInfo !== null) ? fileInfo : postData.postthumb);
 
     var requestOptions = {
         method: 'PUT',

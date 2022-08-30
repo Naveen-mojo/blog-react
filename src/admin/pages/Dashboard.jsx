@@ -3,23 +3,20 @@ import blogpost1 from '../../img/blog-page-3.jpg'
 import blogpost2 from '../../img/blog-page-4.jpg'
 
 
-function Dashboard() {
+function Dashboard(props) {
+    const totalPost = props.totalPost;
+    const activePost = props.activePost;
+    const terms = props.terms;
+
     return (
         <>
             <div>
-                {/* <div className="page-loader-wrapper">
-                    <div className="loader">
-                        <div className="m-t-30"><img src={adminlogo} width={48} height={48} alt="Alpino" /></div>
-                        <p>Please wait...</p>
-                    </div>
-                </div> */}
-
                 <div className="row clearfix">
                     <div className="col-lg-3 col-md-6">
                         <div className="card">
                             <div className="body">
-                                <h4 className="m-t-0 m-b-0">2,048</h4>
-                                <p className="m-b-0">Total Leads</p>
+                                <h4 className="m-t-0 m-b-0">{totalPost.count}</h4>
+                                <p className="m-b-0">Total Posts</p>
                                 <div className="sparkline" data-type="line" data-spot-radius={3} data-highlight-spot-color="rgb(233, 30, 99)" data-highlight-line-color="#222" data-min-spot-color="rgb(233, 30, 99)" data-max-spot-color="rgb(0, 150, 136)" data-spot-color="rgb(0, 188, 212)" data-offset={90} data-width="100%" data-height="40px" data-line-width={2} data-line-color="#34495e" data-fill-color="transparent"> 7,6,7,8,5,9,8,6,7 </div>
                             </div>
                         </div>
@@ -27,17 +24,17 @@ function Dashboard() {
                     <div className="col-lg-3 col-md-6">
                         <div className="card">
                             <div className="body">
-                                <h4 className="m-t-0 m-b-0">521</h4>
-                                <p className="m-b-0 ">Total Connections</p>
+                                <h4 className="m-t-0 m-b-0">{activePost.count}</h4>
+                                <p className="m-b-0 ">Active Posts</p>
                                 <div className="sparkline" data-type="line" data-spot-radius={3} data-highlight-spot-color="rgb(233, 30, 99)" data-highlight-line-color="#222" data-min-spot-color="rgb(233, 30, 99)" data-max-spot-color="rgb(0, 150, 136)" data-spot-color="rgb(0, 188, 212)" data-offset={90} data-width="100%" data-height="42px" data-line-width={2} data-line-color="#5394c9" data-fill-color="transparent"> 6,5,7,4,5,3,8,6,5 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-3 col-md-6">
+                    <div div className="col-lg-3 col-md-6" >
                         <div className="card">
                             <div className="body">
-                                <h4 className="m-t-0 m-b-0">73</h4>
-                                <p className="m-b-0 ">Articles</p>
+                                <h4 className="m-t-0 m-b-0">{props.totalViews}</h4>
+                                <p className="m-b-0 ">Total Views</p>
                                 <div className="sparkline" data-type="line" data-spot-radius={3} data-highlight-spot-color="rgb(233, 30, 99)" data-highlight-line-color="#222" data-min-spot-color="rgb(233, 30, 99)" data-max-spot-color="rgb(0, 150, 136)" data-spot-color="rgb(0, 188, 212)" data-offset={90} data-width="100%" data-height="45px" data-line-width={2} data-line-color="#37bf8d" data-fill-color="transparent"> 8,7,7,5,5,4,8,7,5 </div>
                             </div>
                         </div>
@@ -45,8 +42,8 @@ function Dashboard() {
                     <div className="col-lg-3 col-md-6">
                         <div className="card">
                             <div className="body">
-                                <h4 className="m-t-0 m-b-0">15</h4>
-                                <p className="m-b-0">Categories</p>
+                                <h4 className="m-t-0 m-b-0">{terms.count}</h4>
+                                <p className="m-b-0">Active Categories</p>
                                 <div className="sparkline" data-type="line" data-spot-radius={3} data-highlight-spot-color="rgb(233, 30, 99)" data-highlight-line-color="#222" data-min-spot-color="rgb(233, 30, 99)" data-max-spot-color="rgb(0, 150, 136)" data-spot-color="rgb(0, 188, 212)" data-offset={90} data-width="100%" data-height="45px" data-line-width={2} data-line-color="#f1c364" data-fill-color="transparent"> 7,6,7,8,5,9,8,6,7 </div>
                             </div>
                         </div>

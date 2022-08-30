@@ -18,6 +18,7 @@ function BlogEditPage(props) {
     if (editPage) {
       settitle(editPage.PageTitle);
       setslug(editPage.PageSlug);
+      setEditorValue(editPage.PageContent);
     }
   }, [editPage]);
 

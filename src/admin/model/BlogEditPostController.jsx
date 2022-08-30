@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 
 function BlogEditPostController(props) {
   const [posts, setposts] = useState([]);
+  const [catId, setCatId] = useState(null);
   const [term, setTerm] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingTerm, setLoadingTerm] = useState(false);
@@ -24,6 +25,7 @@ function BlogEditPostController(props) {
       .then((response) => response.json())
       .then((result) => {
         setposts(result.data);
+        setCatId(result.data.post_term.CatId);
         setLoading(false);
       })
       .catch((error) => {
@@ -65,6 +67,7 @@ function BlogEditPostController(props) {
         cateloader={props.cateloading}
         term={term}
         loadingTerm={loadingTerm}
+        catId={catId}
       />
     </>
   );

@@ -11,6 +11,8 @@ function Category(props) {
   const monsterSearch = props.mSearch;
   const category = props.category;
 
+  console.log("catePosts", catePosts);
+
   const location = useLocation()
   const path = location.pathname.split('/')[2]
 

@@ -1,36 +1,31 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import { useLocation, useRoutes } from "react-router-dom";
 import Layout from "./layout/Layout";
-
-// import CategoryController from "./controller/CategoryController";
-
+import apiEndPoint from "./environment";
 import HomeController from "./controller/HomeController";
 import PostDetailsController from "./controller/PostDetailsController";
 
-// import Fashion from "./pages/Fashion";
-
 import Createsitemap from "./component/Createsitemap";
 import AboutController from "./controller/AboutController";
-import apiEndPoint from "./environment";
-import Dashboard from "./admin/pages/Dashboard";
-import BlogPostCreateController from "./admin/model/BlogPostCreateController";
 import AdminLayout from "./admin/layout/Layout";
-import BlogCategoryCreateController from "./admin/model/BlogCategoryCreateController";
 import BlogAddPageController from "./admin/model/BlogAddPageController";
 import SiteSettingController from "./admin/model/SiteSettingController";
-import BlogPostController from "./admin/model/BlogPostController";
 import BlogCategoryController from "./admin/model/BlogCategoryController";
-import BlogAllPagesController from "./admin/model/BlogAllPagesController";
-import BlogEditPageController from "./admin/model/BlogEditPageController";
-import BlogEditCategoryController from "./admin/model/BlogEditCategoryController";
-import BlogEditPostController from "./admin/model/BlogEditPostController";
 import Login from "./admin/auth/Login";
 import PrivateRoute from "./utils/PrivateRoute";
 import PageNotFound from "./component/PageNotFound";
+import DashboardController from "./admin/model/DashboardController";
 
 // Lazy Loading Component
 const CategoryController = lazy(() => import('./controller/CategoryController'));
 const Fashion = lazy(() => import('./pages/Fashion'));
+const BlogPostController = lazy(() => import('./admin/model/BlogPostController'));
+const BlogPostCreateController = lazy(() => import('./admin/model/BlogPostCreateController'));
+const BlogCategoryCreateController = lazy(() => import('./admin/model/BlogCategoryCreateController'));
+const BlogEditCategoryController = lazy(() => import('./admin/model/BlogEditCategoryController'));
+const BlogEditPostController = lazy(() => import('./admin/model/BlogEditPostController'));
+const BlogAllPagesController = lazy(() => import('./admin/model/BlogAllPagesController'));
+const BlogEditPageController = lazy(() => import('./admin/model/BlogEditPageController'));
 
 
 export default function Router(props) {
@@ -84,11 +79,11 @@ export default function Router(props) {
           path: `:id/videos/page/:pageNumber`,
           element: (
             <Suspense fallback={<div>Loading...</div>}>
-            <CategoryController
-              monsterSearch={state}
-              category={category}
-              categoryloader={loading}
-            />
+              <CategoryController
+                monsterSearch={state}
+                category={category}
+                categoryloader={loading}
+              />
             </Suspense>
           ),
         },
@@ -96,15 +91,15 @@ export default function Router(props) {
           path: `:id/videos`,
           element: (
             <Suspense fallback={<div>Loading...</div>}>
-            <CategoryController
-              monsterSearch={state}
-              category={category}
-              categoryloader={loading}
-            />
+              <CategoryController
+                monsterSearch={state}
+                category={category}
+                categoryloader={loading}
+              />
             </Suspense>
           ),
         },
-        { path: `:id/ipl2021`, element: <Suspense fallback={<div>Loading...</div>}> <Fashion /> </Suspense>  },
+        { path: `:id/ipl2021`, element: <Suspense fallback={<div>Loading...</div>}> <Fashion /> </Suspense> },
         {
           path: ":id/:slug",
           element: (
@@ -132,24 +127,28 @@ export default function Router(props) {
           path: "home",
           element: (
             <PrivateRoute>
-              <Dashboard />
+              <DashboardController />
             </PrivateRoute>
           ),
         },
         {
           path: "create-post",
           element: (
-            <PrivateRoute>
-              <BlogPostCreateController category={category} />
-            </PrivateRoute>
+            <Suspense fallback={<div>Loading...</div>}>
+              <PrivateRoute>
+                <BlogPostCreateController category={category} />
+              </PrivateRoute>
+            </Suspense>
           ),
         },
         {
           path: "create-category",
           element: (
-            <PrivateRoute>
-              <BlogCategoryCreateController />
-            </PrivateRoute>
+            <Suspense fallback={<div>Loading...</div>}>
+              <PrivateRoute>
+                <BlogCategoryCreateController />
+              </PrivateRoute>
+            </Suspense>
           ),
         },
         {
@@ -171,9 +170,11 @@ export default function Router(props) {
         {
           path: "all-posts",
           element: (
-            <PrivateRoute>
-              <BlogPostController category={category} loading={loading} />
-            </PrivateRoute>
+            <Suspense fallback={<div>Loading...</div>}>
+              <PrivateRoute>
+                <BlogPostController category={category} loading={loading} />
+              </PrivateRoute>
+            </Suspense>
           ),
         },
         {
@@ -187,36 +188,44 @@ export default function Router(props) {
         {
           path: "all-pages",
           element: (
-            <PrivateRoute>
-              <BlogAllPagesController />
-            </PrivateRoute>
+            <Suspense fallback={<div>Loading...</div>}>
+              <PrivateRoute>
+                <BlogAllPagesController />
+              </PrivateRoute>
+            </Suspense>
           ),
         },
         {
           path: "edit-page/:id",
           element: (
-            <PrivateRoute>
-              <BlogEditPageController />
-            </PrivateRoute>
+            <Suspense fallback={<div>Loading...</div>}>
+              <PrivateRoute>
+                <BlogEditPageController />
+              </PrivateRoute>
+            </Suspense>
           ),
         },
         {
           path: "edit-category/:id",
           element: (
-            <PrivateRoute>
-              <BlogEditCategoryController />
-            </PrivateRoute>
+            <Suspense fallback={<div>Loading...</div>}>
+              <PrivateRoute>
+                <BlogEditCategoryController />
+              </PrivateRoute>
+            </Suspense>
           ),
         },
         {
           path: "edit-post/:id",
           element: (
-            <PrivateRoute>
-              <BlogEditPostController
-                category={category}
-                cateloading={loading}
-              />
-            </PrivateRoute>
+            <Suspense fallback={<div>Loading...</div>}>
+              <PrivateRoute>
+                <BlogEditPostController
+                  category={category}
+                  cateloading={loading}
+                />
+              </PrivateRoute>
+            </Suspense>
           ),
         },
       ],
