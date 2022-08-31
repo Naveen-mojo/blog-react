@@ -55,11 +55,11 @@ function Dashboard(props) {
                             <div className="header">
                                 <h2><strong>Visitors</strong> Statistics</h2>
                                 <ul className="header-dropdown">
-                                    <li className="dropdown"> <a href="javascript:void(0);" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more" /> </a>
+                                    <li className="dropdown"> <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more" /> </a>
                                         <ul className="dropdown-menu slideUp">
-                                            <li><a href="javascript:void(0);">Edit</a></li>
-                                            <li><a href="javascript:void(0);">Delete</a></li>
-                                            <li><a href="javascript:void(0);">Report</a></li>
+                                            <li><a href="#">Edit</a></li>
+                                            <li><a href="#">Delete</a></li>
+                                            <li><a href="#">Report</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -168,11 +168,11 @@ function Dashboard(props) {
                             <div className="header">
                                 <h2><strong>Popular</strong> Categories</h2>
                                 <ul className="header-dropdown">
-                                    <li className="dropdown"> <a href="javascript:void(0);" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more" /> </a>
+                                    <li className="dropdown"> <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more" /> </a>
                                         <ul className="dropdown-menu slideUp">
-                                            <li><a className="boxs-close" href="javascript:void(0);">Edit</a></li>
-                                            <li><a href="javascript:void(0);">Delete</a></li>
-                                            <li><a href="javascript:void(0);">Report</a></li>
+                                            <li><a className="boxs-close" href="#">Edit</a></li>
+                                            <li><a href="#">Delete</a></li>
+                                            <li><a href="#">Report</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -202,11 +202,11 @@ function Dashboard(props) {
                             <div className="header">
                                 <h2><strong>Latest</strong> Comments</h2>
                                 <ul className="header-dropdown">
-                                    <li className="dropdown"> <a href="javascript:void(0);" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more" /> </a>
+                                    <li className="dropdown"> <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more" /> </a>
                                         <ul className="dropdown-menu slideUp">
-                                            <li><a className="boxs-close" href="javascript:void(0);">Edit</a></li>
-                                            <li><a href="javascript:void(0);">Delete</a></li>
-                                            <li><a href="javascript:void(0);">Report</a></li>
+                                            <li><a className="boxs-close" href="#">Edit</a></li>
+                                            <li><a href="#">Delete</a></li>
+                                            <li><a href="#">Report</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -222,9 +222,9 @@ function Dashboard(props) {
                                                 <p className="inbox-date">12:34 PM</p>
                                             </div>
                                             <div className="hover_action">
-                                                <a href="javascript:void(0);"><i className="zmdi zmdi-favorite" /></a>
-                                                <a href="javascript:void(0);"><i className="zmdi zmdi-edit" /></a>
-                                                <a href="javascript:void(0);"><i className="zmdi zmdi-check-circle" /></a>
+                                                <a href="#"><i className="zmdi zmdi-favorite" /></a>
+                                                <a href="#"><i className="zmdi zmdi-edit" /></a>
+                                                <a href="#"><i className="zmdi zmdi-check-circle" /></a>
                                             </div>
                                         </div>
                                     </li>
@@ -237,9 +237,9 @@ function Dashboard(props) {
                                                 <p className="inbox-date">10:34 AM</p>
                                             </div>
                                             <div className="hover_action">
-                                                <a href="javascript:void(0);"><i className="zmdi zmdi-favorite" /></a>
-                                                <a href="javascript:void(0);"><i className="zmdi zmdi-edit" /></a>
-                                                <a href="javascript:void(0);"><i className="zmdi zmdi-check-circle" /></a>
+                                                <a href="#"><i className="zmdi zmdi-favorite" /></a>
+                                                <a href="#"><i className="zmdi zmdi-edit" /></a>
+                                                <a href="#"><i className="zmdi zmdi-check-circle" /></a>
                                             </div>
                                         </div>
                                     </li>
@@ -252,9 +252,9 @@ function Dashboard(props) {
                                                 <p className="inbox-date">18:45 PM</p>
                                             </div>
                                             <div className="hover_action">
-                                                <a href="javascript:void(0);"><i className="zmdi zmdi-favorite" /></a>
-                                                <a href="javascript:void(0);"><i className="zmdi zmdi-edit" /></a>
-                                                <a href="javascript:void(0);"><i className="zmdi zmdi-check-circle" /></a>
+                                                <a href="#"><i className="zmdi zmdi-favorite" /></a>
+                                                <a href="#"><i className="zmdi zmdi-edit" /></a>
+                                                <a href="#"><i className="zmdi zmdi-check-circle" /></a>
                                             </div>
                                         </div>
                                     </li>
@@ -267,9 +267,9 @@ function Dashboard(props) {
                                                 <p className="inbox-date">15:34 PM</p>
                                             </div>
                                             <div className="hover_action">
-                                                <a href="javascript:void(0);"><i className="zmdi zmdi-favorite" /></a>
-                                                <a href="javascript:void(0);"><i className="zmdi zmdi-edit" /></a>
-                                                <a href="javascript:void(0);"><i className="zmdi zmdi-check-circle" /></a>
+                                                <a href="#"><i className="zmdi zmdi-favorite" /></a>
+                                                <a href="#"><i className="zmdi zmdi-edit" /></a>
+                                                <a href="#"><i className="zmdi zmdi-check-circle" /></a>
                                             </div>
                                         </div>
                                     </li>
@@ -284,11 +284,11 @@ function Dashboard(props) {
                             <div className="header">
                                 <h2><strong>Social</strong> Media</h2>
                                 <ul className="header-dropdown">
-                                    <li className="dropdown"> <a href="javascript:void(0);" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more" /> </a>
+                                    <li className="dropdown"> <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more" /> </a>
                                         <ul className="dropdown-menu slideUp">
-                                            <li><a className="boxs-close" href="javascript:void(0);">Edit</a></li>
-                                            <li><a href="javascript:void(0);">Delete</a></li>
-                                            <li><a href="javascript:void(0);">Report</a></li>
+                                            <li><a className="boxs-close" href="#">Edit</a></li>
+                                            <li><a href="#">Delete</a></li>
+                                            <li><a href="#">Report</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -385,11 +385,11 @@ function Dashboard(props) {
                             <div className="header">
                                 <h2><strong>Latest</strong> Post</h2>
                                 <ul className="header-dropdown">
-                                    <li className="dropdown"> <a href="javascript:void(0);" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more" /> </a>
+                                    <li className="dropdown"> <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more" /> </a>
                                         <ul className="dropdown-menu slideUp">
-                                            <li><a href="javascript:void(0);" className="boxs-close">Edit</a></li>
-                                            <li><a href="javascript:void(0);">Delete</a></li>
-                                            <li><a href="javascript:void(0);">Report</a></li>
+                                            <li><a href="#" className="boxs-close">Edit</a></li>
+                                            <li><a href="#">Delete</a></li>
+                                            <li><a href="#">Report</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -398,17 +398,17 @@ function Dashboard(props) {
                                 <div className="img-post">
                                     <img src={blogpost1} alt="Awesome Image" />
                                     <div className="social_share">
-                                        <a href="javascript:void(0);" className="btn btn-primary btn-icon btn-icon-mini btn-round"><i className="zmdi zmdi-facebook" /></a>
-                                        <a href="javascript:void(0);" className="btn btn-primary btn-icon btn-icon-mini btn-round"><i className="zmdi zmdi-twitter" /></a>
-                                        <a href="javascript:void(0);" className="btn btn-primary btn-icon btn-icon-mini btn-round"><i className="zmdi zmdi-instagram" /></a>
+                                        <a href="#" className="btn btn-primary btn-icon btn-icon-mini btn-round"><i className="zmdi zmdi-facebook" /></a>
+                                        <a href="#" className="btn btn-primary btn-icon btn-icon-mini btn-round"><i className="zmdi zmdi-twitter" /></a>
+                                        <a href="#" className="btn btn-primary btn-icon btn-icon-mini btn-round"><i className="zmdi zmdi-instagram" /></a>
                                     </div>
                                 </div>
                             </div>
                             <div className="body">
                                 <ul className="meta">
-                                    <li><a href="javascript:void(0);"><i className="zmdi zmdi-account col-blue" />Posted By: John Smith</a></li>
-                                    <li><a href="javascript:void(0);"><i className="zmdi zmdi-label col-amber" />Technology</a></li>
-                                    <li><a href="javascript:void(0);"><i className="zmdi zmdi-comment-text col-blue" />Comments: 3</a></li>
+                                    <li><a href="#"><i className="zmdi zmdi-account col-blue" />Posted By: John Smith</a></li>
+                                    <li><a href="#"><i className="zmdi zmdi-label col-amber" />Technology</a></li>
+                                    <li><a href="#"><i className="zmdi zmdi-comment-text col-blue" />Comments: 3</a></li>
                                 </ul>
                                 <h3 className="m-t-0"><a href="blog-details.html">Apple Introduces Search Ads Basic</a></h3>
                                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal</p>
@@ -421,20 +421,20 @@ function Dashboard(props) {
                             <div className="header">
                                 <h2><strong>Popular</strong> Post</h2>
                                 <ul className="header-dropdown">
-                                    <li className="dropdown"> <a href="javascript:void(0);" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more" /> </a>
+                                    <li className="dropdown"> <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="zmdi zmdi-more" /> </a>
                                         <ul className="dropdown-menu slideUp">
-                                            <li><a href="javascript:void(0);" className="boxs-close">Edit</a></li>
-                                            <li><a href="javascript:void(0);">Delete</a></li>
-                                            <li><a href="javascript:void(0);">Report</a></li>
+                                            <li><a href="#" className="boxs-close">Edit</a></li>
+                                            <li><a href="#">Delete</a></li>
+                                            <li><a href="#">Report</a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
                             <div className="body m-b-10">
                                 <ul className="meta">
-                                    <li><a href="javascript:void(0);"><i className="zmdi zmdi-account col-blue" />Posted By: John Smith</a></li>
-                                    <li><a href="javascript:void(0);"><i className="zmdi zmdi-label col-amber" />Technology</a></li>
-                                    <li><a href="javascript:void(0);"><i className="zmdi zmdi-comment-text col-blue" />Comments: 3</a></li>
+                                    <li><a href="#"><i className="zmdi zmdi-account col-blue" />Posted By: John Smith</a></li>
+                                    <li><a href="#"><i className="zmdi zmdi-label col-amber" />Technology</a></li>
+                                    <li><a href="#"><i className="zmdi zmdi-comment-text col-blue" />Comments: 3</a></li>
                                 </ul>
                                 <h3 className="m-t-0"><a href="blog-details.html">Apple Introduces Search Ads Basic</a></h3>
                                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal</p>

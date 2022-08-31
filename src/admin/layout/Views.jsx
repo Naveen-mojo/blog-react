@@ -172,10 +172,10 @@ function Views() {
                 >
                   <i className="zmdi zmdi-behance" />
                 </a>
-                <a className="icon" href="javascript:void(0);">
+                <a className="icon" href="#">
                   <i className="zmdi zmdi-twitter" />
                 </a>
-                <a className="icon" href="javascript:void(0);">
+                <a className="icon" href="#">
                   <i className="zmdi zmdi-linkedin" />
                 </a>
                 <p>
@@ -195,31 +195,31 @@ function Views() {
       <aside id="minileftbar" className="minileftbar">
         <ul className="menu_list">
           <li>
-            <a href="javascript:void(0);" className="bars" />
+            <a href="#" className="bars" />
             <a className="navbar-brand" href="index.html">
               <img src={adminlogo} width={48} height={48} alt="Alpino" />
             </a>
           </li>
           <li>
             <a
-              href="javascript:void(0);"
+              href="#"
               className="btn_overlay hidden-sm-down"
             >
               <i className="zmdi zmdi-search" />
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);" className="menu-sm">
+            <a href="#" className="menu-sm">
               <i className="zmdi zmdi-swap" />
             </a>
           </li>
           <li className="menuapp-btn">
-            <a href="javascript:void(0);">
+            <a href="#">
               <i className="zmdi zmdi-apps" />
             </a>
           </li>
           <li className="notifications badgebit">
-            <a href="javascript:void(0);">
+            <a href="#">
               <i className="zmdi zmdi-notifications" />
               <div className="notify">
                 <span className="heartbit" />
@@ -228,7 +228,7 @@ function Views() {
             </a>
           </li>
           <li className="task badgebit">
-            <a href="javascript:void(0);">
+            <a href="#">
               <i className="zmdi zmdi-flag" />
               <div className="notify">
                 <span className="heartbit" />
@@ -258,7 +258,7 @@ function Views() {
           </li>
           <li>
             <a
-              href="javascript:void(0);"
+              href="#"
               className="fullscreen"
               data-provide="fullscreen"
             >
@@ -266,7 +266,7 @@ function Views() {
             </a>
           </li>
           <li className="power">
-            <a href="javascript:void(0);" className="js-right-sidebar">
+            <a href="#" className="js-right-sidebar">
               <i className="zmdi zmdi-settings zmdi-hc-spin" />
             </a>
             <button onClick={logoutUser} title="Logout" className="mega-menu btn-danger">
@@ -335,7 +335,7 @@ function Views() {
               <div className="body">
                 <ul className="messages list-unstyled">
                   <li>
-                    <a href="javascript:void(0);">
+                    <a href="#">
                       <div className="media">
                         <img
                           className="media-object rounded-circle"
@@ -352,7 +352,7 @@ function Views() {
                     </a>
                   </li>
                   <li>
-                    <a href="javascript:void(0);">
+                    <a href="#">
                       <div className="media">
                         <img
                           className="media-object rounded-circle"
@@ -369,7 +369,7 @@ function Views() {
                     </a>
                   </li>
                   <li>
-                    <a href="javascript:void(0);">
+                    <a href="#">
                       <div className="media">
                         <img
                           className="media-object rounded-circle"
@@ -450,7 +450,7 @@ function Views() {
                 </h2>
               </div>
               <div className="body m-b-10">
-                <a href="javascript:void(0);">
+                <a href="#">
                   <span className="text-muted">
                     Project Name 1 <span className="float-right">29%</span>
                   </span>
@@ -481,7 +481,7 @@ function Views() {
                 </a>
               </div>
               <div className="body m-b-10">
-                <a href="javascript:void(0);">
+                <a href="#">
                   <span className="text-muted">
                     Project Name 2 <span className="float-right">78%</span>
                   </span>
@@ -509,7 +509,7 @@ function Views() {
                 </a>
               </div>
               <div className="body">
-                <a href="javascript:void(0);">
+                <a href="#">
                   <span className="text-muted">
                     Project Name 4 <span className="float-right">68%</span>
                   </span>
@@ -805,28 +805,28 @@ function Views() {
                       </span>
                     </p>
                     <a
-                      href="javascript:void(0);"
+                      href="#"
                       title="true"
                       className=" waves-effect waves-block"
                     >
                       <i className="zmdi zmdi-facebook-box" />
                     </a>
                     <a
-                      href="javascript:void(0);"
+                      href="#"
                       title="true"
                       className=" waves-effect waves-block"
                     >
                       <i className="zmdi zmdi-linkedin-box" />
                     </a>
                     <a
-                      href="javascript:void(0);"
+                      href="#"
                       title="true"
                       className=" waves-effect waves-block"
                     >
                       <i className="zmdi zmdi-instagram" />
                     </a>
                     <a
-                      href="javascript:void(0);"
+                      href="#"
                       title="true"
                       className=" waves-effect waves-block"
                     >
