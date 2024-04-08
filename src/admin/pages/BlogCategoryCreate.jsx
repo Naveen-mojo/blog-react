@@ -49,6 +49,8 @@ function BlogCategoryCreate() {
         formdata.append("RssFeedUrl", categoryValue.rssfeedurl);
         formdata.append("TermStatus", status ? 1 : 0);
 
+        console.log("fileInfo", fileInfo)
+
         var requestOptions = {
             method: 'POST',
             body: formdata,

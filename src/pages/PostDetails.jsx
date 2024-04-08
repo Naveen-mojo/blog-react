@@ -27,26 +27,26 @@ function PostDetails(props) {
                         <div className="single-entry-container__inner single-1 atbs-block-263 element-scrolling-progress scrolling-progress-post-content" data-url-to-load data-postid={263}>
                             {
                                 data.map((curValue) => {
-                                    const content = curValue.PostContent
+                                    const content = curValue?.PostContent
                                     return (
-                                        <div key={curValue.ID}>
+                                        <div key={curValue?.ID}>
                                             <div className="atbs-block atbs-block--fullwidth single-header-wrap">
                                                 <div className="container">
                                                     <div className="single-header__inner">
                                                         <div className="entry-thumb single-entry-thumb atbs-thumb-object-fit">
                                                             {
-                                                                (`${curValue.PostThumbUrl}` !== 'null') ?
-                                                                    <img width={800} height={400} src={curValue.PostThumbUrl} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="post img" sizes="(max-width: 800px) 100vw, 800px" />
+                                                                (`${curValue?.PostThumbUrl}` !== 'null') ?
+                                                                    <img width={800} height={400} src={curValue?.PostThumbUrl} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="post img" sizes="(max-width: 800px) 100vw, 800px" />
                                                                     :
-                                                                    <img width={800} height={400} src={curValue.PostThumb} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="details img" sizes="(max-width: 800px) 100vw, 800px" />
+                                                                    <img width={800} height={400} src={curValue?.PostThumb} className="attachment-atbs-m-2_1 size-atbs-m-2_1 wp-post-image" alt="details img" sizes="(max-width: 800px) 100vw, 800px" />
 
                                                             }
 
                                                         </div>
                                                         <header className="single-header--body single-header">
                                                             <div className="entry-meta">
-                                                                <Link className="cat-6 entry-cat post__cat post__cat--bg cat-theme-bg" to={`/category/videos`}>{category[curValue.post_term.CatId].termName}</Link><span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}><i className="mdicon mdicon-schedule" />{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>                          </div>
-                                                            <h1 className="entry-title">{curValue.PostTitle}</h1>
+                                                                <Link className="cat-6 entry-cat post__cat post__cat--bg cat-theme-bg" to={`/category/videos`}>{category[curValue?.post_term?.CatId]?.termName}</Link><span className="time-wrap"><time className="time published" dateTime={moment(curValue?.CreationDate).format('MMMM Do YYYY')} title={moment(curValue?.CreationDate).format('MMMM Do YYYY')}><i className="mdicon mdicon-schedule" />{moment(curValue?.CreationDate).format('MMMM Do YYYY')}</time></span>                          </div>
+                                                            <h1 className="entry-title">{curValue?.PostTitle}</h1>
                                                             {/* <div className="entry-author entry-author-has-avatar post-author author-circle"><a className="post-author__avatar" href="#"><img alt="admin" src="https://secure.gravatar.com/avatar/e7ea5bdbee1c7e6d2f0517eb9dfd5595?s=50&d=mm&r=g" srcSet="https://secure.gravatar.com/avatar/e7ea5bdbee1c7e6d2f0517eb9dfd5595?s=100&d=mm&r=g 2x" className="avatar avatar-50 photo author-avatar" height={50} width={50} loading="lazy" /></a><div className="post-author__text">
                                                                 <span className="hint-span">By</span><a className="post-author__name" href="#">admin</a></div></div>                  */}
                                                         </header>
@@ -98,7 +98,7 @@ function PostDetails(props) {
                                                                             <div className="single-column-right">
                                                                                 <div dangerouslySetInnerHTML={{ __html: content }} />
                                                                                 <div className='my-5'>
-                                                                                    {props.articleAds}
+                                                                                    {props?.articleAds}
                                                                                 </div>
                                                                             </div>
 
@@ -185,17 +185,17 @@ function PostDetails(props) {
                                                                             <a href={`/${props.recPost[initialData].PostSlug}`}>
 
                                                                                 {
-                                                                                    (props.recPost[initialData].PostThumbUrl !== '') ?
-                                                                                        <img width={1200} height={600} src={props.recPost[initialData].PostThumbUrl} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" loading="lazy" sizes="(max-width: 1200px) 100vw, 1200px" />
+                                                                                    (props.recPost[initialData]?.PostThumbUrl !== '') ?
+                                                                                        <img width={1200} height={600} src={props.recPost[initialData]?.PostThumbUrl} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" loading="lazy" sizes="(max-width: 1200px) 100vw, 1200px" />
                                                                                         :
-                                                                                        <img width={1200} height={600} src={props.recPost[initialData].PostThumb} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" loading="lazy" sizes="(max-width: 1200px) 100vw, 1200px" />
+                                                                                        <img width={1200} height={600} src={props.recPost[initialData]?.PostThumb} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" loading="lazy" sizes="(max-width: 1200px) 100vw, 1200px" />
 
                                                                                 }
 
                                                                             </a></div>
                                                                         <div className="post__text">
                                                                             <div className="post__meta post-time-cat-wrap">
-                                                                                <Link className="cat-6 post__cat post__cat--bg cat-theme-bg" to={`/category/videos`}>{category[props.recPost[initialData].post_term.CatId].termName}</Link><span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>                      </div>
+                                                                                <Link className="cat-6 post__cat post__cat--bg cat-theme-bg" to={`/category/videos`}>{category[props.recPost[initialData]?.post_term?.CatId]?.termName}</Link><span className="time-wrap"><time className="time published" dateTime={moment(curValue?.CreationDate).format('MMMM Do YYYY')} title={moment(curValue?.CreationDate).format('MMMM Do YYYY')}>{moment(curValue?.CreationDate).format('MMMM Do YYYY')}</time></span>                      </div>
                                                                             <div className="post__text--wrap ">
                                                                                 <h3 className="post__title ">
                                                                                     <a href={`/${props.recPost[initialData].PostSlug}`}>{props.recPost[initialData].PostTitle}</a>                      </h3>
@@ -216,16 +216,16 @@ function PostDetails(props) {
 
                                                                             {
                                                                                 (props.recPost[initialData + 1].PostThumbUrl !== '') ?
-                                                                                    <img width={1200} height={600} src={props.recPost[initialData + 1].PostThumbUrl} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" loading="lazy" sizes="(max-width: 1200px) 100vw, 1200px" />
+                                                                                    <img width={1200} height={600} src={props.recPost[initialData + 1]?.PostThumbUrl} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" loading="lazy" sizes="(max-width: 1200px) 100vw, 1200px" />
                                                                                     :
-                                                                                    <img width={1200} height={600} src={props.recPost[initialData + 1].PostThumb} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" loading="lazy" sizes="(max-width: 1200px) 100vw, 1200px" />
+                                                                                    <img width={1200} height={600} src={props.recPost[initialData + 1]?.PostThumb} className="attachment-atbs-l-2_1 size-atbs-l-2_1 wp-post-image" alt="" loading="lazy" sizes="(max-width: 1200px) 100vw, 1200px" />
 
                                                                             }
 
                                                                         </a></div>
                                                                     <div className="post__text">
                                                                         <div className="post__meta post-time-cat-wrap">
-                                                                            <Link className="cat-4 post__cat post__cat--bg cat-theme-bg" to={`/category/videos`}>{category[props.recPost[initialData + 1].post_term.CatId].termName}</Link><span className="time-wrap"><time className="time published" dateTime={moment(curValue.CreationDate).format('MMMM Do YYYY')} title={moment(curValue.CreationDate).format('MMMM Do YYYY')}>{moment(curValue.CreationDate).format('MMMM Do YYYY')}</time></span>                      </div>
+                                                                            <Link className="cat-4 post__cat post__cat--bg cat-theme-bg" to={`/category/videos`}>{category[props.recPost[initialData + 1]?.post_term?.CatId]?.termName}</Link><span className="time-wrap"><time className="time published" dateTime={moment(curValue?.CreationDate).format('MMMM Do YYYY')} title={moment(curValue?.CreationDate).format('MMMM Do YYYY')}>{moment(curValue?.CreationDate).format('MMMM Do YYYY')}</time></span>                      </div>
                                                                         <div className="post__text--wrap ">
                                                                             <h3 className="post__title ">
                                                                                 <a href={`/${props.recPost[initialData + 1].PostSlug}`}>{props.recPost[initialData + 1].PostTitle}</a>                      </h3>
@@ -279,7 +279,7 @@ function PostDetails(props) {
                                                                                             <article className="post post--no-thumb post-no-thumb" data-dark-mode="true">
                                                                                                 <div className="post__text">
                                                                                                     <div className="post__meta post-time-cat-wrap">
-                                                                                                        <Link className="cat-6 post__cat cat-theme" to={`/category/videos`}>{category[CurValue.post_term.CatId].termName}</Link><span className="time-wrap"><time className="time published" dateTime={moment(CurValue.CreationDate).format('MMMM Do YYYY')} title={moment(CurValue.CreationDate).format('MMMM Do YYYY')}>{moment(CurValue.CreationDate).format('MMMM Do YYYY')}</time></span>                      </div>
+                                                                                                        <Link className="cat-6 post__cat cat-theme" to={`/category/videos`}>{category[CurValue?.post_term?.CatId]?.termName}</Link><span className="time-wrap"><time className="time published" dateTime={moment(CurValue?.CreationDate).format('MMMM Do YYYY')} title={moment(CurValue?.CreationDate).format('MMMM Do YYYY')}>{moment(CurValue?.CreationDate).format('MMMM Do YYYY')}</time></span>                      </div>
                                                                                                     <div className="post__text--wrap">
                                                                                                         <h3 className="post__title typescale-0 custom-typescale-0 line-limit-child line-limit-3">
                                                                                                             <a href={`/${CurValue.PostSlug}`}>{CurValue.PostTitle}</a>                      </h3>
